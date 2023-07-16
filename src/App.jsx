@@ -12,8 +12,10 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/transactions" element={<Transactions />} />
+          <Route path="finance-report/" element={<Dashboard />} />
+          <Route path="finance-report/dashboard" element={<Dashboard />} />
+          <Route path="finance-report/transactions" element={<Transactions />} />
+          <Route path="*" element={<Dashboard />} />
         </Routes>
       </Router>
     </div>

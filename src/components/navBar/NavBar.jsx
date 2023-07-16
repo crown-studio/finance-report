@@ -35,12 +35,12 @@ const NavBar = ({ handleToggleMenu, handleYearChange, handleMonthChange, year, m
           <Navbar.Collapse id="navbar-nav">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <Link to="/" className="nav-link">
+                <Link to="/finance-report/dashboard" className="nav-link">
                   Dashboard
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/transactions" className="nav-link">
+                <Link to="/finance-report/transactions" className="nav-link">
                   Transctions
                 </Link>
               </li>
