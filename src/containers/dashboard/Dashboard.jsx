@@ -23,16 +23,24 @@ const Dashboard = () => {
     .filter(({ valor }) => valor <= 0)
     .map(({ valor, ...rest }) => ({ ...rest, valor: valor * -1 }))
     .filter(({ observacoes }) => !observacoes.includes("#banabuiu"));
-  const receitas = chartData.filter(({ valor }) => valor > 0).filter(({ observacoes }) => !observacoes.includes("#banabuiu"));
+  const receitas = chartData
+    .filter(({ valor }) => valor > 0)
+    .filter(({ observacoes }) => !observacoes.includes("#banabuiu"));
 
   const filteredDespesas = despesas.filter(({ pagamento }) => {
     // return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
-    return getDateByMonthNumber(selectedMonth).getMonth() === getParsedDate(pagamento).getMonth();
+    return (
+      getDateByMonthNumber(selectedMonth).getMonth() ===
+      getParsedDate(pagamento).getMonth()
+    );
   });
 
   const filteredReceitas = receitas.filter(({ pagamento }) => {
     // return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
-    return getDateByMonthNumber(selectedMonth).getMonth() === getParsedDate(pagamento).getMonth();
+    return (
+      getDateByMonthNumber(selectedMonth).getMonth() ===
+      getParsedDate(pagamento).getMonth()
+    );
   });
 
   const handleYearChange = (eventKey) => {

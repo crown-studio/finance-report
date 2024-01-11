@@ -13,6 +13,8 @@ const NavBar = ({ handleToggleMenu, handleYearChange, handleMonthChange, year, m
   const availableYears = removeDuplicates(Object.keys(groupBy(chartData, "pagamento")).map((date) => date.split("/")[2]));
   const availableMonths = removeDuplicates(Object.keys(groupBy(chartData, "pagamento")).map((date) => date.split("/")[1]));
 
+  // console.log(removeDuplicates(Object.keys(groupBy(chartData, "pagamento"))));
+
   const [lastYear] = availableYears.sort();
   const [lastMonth] = availableMonths.sort();
 
