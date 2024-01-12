@@ -32,9 +32,6 @@ function mergeDatabase(directory = dirname) {
 	const files = fs.readdirSync(directory);
 	const jsonFiles = files.filter(file => path.extname(file) === '.json');
 
-	console.log(new URL(import.meta.url).pathname);
-	return;
-
 	const data = [];
 	for (const file of jsonFiles) {
 		const filePath = path.join(directory, file);
@@ -46,10 +43,11 @@ function mergeDatabase(directory = dirname) {
 		data.push(...objectsWithId);
 	}
 
+	fs.writeFileSync(`./src/data/database.json`, JSON.stringify(data, null, 2));
 	return data;
 }
 
-async function spreadDatabase(fileName) {
+async function spreadDatabase(fileName = 'database') {
 	// const data = await import(`file://${dirname}/${fileName}.js`, { assert: { type: 'json' } }); // Node 17.5.0
 	const data = JSON.parse(fs.readFileSync(`${dirname}/${fileName}.json`, 'utf8'));
 	for (let i = 0; i < 11; i++) {
@@ -58,5 +56,5 @@ async function spreadDatabase(fileName) {
 	}
 }
 
-// await spreadDatabase('database');
+// spreadDatabase();
 mergeDatabase();
