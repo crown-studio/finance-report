@@ -7,29 +7,11 @@ import { getMonthName } from '../../utils/dateUtils';
 import { groupBy } from '../../utils/objectUtils';
 import { capitalizeFirstLetter } from '../../utils/stringUtils.js';
 import './BarChart.scss';
-
-type Receita = {
-	id: number;
-	descricao: string;
-	valor: number;
-	pagamento: string;
-	categoria: string;
-	tipo: string;
-	data: string;
-};
-
-type Despesa = {
-	id: number;
-	descricao: string;
-	valor: number;
-	pagamento: string;
-	categoria: string;
-	tipo: string;
-	data: string;
-};
+import { IReceita } from '../../types/IReceita';
+import { IDespesa } from '../../types/IDespesa';
 
 interface IBarchartProps {
-	chartData: { receitas: Receita[]; despesas: Despesa[] };
+	chartData: { receitas: IReceita[]; despesas: IDespesa[] };
 	title?: string;
 	xaxisTitle?: string;
 	yaxisTitle?: string;

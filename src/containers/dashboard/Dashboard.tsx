@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 // import { getDateByMonthNumber, getParsedDate } from '../../utils/dateUtils';
 import BarChart from '../../components/barChart/BarChart';
 import NavBar from '../../components/navBar/NavBar';
-import chartData from '../../data/dataFile.json';
+import chartData from '../../data/database.json';
 import './Dashboard.scss';
 
 const Dashboard = () => {

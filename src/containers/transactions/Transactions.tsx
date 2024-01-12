@@ -2,7 +2,7 @@ import { Container, Row, Col, Nav, Button } from 'react-bootstrap';
 // import PieChart from '../../components/pieChart/PieChart';
 
 import React, { useState } from 'react';
-import chartData from '../../data/dataFile.json';
+import chartData from '../../data/database.json';
 // import { groupBy } from '../../utils/objectUtils';
 // import LineChart from '../../components/lineChart/LineChart';
 // import BarChart from '../../components/barChart/BarChart';
@@ -15,9 +15,12 @@ import { useFilteredData } from '../../hooks/useFilteredData';
 import './Transactions.scss';
 
 const Transactions = () => {
+	const [id] = useState(`idckbx${new Date().getTime() * Math.random()}`);
 	const { despesas, receitas } = useFilteredData();
 	const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
 	const [selectedMonth, setSelectedMonth] = useState((new Date().getMonth() + 1).toString());
+
+	const initialValue = 42250.89;
 
 	// const saldoAnterior = 40545.26; // ABRIL
 	// const saldoAnterior = 26574.45; // MAIO
@@ -28,21 +31,21 @@ const Transactions = () => {
 	// const saldoAnterior = 13402.23; // NOVEMBRO
 
 	const saldoAnterior =
-		42250.89 +
+		initialValue +
 		countValueOf(
 			chartData.filter(
-				({ pagamento }) => getDateByMonthNumber(selectedMonth).getMonth() !== getParsedDate(pagamento).getMonth(),
+				({ pagamento }) => getParsedDate(pagamento).getMonth() < getDateByMonthNumber(Number(selectedMonth)).getMonth(),
 			),
 		);
 
 	const filteredDespesas = despesas.filter(({ pagamento }) => {
 		// return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
-		return getDateByMonthNumber(selectedMonth).getMonth() === getParsedDate(pagamento).getMonth();
+		return getDateByMonthNumber(Number(selectedMonth)).getMonth() === getParsedDate(pagamento).getMonth();
 	});
 
 	const filteredReceitas = receitas.filter(({ pagamento }) => {
 		// return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
-		return getDateByMonthNumber(selectedMonth).getMonth() === getParsedDate(pagamento).getMonth();
+		return getDateByMonthNumber(Number(selectedMonth)).getMonth() === getParsedDate(pagamento).getMonth();
 	});
 
 	const filteredDizimistas = filteredReceitas.filter(({ categoria }) => categoria === 'Dízimo');
@@ -63,13 +66,11 @@ const Transactions = () => {
 		({ categoria, subcategoria }) => categoria === 'Juros' && subcategoria === 'Outros',
 	);
 
-	// console.log(filteredDizimistas);
-
-	const handleYearChange = eventKey => {
+	const handleYearChange = (eventKey: string) => {
 		setSelectedYear(eventKey);
 	};
 
-	const handleMonthChange = eventKey => {
+	const handleMonthChange = (eventKey: string) => {
 		setSelectedMonth(eventKey);
 	};
 
@@ -106,8 +107,8 @@ const Transactions = () => {
 			<Container className="p-4">
 				<h4 className="text-center mb-5">RELAÇÃO DE DIZIMISTAS</h4>
 
-				{filteredDizimistas.map(({ descricao, observacoes }) => (
-					<Row md={12} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
+				{filteredDizimistas.map(({ descricao }) => (
+					<Row md={12} key={id} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
 						<Row md={12}>
 							<Col md={10}>
 								<p className="mb-0 fs-5">{descricao}</p>
@@ -141,7 +142,7 @@ const Transactions = () => {
 				<h4 className="text-center mb-5">RELAÇÃO DOS OFERTANTES</h4>
 
 				{filteredOfertantes.map(({ descricao, observacoes }) => (
-					<Row md={12} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
+					<Row key={id} md={12} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
 						<Row md={12}>
 							<Col md={10}>
 								<p className="mb-0 fs-5">{descricao}</p>
@@ -236,7 +237,7 @@ const Transactions = () => {
 							subcategoria: 'Outros',
 						}),
 				].map(({ descricao, valor, observacoes, categoria, subcategoria }) => (
-					<Row md={12} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
+					<Row key={id} md={12} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
 						<Row md={12}>
 							<Col md={10}>
 								<p className="mb-0 fs-5">{descricao}</p>

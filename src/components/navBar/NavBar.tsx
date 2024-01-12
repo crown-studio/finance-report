@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Navbar, Container, Dropdown, Nav, Button } from 'react-bootstrap';
-import chartData from '../../data/dataFile.json';
+import chartData from '../../data/database.json';
 import { getMonthName } from '../../utils/dateUtils';
 import { capitalizeFirstLetter } from '../../utils/stringUtils';
 import { groupBy } from '../../utils/objectUtils';
