@@ -15,7 +15,6 @@ import { useFilteredData } from '../../hooks/useFilteredData';
 import './Transactions.scss';
 
 const Transactions = () => {
-	const [id] = useState(`idckbx${new Date().getTime() * Math.random()}`);
 	const { despesas, receitas } = useFilteredData();
 	const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
 	const [selectedMonth, setSelectedMonth] = useState((new Date().getMonth() + 1).toString());
@@ -107,7 +106,7 @@ const Transactions = () => {
 			<Container className="p-4">
 				<h4 className="text-center mb-5">RELAÇÃO DE DIZIMISTAS</h4>
 
-				{filteredDizimistas.map(({ descricao }) => (
+				{filteredDizimistas.map(({ id, descricao }) => (
 					<Row md={12} key={id} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
 						<Row md={12}>
 							<Col md={10}>
@@ -141,7 +140,7 @@ const Transactions = () => {
 			<Container className="p-4">
 				<h4 className="text-center mb-5">RELAÇÃO DOS OFERTANTES</h4>
 
-				{filteredOfertantes.map(({ descricao, observacoes }) => (
+				{filteredOfertantes.map(({ id, descricao, observacoes }) => (
 					<Row key={id} md={12} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
 						<Row md={12}>
 							<Col md={10}>
@@ -236,7 +235,7 @@ const Transactions = () => {
 							categoria: 'Obras',
 							subcategoria: 'Outros',
 						}),
-				].map(({ descricao, valor, observacoes, categoria, subcategoria }) => (
+				].map(({ id, descricao, valor, observacoes, categoria, subcategoria }) => (
 					<Row key={id} md={12} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
 						<Row md={12}>
 							<Col md={10}>
