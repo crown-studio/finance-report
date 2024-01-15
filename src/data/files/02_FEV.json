@@ -115,7 +115,7 @@
     "id": "lrazcsjrvtpws8xi1j",
     "descricao": "IRRF Prebendas Pastorais",
     "valor": -526.22,
-    "encargos": "26.09",
+    "encargos": -26.09,
     "lancamento": "01/01/2023 12:02",
     "vencimento": "20/01/2023",
     "pagamento": "02/02/2023",
@@ -714,7 +714,7 @@
     "observacoes": "#banabuiu Tijolos e cimento"
   },
   {
-    "id": "lrazcsjr2utpcd7s4tb",
+    "id": "lrfkdmdrjmg0kpzqtuo",
     "descricao": "Palti Talmai & Rebeca Talmai",
     "valor": 500,
     "lancamento": "28/02/2023",
@@ -726,7 +726,19 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrgkgk05g773",
+    "id": "lrfkdmdra4eepn3sat",
+    "descricao": "Reajuste de saldo",
+    "valor": 260.2,
+    "lancamento": "28/02/2023",
+    "vencimento": "28/02/2023",
+    "pagamento": "28/02/2023",
+    "categoria": "Juros",
+    "subcategoria": "Outros",
+    "conta": "Caixa Econômica Federal",
+    "observacoes": "De 01 à 28 de Fev."
+  },
+  {
+    "id": "lrfkdmdrjao22jas4ic",
     "descricao": "Oferta missionária",
     "valor": 20,
     "lancamento": "28/02/2023",
@@ -738,7 +750,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjr7n9jfiuuke5",
+    "id": "lrfkdmdrsxctdrjwa3i",
     "descricao": "Maria Rosenir",
     "valor": 160,
     "lancamento": "28/02/2023",
@@ -750,7 +762,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjr8t735iw5wqm",
+    "id": "lrfkdmdrlpuy1gkc2kh",
     "descricao": "Luiz Everton",
     "valor": 120,
     "lancamento": "28/02/2023",
@@ -762,7 +774,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrpxojxe20qe",
+    "id": "lrfkdmdr2p2jqti3jmc",
     "descricao": "Rita Monteiro",
     "valor": 60,
     "lancamento": "28/02/2023",
@@ -774,7 +786,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrgb4t0rkt8ik",
+    "id": "lrfkdmdrx6mecbqt16g",
     "descricao": "Berivaldo e Krisliane",
     "valor": 162.5,
     "lancamento": "28/02/2023",
@@ -786,7 +798,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjre5fm773pr3",
+    "id": "lrfkdmdrw0mqx9d31qo",
     "descricao": "Flávio Barbosa",
     "valor": 140,
     "lancamento": "28/02/2023",
@@ -798,7 +810,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrla6p4ir5h3g",
+    "id": "lrfkdmdrpd2l0cr21ir",
     "descricao": "Henok Pontes",
     "valor": 45,
     "lancamento": "27/02/2023",
@@ -810,7 +822,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjro6kkeo8aue",
+    "id": "lrfkdmdrnee3jbakn3m",
     "descricao": "Oferta EBD",
     "valor": 51.5,
     "lancamento": "26/02/2023",
@@ -822,7 +834,7 @@
     "observacoes": "Referente aos dias 12\""
   },
   {
-    "id": "lrazcsjrfkov1i643hr",
+    "id": "lrfkdmdr5f3b7nlrsmb",
     "descricao": "Oferta missionária",
     "valor": 80,
     "lancamento": "18/02/2023",
@@ -834,7 +846,7 @@
     "observacoes": "#missoes "
   },
   {
-    "id": "lrazcsjr3c0xt5riowr",
+    "id": "lrfkdmdrqa84kj78oqn",
     "descricao": "Janete Fragoso",
     "valor": 130,
     "lancamento": "15/02/2023",
@@ -846,7 +858,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrgbfnhawu1je",
+    "id": "lrfkdmdrqc6ytybdydp",
     "descricao": "Oferta anônima",
     "valor": 580,
     "lancamento": "15/02/2023",
@@ -858,7 +870,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjr17crnmszyei",
+    "id": "lrfkdmdruh6ir0kpg3a",
     "descricao": "Graça Rodrigues",
     "valor": 390,
     "lancamento": "15/02/2023",
@@ -870,7 +882,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrbxcbtadrayc",
+    "id": "lrfkdmdrl5p4zk87ntm",
     "descricao": "Marcos Sousa e Adriana Sousa",
     "valor": 204,
     "lancamento": "15/02/2023",
@@ -882,7 +894,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrjo8ntntir2i",
+    "id": "lrfkdmdrae45nsews9",
     "descricao": "José Anchieta",
     "valor": 320,
     "lancamento": "15/02/2023",
@@ -894,7 +906,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrxmtsc6hml7",
+    "id": "lrfkdmdrotxgkh61fqq",
     "descricao": "Oferta missionária",
     "valor": 787.65,
     "lancamento": "15/02/2023",
@@ -906,7 +918,7 @@
     "observacoes": "#missoes "
   },
   {
-    "id": "lrazcsjr2hwl3wgr5yx",
+    "id": "lrfkdmdrnbqp59yzjtb",
     "descricao": "Fátima Oliveira",
     "valor": 100,
     "lancamento": "12/02/2023",
@@ -918,7 +930,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrlp776ic4nd",
+    "id": "lrfkdmdrlyxwndudbfi",
     "descricao": "Fátima Oliveira",
     "valor": 1550,
     "lancamento": "12/02/2023",
@@ -930,7 +942,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrdji76nlslje",
+    "id": "lrfkdmdrz3iua0q4mif",
     "descricao": "José de Sousa",
     "valor": 1278,
     "lancamento": "12/02/2023",
@@ -942,7 +954,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrkpy1g9y8kb",
+    "id": "lrfkdmdrbrcf22rm32",
     "descricao": "Maria Alzenir",
     "valor": 107,
     "lancamento": "12/02/2023",
@@ -954,8 +966,8 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrv2hirekz86j",
-    "descricao": "Antônio Pereira",
+    "id": "lrfkdmdroikuw7mbei",
+    "descricao": "Antônia Pereira",
     "valor": 565,
     "lancamento": "12/02/2023",
     "vencimento": "12/02/2023",
@@ -966,7 +978,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjroxmiomcudp",
+    "id": "lrfkdmdroj0tekh1wyd",
     "descricao": "João Ferreira",
     "valor": 112,
     "lancamento": "12/02/2023",
@@ -978,7 +990,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrnox0hjz0rsg",
+    "id": "lrfkdmdrqp705j99jyo",
     "descricao": "Maria do Carmo Rodrigues",
     "valor": 130,
     "lancamento": "12/02/2023",
@@ -990,7 +1002,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjr4akv5qmoe2e",
+    "id": "lrfkdmdrwpbg45l7v2",
     "descricao": "Hélio Almeida",
     "valor": 130,
     "lancamento": "12/02/2023",
@@ -1002,7 +1014,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrresuiy0jxvb",
+    "id": "lrfkdmdrgeqbwyb3jlm",
     "descricao": "Luiza Ferreira",
     "valor": 200,
     "lancamento": "12/02/2023",
@@ -1014,7 +1026,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrzxanh3910ja",
+    "id": "lrfkdmdrp5syvklzpmr",
     "descricao": "José Felipe",
     "valor": 100,
     "lancamento": "12/02/2023",
@@ -1026,7 +1038,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrwam775js7p",
+    "id": "lrfkdmdr97znl3c2to6",
     "descricao": "Francisca Ferreira",
     "valor": 120,
     "lancamento": "12/02/2023",
@@ -1038,7 +1050,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrc844zkkzh8",
+    "id": "lrfkdmdr9zj9ombgnys",
     "descricao": "Márcio Barros",
     "valor": 50,
     "lancamento": "12/02/2023",
@@ -1050,7 +1062,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjr5legpl3ghm",
+    "id": "lrfkdmdrla077f13mde",
     "descricao": "Ismael Barbosa",
     "valor": 903,
     "lancamento": "11/02/2023",
@@ -1062,7 +1074,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjr8yiboju0nfl",
+    "id": "lrfkdmdrxf0e4g4ub8s",
     "descricao": "Edson Filho",
     "valor": 550,
     "lancamento": "09/02/2023",
@@ -1074,7 +1086,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrs1yv9v2hyh",
+    "id": "lrfkdmdr6dlla46bs99",
     "descricao": "Natan Nobre & Kathrine Nobre",
     "valor": 650,
     "lancamento": "09/02/2023",
@@ -1086,7 +1098,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrory68sz5nv",
+    "id": "lrfkdmdrlfni0kqsn",
     "descricao": "Matheus Lima & Leilane Lima",
     "valor": 275,
     "lancamento": "07/02/2023",
@@ -1098,7 +1110,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjr95vdfasn7eo",
+    "id": "lrfkdmdr49ahlr52zsw",
     "descricao": "Elizangela Almeida",
     "valor": 284,
     "lancamento": "07/02/2023",
@@ -1110,7 +1122,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjryrdnkxngx6q",
+    "id": "lrfkdmdr97dscil3lxr",
     "descricao": "Ivonete Fragoso",
     "valor": 660,
     "lancamento": "06/02/2023",
@@ -1122,7 +1134,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrl9nazstp13l",
+    "id": "lrfkdmdrwd2qywuk71e",
     "descricao": "Elisfabio Duarte & Lindecy Duarte",
     "valor": 1200,
     "lancamento": "06/02/2023",
@@ -1134,7 +1146,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrd24wnq74oq",
+    "id": "lrfkdmdr2267r3xi3ng",
     "descricao": "Edinei Lourenço",
     "valor": 250,
     "lancamento": "06/02/2023",
@@ -1146,7 +1158,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrtjl2hr048mm",
+    "id": "lrfkdmdrtss05mmf7s",
     "descricao": "Oferta EBD",
     "valor": 52,
     "lancamento": "05/02/2023",
@@ -1158,8 +1170,8 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrwokmid9irg",
-    "descricao": "Itzhak Oliveira",
+    "id": "lrfkdmdrrljs4aapdn",
+    "descricao": "Júnior Taváres",
     "valor": 400,
     "lancamento": "03/02/2023",
     "vencimento": "03/02/2023",
@@ -1170,7 +1182,7 @@
     "observacoes": ""
   },
   {
-    "id": "lrazcsjrlkpa1zda1tc",
+    "id": "lrfkdmdrayvxacbrlkh",
     "descricao": "Vanessa Silva",
     "valor": 100,
     "lancamento": "02/02/2023",

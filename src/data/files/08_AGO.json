@@ -1052,5 +1052,35 @@
     "subcategoria": "Pessoal",
     "conta": "Caixa Econômica Federal",
     "observacoes": "** @Sarah Ferreira Da Silva **"
+  },
+  {
+    "id": "lrfkdmftpc7st1hlbdn",
+    "descricao": "Recebimento de teste",
+    "valor": 1,
+    "lancamento": "08/10/2023",
+    "vencimento": "31/08/2023",
+    "pagamento": "31/08/2023",
+    "recorrencia": "Nenhuma",
+    "parcela": "0",
+    "parcelas": "0",
+    "categoria": "Outros",
+    "subcategoria": "Outros",
+    "conta": "Cora",
+    "observacoes": "Usado apenas para testar a conta"
+  },
+  {
+    "id": "lrfkdmfte0qsfmj9cyi",
+    "descricao": "Rendimento",
+    "valor": 33.13,
+    "lancamento": "08/10/2023",
+    "vencimento": "31/08/2023",
+    "pagamento": "31/08/2023",
+    "recorrencia": "Nenhuma",
+    "parcela": "0",
+    "parcelas": "0",
+    "categoria": "Juros",
+    "subcategoria": "Outros",
+    "conta": "Caixa Econômica Federal",
+    "observacoes": "Referente à Agosto "
   }
 ]
