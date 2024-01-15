@@ -1031,7 +1031,7 @@
 		"id": "lrazcsjrvtpws8xi1j",
 		"descricao": "IRRF Prebendas Pastorais",
 		"valor": -526.22,
-		"encargos": "26.09",
+		"encargos": -26.09,
 		"lancamento": "01/01/2023 12:02",
 		"vencimento": "20/01/2023",
 		"pagamento": "02/02/2023",
@@ -1630,7 +1630,7 @@
 		"observacoes": "#banabuiu Tijolos e cimento"
 	},
 	{
-		"id": "lrazcsjr2utpcd7s4tb",
+		"id": "lrfkdmdrjmg0kpzqtuo",
 		"descricao": "Palti Talmai & Rebeca Talmai",
 		"valor": 500,
 		"lancamento": "28/02/2023",
@@ -1642,7 +1642,19 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrgkgk05g773",
+		"id": "lrfkdmdra4eepn3sat",
+		"descricao": "Reajuste de saldo",
+		"valor": 260.2,
+		"lancamento": "28/02/2023",
+		"vencimento": "28/02/2023",
+		"pagamento": "28/02/2023",
+		"categoria": "Juros",
+		"subcategoria": "Outros",
+		"conta": "Caixa Econômica Federal",
+		"observacoes": "De 01 à 28 de Fev."
+	},
+	{
+		"id": "lrfkdmdrjao22jas4ic",
 		"descricao": "Oferta missionária",
 		"valor": 20,
 		"lancamento": "28/02/2023",
@@ -1654,7 +1666,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjr7n9jfiuuke5",
+		"id": "lrfkdmdrsxctdrjwa3i",
 		"descricao": "Maria Rosenir",
 		"valor": 160,
 		"lancamento": "28/02/2023",
@@ -1666,7 +1678,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjr8t735iw5wqm",
+		"id": "lrfkdmdrlpuy1gkc2kh",
 		"descricao": "Luiz Everton",
 		"valor": 120,
 		"lancamento": "28/02/2023",
@@ -1678,7 +1690,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrpxojxe20qe",
+		"id": "lrfkdmdr2p2jqti3jmc",
 		"descricao": "Rita Monteiro",
 		"valor": 60,
 		"lancamento": "28/02/2023",
@@ -1690,7 +1702,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrgb4t0rkt8ik",
+		"id": "lrfkdmdrx6mecbqt16g",
 		"descricao": "Berivaldo e Krisliane",
 		"valor": 162.5,
 		"lancamento": "28/02/2023",
@@ -1702,7 +1714,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjre5fm773pr3",
+		"id": "lrfkdmdrw0mqx9d31qo",
 		"descricao": "Flávio Barbosa",
 		"valor": 140,
 		"lancamento": "28/02/2023",
@@ -1714,7 +1726,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrla6p4ir5h3g",
+		"id": "lrfkdmdrpd2l0cr21ir",
 		"descricao": "Henok Pontes",
 		"valor": 45,
 		"lancamento": "27/02/2023",
@@ -1726,7 +1738,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjro6kkeo8aue",
+		"id": "lrfkdmdrnee3jbakn3m",
 		"descricao": "Oferta EBD",
 		"valor": 51.5,
 		"lancamento": "26/02/2023",
@@ -1738,7 +1750,7 @@
 		"observacoes": "Referente aos dias 12\""
 	},
 	{
-		"id": "lrazcsjrfkov1i643hr",
+		"id": "lrfkdmdr5f3b7nlrsmb",
 		"descricao": "Oferta missionária",
 		"valor": 80,
 		"lancamento": "18/02/2023",
@@ -1750,7 +1762,7 @@
 		"observacoes": "#missoes "
 	},
 	{
-		"id": "lrazcsjr3c0xt5riowr",
+		"id": "lrfkdmdrqa84kj78oqn",
 		"descricao": "Janete Fragoso",
 		"valor": 130,
 		"lancamento": "15/02/2023",
@@ -1762,7 +1774,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrgbfnhawu1je",
+		"id": "lrfkdmdrqc6ytybdydp",
 		"descricao": "Oferta anônima",
 		"valor": 580,
 		"lancamento": "15/02/2023",
@@ -1774,7 +1786,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjr17crnmszyei",
+		"id": "lrfkdmdruh6ir0kpg3a",
 		"descricao": "Graça Rodrigues",
 		"valor": 390,
 		"lancamento": "15/02/2023",
@@ -1786,7 +1798,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrbxcbtadrayc",
+		"id": "lrfkdmdrl5p4zk87ntm",
 		"descricao": "Marcos Sousa e Adriana Sousa",
 		"valor": 204,
 		"lancamento": "15/02/2023",
@@ -1798,7 +1810,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrjo8ntntir2i",
+		"id": "lrfkdmdrae45nsews9",
 		"descricao": "José Anchieta",
 		"valor": 320,
 		"lancamento": "15/02/2023",
@@ -1810,7 +1822,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrxmtsc6hml7",
+		"id": "lrfkdmdrotxgkh61fqq",
 		"descricao": "Oferta missionária",
 		"valor": 787.65,
 		"lancamento": "15/02/2023",
@@ -1822,7 +1834,7 @@
 		"observacoes": "#missoes "
 	},
 	{
-		"id": "lrazcsjr2hwl3wgr5yx",
+		"id": "lrfkdmdrnbqp59yzjtb",
 		"descricao": "Fátima Oliveira",
 		"valor": 100,
 		"lancamento": "12/02/2023",
@@ -1834,7 +1846,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrlp776ic4nd",
+		"id": "lrfkdmdrlyxwndudbfi",
 		"descricao": "Fátima Oliveira",
 		"valor": 1550,
 		"lancamento": "12/02/2023",
@@ -1846,7 +1858,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrdji76nlslje",
+		"id": "lrfkdmdrz3iua0q4mif",
 		"descricao": "José de Sousa",
 		"valor": 1278,
 		"lancamento": "12/02/2023",
@@ -1858,7 +1870,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrkpy1g9y8kb",
+		"id": "lrfkdmdrbrcf22rm32",
 		"descricao": "Maria Alzenir",
 		"valor": 107,
 		"lancamento": "12/02/2023",
@@ -1870,8 +1882,8 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrv2hirekz86j",
-		"descricao": "Antônio Pereira",
+		"id": "lrfkdmdroikuw7mbei",
+		"descricao": "Antônia Pereira",
 		"valor": 565,
 		"lancamento": "12/02/2023",
 		"vencimento": "12/02/2023",
@@ -1882,7 +1894,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjroxmiomcudp",
+		"id": "lrfkdmdroj0tekh1wyd",
 		"descricao": "João Ferreira",
 		"valor": 112,
 		"lancamento": "12/02/2023",
@@ -1894,7 +1906,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrnox0hjz0rsg",
+		"id": "lrfkdmdrqp705j99jyo",
 		"descricao": "Maria do Carmo Rodrigues",
 		"valor": 130,
 		"lancamento": "12/02/2023",
@@ -1906,7 +1918,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjr4akv5qmoe2e",
+		"id": "lrfkdmdrwpbg45l7v2",
 		"descricao": "Hélio Almeida",
 		"valor": 130,
 		"lancamento": "12/02/2023",
@@ -1918,7 +1930,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrresuiy0jxvb",
+		"id": "lrfkdmdrgeqbwyb3jlm",
 		"descricao": "Luiza Ferreira",
 		"valor": 200,
 		"lancamento": "12/02/2023",
@@ -1930,7 +1942,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrzxanh3910ja",
+		"id": "lrfkdmdrp5syvklzpmr",
 		"descricao": "José Felipe",
 		"valor": 100,
 		"lancamento": "12/02/2023",
@@ -1942,7 +1954,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrwam775js7p",
+		"id": "lrfkdmdr97znl3c2to6",
 		"descricao": "Francisca Ferreira",
 		"valor": 120,
 		"lancamento": "12/02/2023",
@@ -1954,7 +1966,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrc844zkkzh8",
+		"id": "lrfkdmdr9zj9ombgnys",
 		"descricao": "Márcio Barros",
 		"valor": 50,
 		"lancamento": "12/02/2023",
@@ -1966,7 +1978,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjr5legpl3ghm",
+		"id": "lrfkdmdrla077f13mde",
 		"descricao": "Ismael Barbosa",
 		"valor": 903,
 		"lancamento": "11/02/2023",
@@ -1978,7 +1990,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjr8yiboju0nfl",
+		"id": "lrfkdmdrxf0e4g4ub8s",
 		"descricao": "Edson Filho",
 		"valor": 550,
 		"lancamento": "09/02/2023",
@@ -1990,7 +2002,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrs1yv9v2hyh",
+		"id": "lrfkdmdr6dlla46bs99",
 		"descricao": "Natan Nobre & Kathrine Nobre",
 		"valor": 650,
 		"lancamento": "09/02/2023",
@@ -2002,7 +2014,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrory68sz5nv",
+		"id": "lrfkdmdrlfni0kqsn",
 		"descricao": "Matheus Lima & Leilane Lima",
 		"valor": 275,
 		"lancamento": "07/02/2023",
@@ -2014,7 +2026,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjr95vdfasn7eo",
+		"id": "lrfkdmdr49ahlr52zsw",
 		"descricao": "Elizangela Almeida",
 		"valor": 284,
 		"lancamento": "07/02/2023",
@@ -2026,7 +2038,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjryrdnkxngx6q",
+		"id": "lrfkdmdr97dscil3lxr",
 		"descricao": "Ivonete Fragoso",
 		"valor": 660,
 		"lancamento": "06/02/2023",
@@ -2038,7 +2050,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrl9nazstp13l",
+		"id": "lrfkdmdrwd2qywuk71e",
 		"descricao": "Elisfabio Duarte & Lindecy Duarte",
 		"valor": 1200,
 		"lancamento": "06/02/2023",
@@ -2050,7 +2062,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrd24wnq74oq",
+		"id": "lrfkdmdr2267r3xi3ng",
 		"descricao": "Edinei Lourenço",
 		"valor": 250,
 		"lancamento": "06/02/2023",
@@ -2062,7 +2074,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrtjl2hr048mm",
+		"id": "lrfkdmdrtss05mmf7s",
 		"descricao": "Oferta EBD",
 		"valor": 52,
 		"lancamento": "05/02/2023",
@@ -2074,8 +2086,8 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrwokmid9irg",
-		"descricao": "Itzhak Oliveira",
+		"id": "lrfkdmdrrljs4aapdn",
+		"descricao": "Júnior Taváres",
 		"valor": 400,
 		"lancamento": "03/02/2023",
 		"vencimento": "03/02/2023",
@@ -2086,7 +2098,7 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjrlkpa1zda1tc",
+		"id": "lrfkdmdrayvxacbrlkh",
 		"descricao": "Vanessa Silva",
 		"valor": 100,
 		"lancamento": "02/02/2023",
@@ -4290,18 +4302,6 @@
 		"observacoes": ""
 	},
 	{
-		"id": "lrazcsjr9qd1tdbxh8c",
-		"descricao": "Weliton da Silva",
-		"valor": 55,
-		"lancamento": "29/04/2023",
-		"vencimento": "29/04/2023",
-		"pagamento": "02/05/2023",
-		"categoria": "Oferta",
-		"subcategoria": "Pessoal",
-		"conta": "Caixa Econômica Federal",
-		"observacoes": ""
-	},
-	{
 		"id": "lrazcsjr1gfsa8nqnqh",
 		"descricao": "Reajuste de saldo",
 		"valor": 166.52,
@@ -4443,6 +4443,18 @@
 		"categoria": "Oferta",
 		"subcategoria": "Missões",
 		"conta": "Carteira",
+		"observacoes": ""
+	},
+	{
+		"id": "lrazcsjr9qd1tdbxh8c",
+		"descricao": "Weliton da Silva",
+		"valor": 55,
+		"lancamento": "29/04/2023",
+		"vencimento": "29/04/2023",
+		"pagamento": "02/05/2023",
+		"categoria": "Oferta",
+		"subcategoria": "Pessoal",
+		"conta": "Caixa Econômica Federal",
 		"observacoes": ""
 	},
 	{
@@ -10006,6 +10018,36 @@
 		"observacoes": "** @Sarah Ferreira Da Silva **"
 	},
 	{
+		"id": "lrfkdmftpc7st1hlbdn",
+		"descricao": "Recebimento de teste",
+		"valor": 1,
+		"lancamento": "08/10/2023",
+		"vencimento": "31/08/2023",
+		"pagamento": "31/08/2023",
+		"recorrencia": "Nenhuma",
+		"parcela": "0",
+		"parcelas": "0",
+		"categoria": "Outros",
+		"subcategoria": "Outros",
+		"conta": "Cora",
+		"observacoes": "Usado apenas para testar a conta"
+	},
+	{
+		"id": "lrfkdmfte0qsfmj9cyi",
+		"descricao": "Rendimento",
+		"valor": 33.13,
+		"lancamento": "08/10/2023",
+		"vencimento": "31/08/2023",
+		"pagamento": "31/08/2023",
+		"recorrencia": "Nenhuma",
+		"parcela": "0",
+		"parcelas": "0",
+		"categoria": "Juros",
+		"subcategoria": "Outros",
+		"conta": "Caixa Econômica Federal",
+		"observacoes": "Referente à Agosto "
+	},
+	{
 		"id": "lrazcsjsw8l8pjqlzo",
 		"descricao": "Ajuda assistencial Rosenir",
 		"valor": -300,
@@ -15051,8 +15093,8 @@
 		"conta": "Caixa Econômica Federal",
 		"observacoes": ""
 	},
-
 	{
+		"id": "lrfkdmgp5aycqyl4bde",
 		"descricao": "Seminarista Rômulo da Silva",
 		"valor": -140,
 		"encargos": 0,
@@ -15069,6 +15111,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpjwes7dpz0og",
 		"descricao": "Ajuda assistencial Rosenir",
 		"valor": -600,
 		"encargos": 0,
@@ -15085,6 +15128,7 @@
 		"observacoes": "Inclui décimo terceiro salário"
 	},
 	{
+		"id": "lrfkdmgp7esqwqg1wi4",
 		"descricao": "Miss. Fernando Lima",
 		"valor": -140,
 		"encargos": 0,
@@ -15101,6 +15145,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp9cge038i3ji",
 		"descricao": "Miss. Fernando Santana",
 		"valor": -140,
 		"encargos": 0,
@@ -15117,6 +15162,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpxvcz2tq19e",
 		"descricao": "Miss. Reginaldo Saraiva",
 		"valor": -140,
 		"encargos": 0,
@@ -15133,6 +15179,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpq2k2iwvu7c",
 		"descricao": "Miss. Irineu Lopes",
 		"valor": -140,
 		"encargos": 0,
@@ -15149,6 +15196,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp798vd7aca2o",
 		"descricao": "Miss. Francisco Xavier",
 		"valor": -140,
 		"encargos": 0,
@@ -15165,6 +15213,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpwd8n5dt7k6p",
 		"descricao": "Acampamento Peniel",
 		"valor": -130,
 		"encargos": 0,
@@ -15181,6 +15230,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpxnvlok55xmp",
 		"descricao": "Ajuda assistencial Miss. Itzhak",
 		"valor": -2836,
 		"encargos": 0,
@@ -15197,6 +15247,7 @@
 		"observacoes": "Inclui décimo terceiro salário"
 	},
 	{
+		"id": "lrfkdmgpfm0kslyr3k9",
 		"descricao": "Ajuda assistencial Pr. Edson",
 		"valor": -145.2,
 		"encargos": 0,
@@ -15213,6 +15264,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp4wzn8l65lhm",
 		"descricao": "Ajuda assistencial Miss. Matheus",
 		"valor": -1302,
 		"encargos": 0,
@@ -15229,6 +15281,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpavslp445bnj",
 		"descricao": "Ajuda de custo Miss. Matheus",
 		"valor": -355,
 		"encargos": 0,
@@ -15245,6 +15298,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp400zmazsclv",
 		"descricao": "Energia Igreja Quixadá",
 		"valor": -699.75,
 		"encargos": 0,
@@ -15261,6 +15315,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp13qfcjayhr6s",
 		"descricao": "JHS Contabilidade",
 		"valor": -333,
 		"encargos": 0,
@@ -15277,6 +15332,7 @@
 		"observacoes": "Inclui a segunda metade do décimo terceiro"
 	},
 	{
+		"id": "lrfkdmgp2k053bhi28e",
 		"descricao": "Água Igreja Quixadá",
 		"valor": -163.32,
 		"encargos": 0,
@@ -15293,6 +15349,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpmndbshd68lm",
 		"descricao": "Aluguel congregação Ibaretama",
 		"valor": -300,
 		"encargos": 0,
@@ -15309,6 +15366,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp3umw6gomt4i",
 		"descricao": "Prebendas pastorais",
 		"valor": -3815.6,
 		"encargos": 0,
@@ -15325,6 +15383,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp7lkv0b4lv29",
 		"descricao": "IRRF Prebendas Pastorais",
 		"valor": -144.4,
 		"encargos": 0,
@@ -15341,6 +15400,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgptc02zj4yac",
 		"descricao": "Ajuda assistencial Cheila",
 		"valor": -700,
 		"encargos": 0,
@@ -15357,6 +15417,7 @@
 		"observacoes": "** gratificação de 100 reais ** Inclui décimo terceiro e gratificação por serviço adicional na ausência da Rosenir."
 	},
 	{
+		"id": "lrfkdmgpiuagr5r63yq",
 		"descricao": "Conferencia de aniversário",
 		"valor": -150.06,
 		"encargos": 0,
@@ -15373,6 +15434,7 @@
 		"observacoes": "** @import ?? O que? NOSSO ATACAREJO ** 9.57Kg Paleta com osso"
 	},
 	{
+		"id": "lrfkdmgp647j6n91tk4",
 		"descricao": "Combustível - Ibaretama",
 		"valor": -140,
 		"encargos": 0,
@@ -15389,6 +15451,7 @@
 		"observacoes": "** @import ?? #reembolso @EdsonFilho #FNF ** 4 Viagens"
 	},
 	{
+		"id": "lrfkdmgp40twn4ibixu",
 		"descricao": "Lanche para crianças",
 		"valor": -58,
 		"encargos": 0,
@@ -15405,6 +15468,7 @@
 		"observacoes": "** @import ?? Quantos? #reembolso @EdsonFilho #FNF ** Bolos"
 	},
 	{
+		"id": "lrfkdmgpl1xeet5eqoe",
 		"descricao": "Água mineral",
 		"valor": -42.5,
 		"encargos": 0,
@@ -15421,6 +15485,7 @@
 		"observacoes": "** @import ?? #reembolso @AdrianaSousa #FNF ** 5 uni."
 	},
 	{
+		"id": "lrfkdmgp4j5at4iknlq",
 		"descricao": "Mão de Obra",
 		"valor": -100,
 		"encargos": 0,
@@ -15437,6 +15502,7 @@
 		"observacoes": "** @import ?? Diárias? Francisca Aldenisa Rodrigues Galdino #FNF ** Pintor"
 	},
 	{
+		"id": "lrfkdmgpi2o1c9sp28",
 		"descricao": "Combustível - Serra e Esperança",
 		"valor": -55,
 		"encargos": 0,
@@ -15453,6 +15519,7 @@
 		"observacoes": "\"\"** @import ?? Viagens? #reembolso @DaraAlves #FNF **  \"\""
 	},
 	{
+		"id": "lrfkdmgp2x3uku4b7nz",
 		"descricao": "Utensílios domésticos",
 		"valor": -40,
 		"encargos": 0,
@@ -15469,6 +15536,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Cafeteira e Lixeira"
 	},
 	{
+		"id": "lrfkdmgphwbhsx7h0vk",
 		"descricao": "Combustível - Esperança",
 		"valor": -60,
 		"encargos": 0,
@@ -15485,6 +15553,7 @@
 		"observacoes": "** @import ?? #reembolso @FatimaLima #FNF ** 3 Viagens"
 	},
 	{
+		"id": "lrfkdmgp0f3kcpmj3029",
 		"descricao": "Lanche para crianças",
 		"valor": -28,
 		"encargos": 0,
@@ -15501,6 +15570,7 @@
 		"observacoes": "** @import ?? Quantos? AFONSO DA CRUZ JUNIOR #FNF ** Bolos"
 	},
 	{
+		"id": "lrfkdmgp71nd10e2xe9",
 		"descricao": "Utensílios domésticos",
 		"valor": -42.77,
 		"encargos": 0,
@@ -15517,6 +15587,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Toalha de mesa e panos de prato"
 	},
 	{
+		"id": "lrfkdmgpig93p4a5jq",
 		"descricao": "Mão de obra",
 		"valor": -40,
 		"encargos": 0,
@@ -15533,6 +15604,7 @@
 		"observacoes": "** @import ?? #reembolso @EdsonFilho #FNF ** serviço de carroceiro para limpeza de entulhos"
 	},
 	{
+		"id": "lrfkdmgp2ri5di0r3kk",
 		"descricao": "Material descartável",
 		"valor": -9,
 		"encargos": 0,
@@ -15549,6 +15621,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Embalagens para bolo"
 	},
 	{
+		"id": "lrfkdmgpkyo8bxhb1w",
 		"descricao": "Lanche para crianças",
 		"valor": -34,
 		"encargos": 0,
@@ -15565,6 +15638,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Bolos 3 uni."
 	},
 	{
+		"id": "lrfkdmgpdg0i2eaybxg",
 		"descricao": "Conferencia de aniversário",
 		"valor": -18,
 		"encargos": 0,
@@ -15581,6 +15655,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Frutas"
 	},
 	{
+		"id": "lrfkdmgp40q5puxo0qf",
 		"descricao": "Combustível - Banabuiú",
 		"valor": -180,
 		"encargos": 0,
@@ -15597,6 +15672,7 @@
 		"observacoes": "** @import ?? CIRO GOMES MAGALHAES ** 3 Viagens"
 	},
 	{
+		"id": "lrfkdmgpb5hp2x99cwm",
 		"descricao": "Conferencia de aniversário",
 		"valor": -36,
 		"encargos": 0,
@@ -15613,6 +15689,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Leite de gado"
 	},
 	{
+		"id": "lrfkdmgp3lo2sr0tjem",
 		"descricao": "Conferencia de aniversário",
 		"valor": -34.01,
 		"encargos": 0,
@@ -15629,6 +15706,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** verduras e tempero"
 	},
 	{
+		"id": "lrfkdmgp7k5jaitghrr",
 		"descricao": "Material descartável e Lanche para crianças",
 		"valor": -92.11,
 		"encargos": 0,
@@ -15645,6 +15723,7 @@
 		"observacoes": "\"\"** @import ?? O que? #reembolso @GleizianeMuniz #FNF ** Milho de pipoca"
 	},
 	{
+		"id": "lrfkdmgp1y1om5ratm3",
 		"descricao": "Conferencia de aniversário",
 		"valor": -14.78,
 		"encargos": 0,
@@ -15661,6 +15740,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Queijo e presunto"
 	},
 	{
+		"id": "lrfkdmgplor6z8syxzl",
 		"descricao": "Culto da família",
 		"valor": -24.26,
 		"encargos": 0,
@@ -15677,6 +15757,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Refrigerantes"
 	},
 	{
+		"id": "lrfkdmgpcoonwrwu5u8",
 		"descricao": "Conferencia de aniversário",
 		"valor": -5.4,
 		"encargos": 0,
@@ -15693,6 +15774,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Ingredientes para refeições - Cebola e alho"
 	},
 	{
+		"id": "lrfkdmgpqo54d5i7qe",
 		"descricao": "Conferencia de aniversário",
 		"valor": -69.24,
 		"encargos": 0,
@@ -15709,6 +15791,7 @@
 		"observacoes": "** @import ?? #reembolso @AdrianaSouza #FNF ** Pães e alho"
 	},
 	{
+		"id": "lrfkdmgp8qdsigeh4g6",
 		"descricao": "Conferencia de aniversário",
 		"valor": -31.98,
 		"encargos": 0,
@@ -15725,6 +15808,7 @@
 		"observacoes": "** @import ?? #reembolso @GleizianeMuniz #FNF ** Frango"
 	},
 	{
+		"id": "lrfkdmgppkzagrbjovp",
 		"descricao": "Conferencia de aniversário",
 		"valor": -500,
 		"encargos": 0,
@@ -15741,6 +15825,7 @@
 		"observacoes": "** @import ?? KELSO CORREIA CLARK NUNES ** Oferta ao preletor Kelso Clark"
 	},
 	{
+		"id": "lrfkdmgpt53hcjamn1f",
 		"descricao": "Conferencia de aniversário",
 		"valor": -100,
 		"encargos": 0,
@@ -15757,6 +15842,7 @@
 		"observacoes": "** @import ?? Francisca Valeska Araujo de Oliveira ** Aluguel de cadeiras e mesas"
 	},
 	{
+		"id": "lrfkdmgprcc6s2t5m6m",
 		"descricao": "Água mineral",
 		"valor": -34,
 		"encargos": 0,
@@ -15773,6 +15859,7 @@
 		"observacoes": "** @import ?? Quem? ADRIANA NUNES FREIRES #FNF** 4 uni."
 	},
 	{
+		"id": "lrfkdmgp68ly69f7r0m",
 		"descricao": "Material descartável",
 		"valor": -115.5,
 		"encargos": 0,
@@ -15789,6 +15876,7 @@
 		"observacoes": "** @import ?? O que? M D COMERCIAL DE BALAS LTDA ** Copos (caixa grande) e guardanapos"
 	},
 	{
+		"id": "lrfkdmgp5nnsgp1zko",
 		"descricao": "Alimentação para trabalhadores",
 		"valor": -87.44,
 		"encargos": 0,
@@ -15805,6 +15893,7 @@
 		"observacoes": "** @import ?? #reembolso @EdsonFilho #FNF ** #banabuiu"
 	},
 	{
+		"id": "lrfkdmgprki6ity4cmr",
 		"descricao": "Plantas para jardim",
 		"valor": -410,
 		"encargos": 0,
@@ -15821,6 +15910,7 @@
 		"observacoes": "** @import ?? MAX SANDRA BELIZARIO LOBO LTDA **"
 	},
 	{
+		"id": "lrfkdmgpze4p91oszq",
 		"descricao": "Mão de obra",
 		"valor": -650,
 		"encargos": 0,
@@ -15837,6 +15927,7 @@
 		"observacoes": "** @import ?? Diárias? Marcio Barros Silva ** Pedreiro e servente #banabuiu"
 	},
 	{
+		"id": "lrfkdmgpjnkpf928h3j",
 		"descricao": "Conferencia de aniversário",
 		"valor": -468.75,
 		"encargos": 0,
@@ -15853,6 +15944,7 @@
 		"observacoes": "** @import ?? O que? #reembolso @EdsonFilho #FNF ** Mantimentos diversos para o jantar"
 	},
 	{
+		"id": "lrfkdmgp5iut534n6nc",
 		"descricao": "Culto da família",
 		"valor": -53.03,
 		"encargos": 0,
@@ -15869,6 +15961,7 @@
 		"observacoes": "** @import ?? Quantos? Luciana Basilio de Sousa ** Bolos"
 	},
 	{
+		"id": "lrfkdmgpbzj9zdoikfh",
 		"descricao": "Mão de obra",
 		"valor": -80,
 		"encargos": 0,
@@ -15885,6 +15978,7 @@
 		"observacoes": "** @import ?? FRANCISCO WELITON DA SILVA ** Eletricista #banabuiu"
 	},
 	{
+		"id": "lrfkdmgpd9bcjfiv0bq",
 		"descricao": "Material de construção",
 		"valor": -499.41,
 		"encargos": 0,
@@ -15901,6 +15995,7 @@
 		"observacoes": "\"\"** @import ?? M A FALCAO ** Janela"
 	},
 	{
+		"id": "lrfkdmgpn4zk50m3o7f",
 		"descricao": "Mão de obra",
 		"valor": -280,
 		"encargos": 0,
@@ -15917,6 +16012,7 @@
 		"observacoes": "** @import ?? Diárias? Marcio Barros Silva ** Pedreiro #banabuiu"
 	},
 	{
+		"id": "lrfkdmgpj4x9icb7tdl",
 		"descricao": "Mão de obra",
 		"valor": -200,
 		"encargos": 0,
@@ -15933,6 +16029,7 @@
 		"observacoes": "\"\"** @import ?? Diárias? Francisca Aldenisa Rodrigues Galdino ** Pintor #banabuiu \"\""
 	},
 	{
+		"id": "lrfkdmgpsjyez1ice5s",
 		"descricao": "Enel - Onde??",
 		"valor": -106.93,
 		"encargos": 0,
@@ -15949,6 +16046,7 @@
 		"observacoes": "** @import ?? Onde? Compahia Energetica Ce Coelce **"
 	},
 	{
+		"id": "lrfkdmgpwv1vu1jq7x",
 		"descricao": "Material de construção",
 		"valor": -160,
 		"encargos": 0,
@@ -15965,6 +16063,7 @@
 		"observacoes": "** @import ?? FRANCISCO LEONARDO DA SILVA ALVES ** Lâmpada e verniz"
 	},
 	{
+		"id": "lrfkdmgph03hl8n3ux6",
 		"descricao": "Culto da família",
 		"valor": -27.58,
 		"encargos": 0,
@@ -15981,6 +16080,7 @@
 		"observacoes": "** @import ?? #reembolso @AdrianaSouza #FNF ** Pães"
 	},
 	{
+		"id": "lrfkdmgpafc2lyb3dzf",
 		"descricao": "Mão de obra",
 		"valor": -555,
 		"encargos": 0,
@@ -15997,6 +16097,7 @@
 		"observacoes": "** @import ?? Diárias? Francisca Aldenisa Rodrigues Galdino ** Pintor"
 	},
 	{
+		"id": "lrfkdmgprwn7piyn989",
 		"descricao": "Água mineral",
 		"valor": -34,
 		"encargos": 0,
@@ -16013,6 +16114,7 @@
 		"observacoes": "\"\"** @import ?? Quem? ADRIANA NUNES FREIRES ** 4 uni. \"\""
 	},
 	{
+		"id": "lrfkdmgppyp0b77o6m",
 		"descricao": "Combustível - Ibaretama e Esperança",
 		"valor": -110,
 		"encargos": 0,
@@ -16029,6 +16131,7 @@
 		"observacoes": "\"\"** @import ?? Viagens? Jose Werbson Alves da Silva** \"\""
 	},
 	{
+		"id": "lrfkdmgpvucgroz2eos",
 		"descricao": "Tarifa TED PE",
 		"valor": -22,
 		"encargos": 0,
@@ -16044,8 +16147,8 @@
 		"conta": "Caixa Econômica Federal",
 		"observacoes": ""
 	},
-
 	{
+		"id": "lrfkdmgplndkznjmnx",
 		"descricao": "Leticia Muniz",
 		"valor": 555.25,
 		"lancamento": "13/01/2024",
@@ -16060,6 +16163,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpfe6v3e1xhod",
 		"descricao": "Isaac Lima",
 		"valor": 2449.09,
 		"lancamento": "13/01/2024",
@@ -16074,6 +16178,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpzitaa8g3jsd",
 		"descricao": "Isaac Lima",
 		"valor": 788.66,
 		"lancamento": "13/01/2024",
@@ -16088,6 +16193,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpfyap1i7d0r",
 		"descricao": "Oferta EBD",
 		"valor": 18,
 		"lancamento": "13/01/2024",
@@ -16102,6 +16208,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpj6ys7j8yy5s",
 		"descricao": "Itzhak Oliveira",
 		"valor": 142,
 		"lancamento": "13/01/2024",
@@ -16116,6 +16223,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpxpwumm4wj4e",
 		"descricao": "Manoel Sucupira",
 		"valor": 1000,
 		"lancamento": "13/01/2024",
@@ -16130,6 +16238,7 @@
 		"observacoes": "** MANOEL SUCUPIRA DE MELO NETO **"
 	},
 	{
+		"id": "lrfkdmgpf6yb3ta9th6",
 		"descricao": "Ismael Barbosa",
 		"valor": 1600,
 		"lancamento": "13/01/2024",
@@ -16144,6 +16253,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpeaohi3epwu6",
 		"descricao": "Vanessa Silva",
 		"valor": 100,
 		"lancamento": "13/01/2024",
@@ -16158,6 +16268,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpjgqvlr0km2",
 		"descricao": "Rodson Vieira",
 		"valor": 100,
 		"lancamento": "13/01/2024",
@@ -16172,6 +16283,7 @@
 		"observacoes": "** JOSE RODSON VIEIRA PEREIRA **"
 	},
 	{
+		"id": "lrfkdmgpuv3ndb0n57s",
 		"descricao": "Hélio Almeida",
 		"valor": 132,
 		"lancamento": "13/01/2024",
@@ -16186,6 +16298,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp31iujpermks",
 		"descricao": "Graça Rodrigues",
 		"valor": 390,
 		"lancamento": "13/01/2024",
@@ -16200,6 +16313,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp6tdn9yblazl",
 		"descricao": "Luiza Ferreira",
 		"valor": 200,
 		"lancamento": "13/01/2024",
@@ -16214,6 +16328,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp0d8ve5u6f1b7",
 		"descricao": "Fátima Oliveira",
 		"valor": 1850,
 		"lancamento": "13/01/2024",
@@ -16228,6 +16343,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp7fkcwv8vrp",
 		"descricao": "Fátima Oliveira",
 		"valor": 100,
 		"lancamento": "13/01/2024",
@@ -16242,6 +16358,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp6bjyn6awraf",
 		"descricao": "Antonia Pereira",
 		"valor": 682,
 		"lancamento": "13/01/2024",
@@ -16256,6 +16373,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpajq4iqziam",
 		"descricao": "Luiz Everton",
 		"valor": 130,
 		"lancamento": "13/01/2024",
@@ -16270,6 +16388,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgptbyq9yuxgx",
 		"descricao": "Marcos Sousa & Adriana Sousa",
 		"valor": 215,
 		"lancamento": "13/01/2024",
@@ -16284,6 +16403,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpokmgx6nh2db",
 		"descricao": "João Ferreira & Alzenir Ferreira",
 		"valor": 336,
 		"lancamento": "13/01/2024",
@@ -16298,6 +16418,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp9baryoq0xgg",
 		"descricao": "Emerson Oliveira & Juliana Oliveira",
 		"valor": 600,
 		"lancamento": "13/01/2024",
@@ -16312,6 +16433,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgptq6h5uavr9h",
 		"descricao": "Luiz Everton",
 		"valor": 130,
 		"lancamento": "13/01/2024",
@@ -16326,6 +16448,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgphykpwk7at4h",
 		"descricao": "Rita Monteiro",
 		"valor": 60,
 		"lancamento": "13/01/2024",
@@ -16340,6 +16463,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp1xac7dyw0zr",
 		"descricao": "Francisco Alex",
 		"valor": 50,
 		"lancamento": "13/01/2024",
@@ -16354,6 +16478,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp1fg4wat79pp",
 		"descricao": "Francisca Ferreira",
 		"valor": 120,
 		"lancamento": "13/01/2024",
@@ -16368,6 +16493,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpnsk5slswsqr",
 		"descricao": "Oferta Missionária",
 		"valor": 285,
 		"lancamento": "13/01/2024",
@@ -16382,6 +16508,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgprlm9a3x0b6",
 		"descricao": "Breno Dantas",
 		"valor": 122,
 		"lancamento": "13/01/2024",
@@ -16396,6 +16523,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp7v2in48odem",
 		"descricao": "Fátima Lima",
 		"valor": 594,
 		"lancamento": "13/01/2024",
@@ -16410,6 +16538,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpmxmji5j4c2p",
 		"descricao": "Keren Fragoso",
 		"valor": 150,
 		"lancamento": "13/01/2024",
@@ -16424,6 +16553,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpcomjmi60u2s",
 		"descricao": "Natan Nobre & Kathrine Nobre",
 		"valor": 1500,
 		"lancamento": "13/01/2024",
@@ -16438,6 +16568,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpbb9t95exfi",
 		"descricao": "Jose Anchieta",
 		"valor": 937,
 		"lancamento": "13/01/2024",
@@ -16452,6 +16583,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpq2zf2uvycbs",
 		"descricao": "Sarah Saraiva",
 		"valor": 280,
 		"lancamento": "13/01/2024",
@@ -16466,6 +16598,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpc24dwyrsozj",
 		"descricao": "Rodson Vieira",
 		"valor": 100,
 		"lancamento": "13/01/2024",
@@ -16480,6 +16613,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpkzc5ld3k3mi",
 		"descricao": "Matheus Lima & Leilane Lima",
 		"valor": 540,
 		"lancamento": "13/01/2024",
@@ -16494,6 +16628,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp6esi51wiirx",
 		"descricao": "Luciana Sousa",
 		"valor": 150,
 		"lancamento": "13/01/2024",
@@ -16508,6 +16643,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp68pre0mis1a",
 		"descricao": "Edson Filho",
 		"valor": 390,
 		"lancamento": "13/01/2024",
@@ -16522,6 +16658,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp6nwai0txxna",
 		"descricao": "Francisco Nildemar",
 		"valor": 200,
 		"lancamento": "13/01/2024",
@@ -16536,6 +16673,7 @@
 		"observacoes": "** FRANCISCO NILDEMAR DA SILVA **"
 	},
 	{
+		"id": "lrfkdmgpy3i92jcg1dc",
 		"descricao": "Joabe Alves",
 		"valor": 94,
 		"lancamento": "13/01/2024",
@@ -16550,6 +16688,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp45cs9m78egv",
 		"descricao": "Jonatas Fragoso & Dara Fragoso",
 		"valor": 275,
 		"lancamento": "13/01/2024",
@@ -16564,6 +16703,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpt4oyqazb8e",
 		"descricao": "Rayanderson Saraiva",
 		"valor": 750,
 		"lancamento": "13/01/2024",
@@ -16578,6 +16718,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpjcakgog5skk",
 		"descricao": "Edinei Lourenço",
 		"valor": 7.23,
 		"lancamento": "13/01/2024",
@@ -16592,6 +16733,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpqcsmvntakq",
 		"descricao": "Sarah Ferreira",
 		"valor": 231,
 		"lancamento": "13/01/2024",
@@ -16606,6 +16748,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp3u16zzf0mhh",
 		"descricao": "Ismael Barbosa",
 		"valor": 1440,
 		"lancamento": "13/01/2024",
@@ -16620,6 +16763,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpjnckdwlqwis",
 		"descricao": "Francisco Jakson",
 		"valor": 100,
 		"lancamento": "13/01/2024",
@@ -16634,6 +16778,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpwtp27p3kuim",
 		"descricao": "Edinei Lourenço",
 		"valor": 120,
 		"lancamento": "13/01/2024",
@@ -16648,6 +16793,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpk9b3n22e94",
 		"descricao": "Marcio Barros",
 		"valor": 50,
 		"lancamento": "13/01/2024",
@@ -16662,6 +16808,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpjy7alwg2p2c",
 		"descricao": "Alessandro Brito & Priscila Brito",
 		"valor": 250,
 		"lancamento": "13/01/2024",
@@ -16676,6 +16823,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpf78rergh0qb",
 		"descricao": "Henok Pontes",
 		"valor": 70,
 		"lancamento": "13/01/2024",
@@ -16690,6 +16838,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgphfevttqdt9",
 		"descricao": "Luís Estevam",
 		"valor": 25,
 		"lancamento": "13/01/2024",
@@ -16704,6 +16853,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpvhqdanbwuli",
 		"descricao": "Arley Gomes & Aryele Gomes",
 		"valor": 471.2,
 		"lancamento": "13/01/2024",
@@ -16718,6 +16868,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpmtnpc99j0n8",
 		"descricao": "Elisfabio Duarte & Lindecy Duarte",
 		"valor": 1200,
 		"lancamento": "13/01/2024",
@@ -16732,6 +16883,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp4r3jrsdj71l",
 		"descricao": "Janete Fragoso",
 		"valor": 132,
 		"lancamento": "13/01/2024",
@@ -16746,6 +16898,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp42tvy6tynvn",
 		"descricao": "Itzhak Oliveira",
 		"valor": 372,
 		"lancamento": "13/01/2024",
@@ -16760,6 +16913,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpeuqsimr36ro",
 		"descricao": "Elizangela Almeida",
 		"valor": 270,
 		"lancamento": "13/01/2024",
@@ -16774,6 +16928,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgplokl64xmap",
 		"descricao": "Edinei Lourenço",
 		"valor": 260,
 		"lancamento": "13/01/2024",
@@ -16788,6 +16943,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpuyvdod70s1f",
 		"descricao": "Francisco Weliton",
 		"valor": 210,
 		"lancamento": "13/01/2024",
@@ -16802,6 +16958,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp4kio5tekcd6",
 		"descricao": "Palti Talmai",
 		"valor": 320,
 		"lancamento": "13/01/2024",
@@ -16816,6 +16973,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp8jx11ina06s",
 		"descricao": "Oferta EBD",
 		"valor": 152.5,
 		"lancamento": "13/01/2024",
@@ -16830,6 +16988,7 @@
 		"observacoes": "Referente ao mês de Novembro "
 	},
 	{
+		"id": "lrfkdmgpf7n7e8mpo58",
 		"descricao": "Maria Rosenir",
 		"valor": 190,
 		"lancamento": "13/01/2024",
@@ -16844,6 +17003,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgpw36g3kqsbs9",
 		"descricao": "Ivonete Fragoso",
 		"valor": 610,
 		"lancamento": "13/01/2024",
@@ -16858,6 +17018,7 @@
 		"observacoes": ""
 	},
 	{
+		"id": "lrfkdmgp5l1t7uu2tbf",
 		"descricao": "Rendimento",
 		"valor": 4.74,
 		"lancamento": "14/01/2024",

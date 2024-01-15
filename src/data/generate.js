@@ -28,7 +28,7 @@ function generateUniqueId() {
 }
 
 // Function to read JSON files from a directory
-function mergeDatabase(directory = dirname) {
+function mergeDatabase(directory = `${dirname}/files`) {
 	const files = fs.readdirSync(directory);
 	const jsonFiles = files.filter(file => path.extname(file) === '.json');
 
@@ -50,9 +50,9 @@ function mergeDatabase(directory = dirname) {
 async function spreadDatabase(fileName = 'database') {
 	// const data = await import(`file://${dirname}/${fileName}.js`, { assert: { type: 'json' } }); // Node 17.5.0
 	const data = JSON.parse(fs.readFileSync(`${dirname}/${fileName}.json`, 'utf8'));
-	for (let i = 0; i < 11; i++) {
+	for (let i = 0; i < 12; i++) {
 		const entries = data.filter(({ pagamento }) => i === getParsedDate(pagamento).getMonth());
-		fs.writeFileSync(`./src/data/files/${months[i]}.js`, JSON.stringify(entries, null, 2));
+		fs.writeFileSync(`./src/data/files/${months[i]}.json`, JSON.stringify(entries, null, 2));
 	}
 }
 

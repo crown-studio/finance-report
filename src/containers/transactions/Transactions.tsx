@@ -30,13 +30,11 @@ const Transactions = () => {
 	// const saldoAnterior = 13402.23; // NOVEMBRO
 	// const saldoAnterior = 13950.46; // DEZEMBRO
 
-	const saldoAnterior =
-		initialValue +
-		countValueOf(
-			chartData.filter(
-				({ pagamento }) => getParsedDate(pagamento).getMonth() < getDateByMonthNumber(Number(selectedMonth)).getMonth(),
-			),
-		);
+	const behindMonths = chartData.filter(
+		({ pagamento }) => getParsedDate(pagamento).getMonth() < getDateByMonthNumber(Number(selectedMonth)).getMonth(),
+	);
+
+	const saldoAnterior = initialValue + countValueOf(behindMonths);
 
 	const filteredDespesas = despesas.filter(({ pagamento }) => {
 		// return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
