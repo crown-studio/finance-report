@@ -28,6 +28,7 @@ const Transactions = () => {
 	// const saldoAnterior = 17380.56; // SETEMBRO
 	// const saldoAnterior = 11867.45; // OUTUBRO
 	// const saldoAnterior = 13402.23; // NOVEMBRO
+	// const saldoAnterior = 13950.46; // DEZEMBRO
 
 	const saldoAnterior =
 		initialValue +
