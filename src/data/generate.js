@@ -16,7 +16,9 @@ const months = [
 	'11_NOV',
 	'12_DEZ',
 ];
-const dirname = path.dirname(new URL(import.meta.url).pathname).slice(1);
+
+// const dirname = path.dirname(new URL(import.meta.url).pathname).slice(1);
+const dirname = path.dirname(process.argv[1]);
 
 function getParsedDate(dateString) {
 	return parse(dateString, 'dd/MM/yyyy', new Date());
@@ -56,5 +58,30 @@ async function spreadDatabase(fileName = 'database') {
 	}
 }
 
-// spreadDatabase();
-mergeDatabase();
+function main() {
+	// Ignora os dois primeiros argumentos (caminho do executável e caminho do script)
+	const args = process.argv.slice(2);
+
+	if (args.length === 0) {
+		console.log('Nenhum parâmetro foi identificado.');
+		return;
+	}
+
+	switch (args[0]) {
+		case 'spread':
+		case '-s':
+		case '-S':
+			spreadDatabase(args[1]);
+			break;
+		case 'merge':
+		case '-m':
+		case '-M':
+			mergeDatabase(args[1]);
+			break;
+		default:
+			console.log('Parâmetro inválido.');
+			break;
+	}
+}
+
+main();
