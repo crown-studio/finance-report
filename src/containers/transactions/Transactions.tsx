@@ -1,25 +1,22 @@
-import { Container, Row, Col, Nav, Button } from 'react-bootstrap';
 // import PieChart from '../../components/pieChart/PieChart';
-
-import React, { useState } from 'react';
-import chartData from '../../data/database.json';
 // import { groupBy } from '../../utils/objectUtils';
 // import LineChart from '../../components/lineChart/LineChart';
 // import BarChart from '../../components/barChart/BarChart';
-import NavBar from '../../components/navBar/NavBar';
-import { getDateByMonthNumber, getParsedDate } from '../../utils/dateUtils';
-import { countValueOf } from '../../utils/dataUtils';
-
 // import { isSameMonth } from 'date-fns';
-import { useFilteredData } from '../../hooks/useFilteredData';
+import React, { useState } from 'react';
+import { Container, Row, Col, Nav, Button } from 'react-bootstrap';
+import NavBar from '../../components/navBar/NavBar';
+import { countValueOf } from '../../utils/dataUtils';
+import { useData } from '../../hooks/useData';
+import EntriesListItem from './components/entriesListItem/EntriesListItem';
+import { formatCurrency } from '../../utils/currencyUtils';
 import './Transactions.scss';
 
 const Transactions = () => {
-	const { despesas, receitas } = useFilteredData();
 	const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
 	const [selectedMonth, setSelectedMonth] = useState((new Date().getMonth() + 1).toString());
-
-	const initialValue = 42250.89;
+	const { revenues, expenses, balance, personalOffering, missionOffering, EBDOffering, tithes, interest, previousBalance } =
+		useData(selectedMonth);
 
 	// const saldoAnterior = 40545.26; // ABRIL
 	// const saldoAnterior = 26574.45; // MAIO
@@ -29,40 +26,6 @@ const Transactions = () => {
 	// const saldoAnterior = 11867.45; // OUTUBRO
 	// const saldoAnterior = 13402.23; // NOVEMBRO
 	// const saldoAnterior = 13950.46; // DEZEMBRO
-
-	const behindMonths = chartData.filter(
-		({ pagamento }) => getParsedDate(pagamento).getMonth() < getDateByMonthNumber(Number(selectedMonth)).getMonth(),
-	);
-
-	const saldoAnterior = initialValue + countValueOf(behindMonths);
-
-	const filteredDespesas = despesas.filter(({ pagamento }) => {
-		// return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
-		return getDateByMonthNumber(Number(selectedMonth)).getMonth() === getParsedDate(pagamento).getMonth();
-	});
-
-	const filteredReceitas = receitas.filter(({ pagamento }) => {
-		// return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
-		return getDateByMonthNumber(Number(selectedMonth)).getMonth() === getParsedDate(pagamento).getMonth();
-	});
-
-	const filteredDizimistas = filteredReceitas.filter(({ categoria }) => categoria === 'Dízimo');
-
-	const filteredOfertantes = filteredReceitas.filter(
-		({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'Pessoal',
-	);
-
-	const filteredOfertaMissões = filteredReceitas.filter(
-		({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'Missões',
-	);
-
-	const filteredOfertaEBD = filteredReceitas.filter(
-		({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'EBD',
-	);
-
-	const filteredJuros = filteredReceitas.filter(
-		({ categoria, subcategoria }) => categoria === 'Juros' && subcategoria === 'Outros',
-	);
 
 	const handleYearChange = (eventKey: string) => {
 		setSelectedYear(eventKey);
@@ -105,7 +68,7 @@ const Transactions = () => {
 			<Container className="p-4">
 				<h4 className="text-center mb-5">RELAÇÃO DE DIZIMISTAS</h4>
 
-				{filteredDizimistas.map(({ id, descricao }) => (
+				{tithes.map(({ id, descricao }) => (
 					<Row md={12} key={id} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
 						<Row md={12}>
 							<Col md={10}>
@@ -122,7 +85,7 @@ const Transactions = () => {
 					</Row>
 				))}
 
-				{!filteredDespesas?.length && (
+				{!expenses?.length && (
 					<h5
 						className="text-center h-200 p-6 d-flex align-items-center justify-content-center"
 						style={{ height: '75vh' }}
@@ -132,14 +95,14 @@ const Transactions = () => {
 				)}
 
 				<h6 tabIndex={1} className="mb-0 text-end fs-5" md={2}>
-					Total: R$ {countValueOf(filteredDizimistas)}
+					Total: R$ {countValueOf(tithes)}
 				</h6>
 			</Container>
 
 			<Container className="p-4">
 				<h4 className="text-center mb-5">RELAÇÃO DOS OFERTANTES</h4>
 
-				{filteredOfertantes.map(({ id, descricao, observacoes }) => (
+				{personalOffering.map(({ id, descricao, observacoes }) => (
 					<Row key={id} md={12} tabIndex={1} className="align-items-center mb-3" style={{ height: 60 }}>
 						<Row md={12}>
 							<Col md={10}>
@@ -154,7 +117,7 @@ const Transactions = () => {
 					</Row>
 				))}
 
-				{!filteredDespesas?.length && (
+				{!expenses?.length && (
 					<h5
 						className="text-center h-200 p-6 d-flex align-items-center justify-content-center"
 						style={{ height: '75vh' }}
@@ -164,7 +127,7 @@ const Transactions = () => {
 				)}
 
 				<h6 tabIndex={1} className="mb-0 text-end fs-5" md={2}>
-					Total: R$ {countValueOf(filteredOfertantes)}
+					Total: R$ {countValueOf(personalOffering)}
 				</h6>
 			</Container>
 
@@ -176,7 +139,7 @@ const Transactions = () => {
 						<p className="mb-0 fs-5">Ofertas Pessoais</p>
 					</Col>
 					<Col md={2}>
-						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(filteredOfertantes).toFixed(2)}</h6>
+						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(personalOffering).toFixed(2)}</h6>
 					</Col>
 				</Row>
 
@@ -185,7 +148,7 @@ const Transactions = () => {
 						<p className="mb-0 fs-5">Ofertas Missionárias</p>
 					</Col>
 					<Col md={2}>
-						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(filteredOfertaMissões).toFixed(2)}</h6>
+						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(missionOffering).toFixed(2)}</h6>
 					</Col>
 				</Row>
 
@@ -194,7 +157,7 @@ const Transactions = () => {
 						<p className="mb-0 fs-5">Ofertas EBD</p>
 					</Col>
 					<Col md={2}>
-						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(filteredOfertaEBD).toFixed(2)}</h6>
+						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(EBDOffering).toFixed(2)}</h6>
 					</Col>
 				</Row>
 
@@ -203,7 +166,7 @@ const Transactions = () => {
 						<p className="mb-0 fs-5">Dízimos</p>
 					</Col>
 					<Col md={2}>
-						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(filteredDizimistas).toFixed(2)}</h6>
+						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(tithes).toFixed(2)}</h6>
 					</Col>
 				</Row>
 
@@ -212,20 +175,20 @@ const Transactions = () => {
 						<p className="mb-0 fs-5">Juros</p>
 					</Col>
 					<Col md={2}>
-						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(filteredJuros).toFixed(2)}</h6>
+						<h6 className="mb-0 text-end fs-5">R$ {countValueOf(interest).toFixed(2)}</h6>
 					</Col>
 				</Row>
 
 				<h6 tabIndex={1} className="mb-0 text-end fs-5" md={2}>
-					Total: R$ {countValueOf(filteredReceitas)}
+					Total: R$ {countValueOf(revenues)}
 				</h6>
 			</Container>
 			<Container className="p-4">
 				<h4 className="text-center mb-5">RELAÇÃO DE DESPESAS</h4>
 
 				{[
-					...filteredDespesas.filter(({ categoria }) => categoria !== 'Obras'),
-					filteredDespesas
+					...expenses.filter(({ categoria }) => categoria !== 'Obras'),
+					expenses
 						.filter(({ categoria }) => categoria === 'Obras')
 						.reduce((tv, cv) => ({ ...tv, valor: tv.valor + cv.valor }), {
 							descricao: 'Gasto com obras',
@@ -267,7 +230,7 @@ const Transactions = () => {
 					</Row>
 				))}
 
-				{!filteredDespesas?.length && (
+				{!expenses?.length && (
 					<h5
 						className="text-center h-200 p-6 d-flex align-items-center justify-content-center"
 						style={{ height: '75vh' }}
@@ -277,7 +240,7 @@ const Transactions = () => {
 				)}
 
 				<h6 tabIndex={1} className="mb-0 text-end fs-5" md={2}>
-					Total: R$ {countValueOf(filteredDespesas)}
+					Total: R$ {countValueOf(expenses)}
 				</h6>
 			</Container>
 
@@ -286,53 +249,10 @@ const Transactions = () => {
 					RESUMO GERAL
 				</h4>
 
-				<Row md={12} style={{ height: 60 }}>
-					<Col md={10}>
-						<p className="mb-0 fs-5">Saldo Anterior</p>
-					</Col>
-					<Col md={2}>
-						<h6 tabIndex={1} className="mb-0 text-end fs-5">
-							R$ {saldoAnterior.toFixed(2)}
-						</h6>
-					</Col>
-				</Row>
-
-				<Row md={12} style={{ height: 60 }}>
-					<Col md={10}>
-						<p className="mb-0 fs-5">Entradas do Mês</p>
-					</Col>
-					<Col md={2}>
-						<h6 tabIndex={1} className="mb-0 text-end fs-5">
-							R$ {countValueOf(filteredReceitas).toFixed(2)}
-						</h6>
-					</Col>
-				</Row>
-
-				<Row md={12} style={{ height: 60 }}>
-					<Col md={10}>
-						<p className="mb-0 fs-5">Saídas do Mês</p>
-					</Col>
-					<Col md={2}>
-						<h6 tabIndex={1} className="mb-0 text-end fs-5">
-							R$ {countValueOf(filteredDespesas).toFixed(2)}
-						</h6>
-					</Col>
-				</Row>
-
-				<Row md={12} style={{ height: 60 }}>
-					<Col md={10}>
-						<p className="mb-0 fs-5">Saldo Atual</p>
-					</Col>
-					<Col md={2}>
-						<h6 tabIndex={1} className="mb-0 text-end fs-5">
-							R$ {(saldoAnterior + countValueOf(filteredReceitas) - countValueOf(filteredDespesas)).toFixed(2)}
-						</h6>
-					</Col>
-				</Row>
-
-				{/* <h6 tabIndex={1} className="mb-0 text-end fs-5" md={2}>
-          Saldo Atual: R$ {(saldoAnterior + countValueOf(filteredReceitas) - countValueOf(filteredDespesas)).toFixed(2)}
-        </h6> */}
+				<EntriesListItem label="Saldo Anterior" value={formatCurrency(previousBalance)} />
+				<EntriesListItem label="Entradas do Mês" value={formatCurrency(countValueOf(revenues))} />
+				<EntriesListItem label="Saídas do Mês" value={formatCurrency(countValueOf(expenses))} />
+				<EntriesListItem label="Saldo Atual" value={formatCurrency(balance)} />
 			</Container>
 		</div>
 	);
