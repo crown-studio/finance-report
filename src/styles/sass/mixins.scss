@@ -1,0 +1,192 @@
+@import './theme.scss';
+@import './variables.scss';
+
+/* ---------- LAYOUT ---------- */
+
+@mixin flexbox($x, $y, $flow: row wrap) {
+	display: flex;
+	justify-content: $x;
+	align-items: $y;
+	flex-flow: $flow;
+}
+
+@mixin absoluteCenter() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* ---------- MEDIA QUERY ---------- */
+
+@mixin mqMaxWidth($width) {
+	@if map_has_key($width-breakpoints, $width) {
+		$width: map_get($width-breakpoints, $width);
+
+		@media only screen and (max-width: $width) {
+			@content;
+		}
+	}
+}
+
+@mixin mqMinWidth($width) {
+	@if map_has_key($width-breakpoints, $width) {
+		$width: map_get($width-breakpoints, $width);
+
+		@media only screen and (min-width: $width) {
+			@content;
+		}
+	}
+}
+
+@mixin xs {
+	@media (max-width: #{$screen-xs-max}) {
+		@content;
+	}
+}
+
+// Tiny devices
+@mixin sm {
+	@media (max-width: #{$screen-sm-max}) {
+		@content;
+	}
+}
+
+// Small devices
+@mixin md {
+	@media (max-width: #{$screen-md-max}) {
+		@content;
+	}
+}
+
+// Medium devices
+@mixin sd {
+	@media (max-width: #{$screen-sd-max}) {
+		@content;
+	}
+}
+
+// Medium devices
+@mixin lg {
+	@media (max-width: #{$screen-lg-max}) {
+		@content;
+	}
+}
+
+// Large devices
+@mixin lgr {
+	@media (max-width: #{$screen-lgr-max}) {
+		@content;
+	}
+}
+
+// Large devices
+@mixin xl {
+	@media (max-width: #{$screen-xl-max}) {
+		@content;
+	}
+}
+
+// Extra large devices
+@mixin xll {
+	@media (max-width: #{$screen-xll-max}) {
+		@content;
+	}
+}
+
+// Extra large devices
+@mixin xxl {
+	@media (max-width: #{$screen-xxl-max}) {
+		@content;
+	}
+}
+
+// Extra large devices
+
+/* ----------- Z-INDEX ----------- */
+
+@function z($element, $list: '') {
+	@if $list == '' {
+		$list: $z-indexes;
+	}
+
+	$z-index: index($list, $element);
+
+	@if $z-index {
+		@return $z-index;
+	}
+
+	@warn 'There is no item "#{$element}" in this list; choose one of: #{$list}';
+	@return null;
+}
+
+/* ------------ COLOR ----------- */
+@mixin highlightFeedbackColor($color) {
+	&:hover {
+		color: lighten($color, 2%);
+	}
+
+	&:active {
+		color: darken($color, 10%);
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+@mixin contrastText($bgc) {
+	$light-color: $text-color-light;
+	$dark-color: $text-color-dark;
+	$luminance: red($bgc) + green($bgc) + blue($bgc);
+	color: if($luminance > calc((255 * 3) / 2), $dark-color, $light-color);
+}
+
+@mixin clickFeedbackColor($color) {
+	color: $color;
+
+	&:hover {
+		color: lighten($color, 8%);
+	}
+
+	&:active {
+		color: darken($color, 9%);
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+@mixin clickFeedbackBackground($bg) {
+	background-color: $bg;
+
+	&:hover {
+		background-color: lighten($bg, 3%);
+	}
+
+	&:active {
+		background-color: darken($bg, 6%);
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+@mixin borderFeedback() {
+	box-shadow: 0 0 0 1px #a6c8ff;
+	border: 1px solid #94b6ed;
+	outline: none;
+}
+
+@mixin focusFeedBack() {
+	&:focus {
+		@include borderFeedback();
+	}
+}
+
+/* ------------ ANIMATION ----------- */
+@mixin defaultTransition($sec: 0.3s) {
+	transition: cubic-bezier(0.4, 0, 0.2, 1) $sec;
+}

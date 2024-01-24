@@ -1,0 +1,45 @@
+/* ------------- SIZING ------------- */
+
+$app-comment-bar-height: 74px;
+$app-comment-bar-height-xs: 60px;
+
+$formFieldsBorderColor: #cccccc;
+$formFieldsBorderRadius: 3px;
+$formFieldsFocusBorderColor: #287fd2;
+
+/* ------------- COLORS ------------- */
+$primary-variant-color: #636367;
+$primary-color: #287fd2;
+$secondary-color: #3ca96c;
+$default-color: #aaaaaa;
+$default-bgcolor: whitesmoke;
+
+/* ---------- BREAKPOINTS ---------- */
+
+$width-breakpoints: (
+	'lg': 1150px,
+	'md': 880px,
+	'sm': 768px,
+	'xs': 450px,
+);
+
+$screen-xs-max: 450px;
+$screen-sm-max: 768px;
+$screen-md-max: 880px;
+$screen-lg-max: 1150px;
+
+/* ------------ Z-INDEX ------------ */
+
+$z-indexes: (modal);
+
+/* ---------- FORM ----------------- */
+
+$formFieldsBorderColor: #cccccc;
+$formFieldsBorderRadius: 3px;
+$formFieldsFocusBorderColor: #287fd2;
+
+$formFieldsFontSize: 16px;
+$formFieldsFontSizeXS: 16px;
+
+$formFieldsMinHeight: 48px;
+$formFieldsPlaceHolderfontSize: 14px;

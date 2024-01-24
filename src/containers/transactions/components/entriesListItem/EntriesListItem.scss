@@ -1,2 +1,23 @@
+@import 'src/styles/sass/mixins';
+
 .EntriesListItem {
+	list-style-type: none;
+	padding: 16px 32px;
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__title {
+		font-size: 1.2rem;
+	}
+
+	&__subtitle {
+		font-style: italic;
+		color: $medium-shades-gray;
+	}
+
+	.tags {
+		color: $hyperlink-blue !important;
+	}
 }
