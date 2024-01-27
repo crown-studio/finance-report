@@ -5,7 +5,7 @@ export interface IDespesa {
 	pagamento: string;
 	categoria: string;
 	subcategoria: string;
-	observacoes: string;
 	tipo: string;
 	data: string;
+	observacoes?: string;
 }

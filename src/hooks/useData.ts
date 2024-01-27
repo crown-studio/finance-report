@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 import database from '../data/database.json';
-import { getDateByMonthNumber, getParsedDate } from '../utils/dateUtils';
+import { getParsedDate } from '../utils/dateUtils';
 import { countValueOf } from '../utils/dataUtils';
+import { isBefore, isSameMonth } from 'date-fns';
 
-export const useData = (selectedMonth: string) => {
+export const useData = (selectedMonth: string, selectedYear: string) => {
 	const INITIAL_VALUE = 42250.89;
+	const currentDate = useMemo(() => getParsedDate(`01/${selectedMonth}/${selectedYear}`), [selectedMonth, selectedYear]);
 
 	const expenses = useMemo(
 		() =>
@@ -17,11 +19,8 @@ export const useData = (selectedMonth: string) => {
 	const revenues = useMemo(() => database.filter(({ valor }) => valor > 0), [database]);
 
 	const previousAmount = useMemo(
-		() =>
-			database.filter(
-				({ pagamento }) => getParsedDate(pagamento).getMonth() < getDateByMonthNumber(Number(selectedMonth)).getMonth(),
-			),
-		[database, selectedMonth],
+		() => database.filter(({ pagamento }) => isBefore(getParsedDate(pagamento), currentDate)),
+		[database, currentDate],
 	);
 
 	const previousBalance = useMemo(() => INITIAL_VALUE + countValueOf(previousAmount), [INITIAL_VALUE, previousAmount]);
@@ -29,19 +28,17 @@ export const useData = (selectedMonth: string) => {
 	const filteredExpenses = useMemo(
 		() =>
 			expenses.filter(({ pagamento }) => {
-				// return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
-				return getDateByMonthNumber(Number(selectedMonth)).getMonth() === getParsedDate(pagamento).getMonth();
+				return isSameMonth(getParsedDate(pagamento), currentDate);
 			}),
-		[expenses, selectedMonth],
+		[expenses, currentDate],
 	);
 
 	const filteredRevenues = useMemo(
 		() =>
 			revenues.filter(({ pagamento }) => {
-				// return isSameMonth(getDateByMonthNumber(selectedMonth), getParsedDate(pagamento));
-				return getDateByMonthNumber(Number(selectedMonth)).getMonth() === getParsedDate(pagamento).getMonth();
+				return isSameMonth(getParsedDate(pagamento), currentDate);
 			}),
-		[revenues, selectedMonth],
+		[revenues, currentDate],
 	);
 
 	const tithes = useMemo(() => filteredRevenues.filter(({ categoria }) => categoria === 'Dízimo'), [filteredRevenues]);

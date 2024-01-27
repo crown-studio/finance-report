@@ -5,19 +5,21 @@
 // import { isSameMonth } from 'date-fns';
 // import { Container, Row, Col, Nav, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
-import NavBar from '../../components/navBar/NavBar';
 import { countValueOf } from '../../utils/dataUtils';
 import { useData } from '../../hooks/useData';
-import EntriesListItem from './components/entriesListItem/EntriesListItem';
 import { formatCurrency } from '../../utils/currencyUtils';
+import NavBar from '../../components/navBar/NavBar';
+import EntriesListItem from './components/entriesListItem/EntriesListItem';
 import EntriesListContainer from './components/entriesListContainer/EntriesListContainer';
+import { subMonths } from 'date-fns';
 import './Transactions.scss';
 
 const Transactions = () => {
-	const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());
-	const [selectedMonth, setSelectedMonth] = useState((new Date().getMonth() + 1).toString());
+	const selectedDate = subMonths(new Date(), 1);
+	const [selectedYear, setSelectedYear] = useState(selectedDate.getFullYear().toString());
+	const [selectedMonth, setSelectedMonth] = useState((selectedDate.getMonth() + 1).toString());
 	const { revenues, expenses, balance, personalOffering, missionOffering, EBDOffering, tithes, interest, previousBalance } =
-		useData(selectedMonth);
+		useData(selectedMonth, selectedYear);
 
 	// const saldoAnterior = 40545.26; // ABRIL
 	// const saldoAnterior = 26574.45; // MAIO
@@ -61,12 +63,16 @@ const Transactions = () => {
 				<EntriesListItem title="Total" value={formatCurrency(countValueOf(personalOffering))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer title="DESCRIÇÃO DAS ENTRADAS">
-				<EntriesListItem title="Ofertas Pessoais" value={formatCurrency(countValueOf(personalOffering))} />
-				<EntriesListItem title="Ofertas Missionárias" value={formatCurrency(countValueOf(missionOffering))} />
-				<EntriesListItem title="Ofertas EBD" value={formatCurrency(countValueOf(EBDOffering))} />
-				<EntriesListItem title="Dízimos" value={formatCurrency(countValueOf(tithes))} />
-				<EntriesListItem title="Juros" value={formatCurrency(countValueOf(interest))} />
+			<EntriesListContainer
+				title="DESCRIÇÃO DAS ENTRADAS"
+				data={[
+					{ id: '0', descricao: 'Ofertas Pessoais', valor: formatCurrency(countValueOf(personalOffering)) },
+					{ id: '1', descricao: 'Ofertas Missionárias', valor: formatCurrency(countValueOf(missionOffering)) },
+					{ id: '2', descricao: 'Ofertas EBD', valor: formatCurrency(countValueOf(EBDOffering)) },
+					{ id: '3', descricao: 'Dízimos', valor: formatCurrency(countValueOf(tithes)) },
+					{ id: '4', descricao: 'Juros', valor: formatCurrency(countValueOf(interest)) },
+				]}
+			>
 				<EntriesListItem title="Total" value={formatCurrency(countValueOf(revenues))} />
 			</EntriesListContainer>
 
@@ -88,12 +94,15 @@ const Transactions = () => {
 				<EntriesListItem title="Total" value={formatCurrency(countValueOf(expenses))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer title="RESUMO GERAL">
-				<EntriesListItem title="Saldo Anterior" value={formatCurrency(previousBalance)} />
-				<EntriesListItem title="Entradas do Mês" value={formatCurrency(countValueOf(revenues))} />
-				<EntriesListItem title="Saídas do Mês" value={formatCurrency(countValueOf(expenses))} />
-				<EntriesListItem title="Saldo Atual" value={formatCurrency(balance)} />
-			</EntriesListContainer>
+			<EntriesListContainer
+				title="RESUMO GERAL"
+				data={[
+					{ id: '0', descricao: 'Saldo Anterior', valor: formatCurrency(previousBalance) },
+					{ id: '1', descricao: 'Entradas do Mês', valor: formatCurrency(countValueOf(revenues)) },
+					{ id: '2', descricao: 'Saídas do Mês', valor: formatCurrency(countValueOf(expenses)) },
+					{ id: '3', descricao: 'Saldo Atual', valor: formatCurrency(balance) },
+				]}
+			/>
 		</div>
 	);
 };

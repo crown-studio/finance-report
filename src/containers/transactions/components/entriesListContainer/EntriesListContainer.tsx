@@ -6,10 +6,15 @@ import { IReceita } from '../../../../types/IReceita';
 import { formatCurrency } from '../../../../utils/currencyUtils';
 import './EntriesListContainer.scss';
 
+type SimpleList = Pick<IDespesa | IReceita, 'id' | 'descricao' | 'valor' | 'observacoes'> & {
+	categoria?: string;
+	subcategoria?: string;
+};
+
 interface IEntriesListContainerProps {
 	title: string;
 	children?: React.ReactNode;
-	data?: Array<IDespesa | IReceita>;
+	data?: Array<IDespesa | IReceita | SimpleList>;
 	hideValues?: boolean;
 	hideTags?: boolean;
 	mergeDuplicates?: boolean;
@@ -37,7 +42,7 @@ const EntriesListContainer = ({
 						title={descricao}
 						value={formatCurrency(valor)}
 						subtitle={observacoes}
-						tags={!hideTags ? [categoria, subcategoria] : []}
+						tags={!hideTags && categoria && subcategoria ? [categoria, subcategoria] : undefined}
 						hideValue={hideValues}
 						color={index % 2 === 0 ? '#f5f5f5' : 'initial'}
 					/>
