@@ -17,7 +17,22 @@
 		color: $medium-shades-gray;
 	}
 
-	.tags {
+	&__tags {
+		@include flexbox(flex-start, center);
+		gap: 4px;
+	}
+
+	.custom-tags {
 		color: $hyperlink-blue !important;
 	}
+}
+
+.EntriesListItem.total {
+	// &__header {
+	// 	justify-content: center;
+	// }
+
+	border-top: 2px solid $clear-shades-gray;
+	margin-top: auto;
+	font-size: 1.5rem;
 }

@@ -1,0 +1,10 @@
+@import 'src/styles/sass/mixins';
+
+.Badge {
+	padding: 4px 16px;
+	background-color: $neutral-shades-gray;
+	border-radius: 16px;
+	max-height: 32;
+	color: $text-color-dark;
+	font-size: small;
+}

@@ -1,6 +1,10 @@
 import React from 'react';
-import './EntriesListItem.scss';
 import HTMLInject from '../../../../components/support/HTMLInject/HTMLInject';
+import Badge from '../../../../components/commons/badge/Badge';
+import { normalize } from '../../../../utils/stringUtils';
+import { COLORS } from '../../../../theme/colors';
+import classNames from 'classnames';
+import './EntriesListItem.scss';
 
 interface IEntriesListItemProps {
 	title: string;
@@ -10,6 +14,7 @@ interface IEntriesListItemProps {
 	showSensitiveData?: boolean;
 	hideValue?: boolean;
 	color?: string;
+	className?: string;
 }
 
 const EntriesListItem = ({
@@ -20,13 +25,14 @@ const EntriesListItem = ({
 	showSensitiveData = false,
 	hideValue = false,
 	color = 'unset',
+	className,
 }: IEntriesListItemProps) => {
 	const parsedSubtitle = (
 		!showSensitiveData ? subtitle?.replace(/\*\*(.*?)\*\*/g, '').replace(/#reembolso/g, '') : subtitle
-	)?.replace(/#\S+/g, '<span class="tags">$&</span>');
+	)?.replace(/#\S+/g, '<span class="custom-tags">$&</span>');
 
 	return (
-		<li className="EntriesListItem" style={{ backgroundColor: color }}>
+		<li className={classNames('EntriesListItem', className)} style={{ backgroundColor: color }}>
 			<div className="EntriesListItem__header">
 				<span className="EntriesListItem__title">{title}</span>
 				{!hideValue && <strong className="EntriesListItem__value">{value}</strong>}
@@ -39,11 +45,10 @@ const EntriesListItem = ({
 			)}
 			{!!tags?.length && (
 				<div className="EntriesListItem__tags">
-					{tags.map(tag => (
-						<span key={tag} className="EntriesListItem__tag">
-							{tag}
-						</span>
-					))}
+					{tags.map(tag => {
+						const colorKey = `${normalize(tags[0]).toUpperCase().replace(/\s/g, '_')}_COLOR`;
+						return <Badge key={tag} label={tag} color={COLORS[colorKey as keyof typeof COLORS]} />;
+					})}
 				</div>
 			)}
 		</li>

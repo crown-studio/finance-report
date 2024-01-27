@@ -4,6 +4,7 @@ import EntriesListItem from '../entriesListItem/EntriesListItem';
 import { IDespesa } from '../../../../types/IDespesa';
 import { IReceita } from '../../../../types/IReceita';
 import { formatCurrency } from '../../../../utils/currencyUtils';
+import { COLORS } from '../../../../theme/colors';
 import './EntriesListContainer.scss';
 
 type SimpleList = Pick<IDespesa | IReceita, 'id' | 'descricao' | 'valor' | 'observacoes'> & {
@@ -44,7 +45,7 @@ const EntriesListContainer = ({
 						subtitle={observacoes}
 						tags={!hideTags && categoria && subcategoria ? [categoria, subcategoria] : undefined}
 						hideValue={hideValues}
-						color={index % 2 === 0 ? '#f5f5f5' : 'initial'}
+						color={index % 2 === 0 ? COLORS.CLEAR_SHADES_GRAY : 'initial'}
 					/>
 				))}
 			</ul>

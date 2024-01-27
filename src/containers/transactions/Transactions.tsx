@@ -56,11 +56,11 @@ const Transactions = () => {
 			/>
 
 			<EntriesListContainer title="RELAÇÃO DE DIZIMISTAS" data={tithes} hideValues hideTags>
-				<EntriesListItem title="Total" value={formatCurrency(countValueOf(tithes))} />
+				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(tithes))} />
 			</EntriesListContainer>
 
 			<EntriesListContainer title="RELAÇÃO DOS OFERTANTES" data={personalOffering} hideValues hideTags>
-				<EntriesListItem title="Total" value={formatCurrency(countValueOf(personalOffering))} />
+				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(personalOffering))} />
 			</EntriesListContainer>
 
 			<EntriesListContainer
@@ -73,7 +73,7 @@ const Transactions = () => {
 					{ id: '4', descricao: 'Juros', valor: formatCurrency(countValueOf(interest)) },
 				]}
 			>
-				<EntriesListItem title="Total" value={formatCurrency(countValueOf(revenues))} />
+				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(revenues))} />
 			</EntriesListContainer>
 
 			<EntriesListContainer
@@ -91,7 +91,7 @@ const Transactions = () => {
 						}),
 				]}
 			>
-				<EntriesListItem title="Total" value={formatCurrency(countValueOf(expenses))} />
+				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(expenses))} />
 			</EntriesListContainer>
 
 			<EntriesListContainer
@@ -100,9 +100,10 @@ const Transactions = () => {
 					{ id: '0', descricao: 'Saldo Anterior', valor: formatCurrency(previousBalance) },
 					{ id: '1', descricao: 'Entradas do Mês', valor: formatCurrency(countValueOf(revenues)) },
 					{ id: '2', descricao: 'Saídas do Mês', valor: formatCurrency(countValueOf(expenses)) },
-					{ id: '3', descricao: 'Saldo Atual', valor: formatCurrency(balance) },
 				]}
-			/>
+			>
+				<EntriesListItem className="total" title="Saldo Atual" value={formatCurrency(balance)} />
+			</EntriesListContainer>
 		</div>
 	);
 };
