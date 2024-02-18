@@ -21,16 +21,8 @@ interface IEntriesListContainerProps {
 	mergeDuplicates?: boolean;
 }
 
-const EntriesListContainer = ({
-	children,
-	title,
-	data,
-	hideValues = false,
-	hideTags = false,
-	mergeDuplicates = true,
-}: IEntriesListContainerProps) => {
+const EntriesListContainer = ({ children, title, data, hideValues = false, hideTags = false }: IEntriesListContainerProps) => {
 	const showEmptyMessage = useMemo(() => !data?.length && !children, []);
-	// const parsedData = mergeDuplicates ? data.map : data;
 
 	return (
 		<Container className="EntriesListContainer">
