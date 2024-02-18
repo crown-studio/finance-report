@@ -45,9 +45,9 @@ const EntriesListItem = ({
 			)}
 			{!!tags?.length && (
 				<div className="EntriesListItem__tags">
-					{tags.map(tag => {
+					{tags.map((tag, index) => {
 						const colorKey = `${normalize(tags[0]).toUpperCase().replace(/\s/g, '_')}_COLOR`;
-						return <Badge key={tag} label={tag} color={COLORS[colorKey as keyof typeof COLORS]} />;
+						return <Badge key={index} label={tag} color={COLORS[colorKey as keyof typeof COLORS]} />;
 					})}
 				</div>
 			)}

@@ -55,16 +55,16 @@ const Transactions = () => {
 				month={selectedMonth}
 			/>
 
-			<EntriesListContainer title="RELAÇÃO DE DIZIMISTAS" data={tithes} hideValues hideTags>
+			<EntriesListContainer title="Relação de Dizimistas" data={tithes} hideValues hideTags>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(tithes))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer title="RELAÇÃO DOS OFERTANTES" data={personalOffering} hideValues hideTags>
+			<EntriesListContainer title="Relação dos Ofertantes" data={personalOffering} hideValues hideTags>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(personalOffering))} />
 			</EntriesListContainer>
 
 			<EntriesListContainer
-				title="DESCRIÇÃO DAS ENTRADAS"
+				title="Descrição das Entradas"
 				data={[
 					{ id: '0', descricao: 'Ofertas Pessoais', valor: formatCurrency(countValueOf(personalOffering)) },
 					{ id: '1', descricao: 'Ofertas Missionárias', valor: formatCurrency(countValueOf(missionOffering)) },
@@ -77,7 +77,7 @@ const Transactions = () => {
 			</EntriesListContainer>
 
 			<EntriesListContainer
-				title="RELAÇÃO DE DESPESAS"
+				title="Relação das Despesas"
 				data={[
 					...expenses.filter(({ categoria }) => categoria !== 'Obras'),
 					expenses
@@ -95,7 +95,7 @@ const Transactions = () => {
 			</EntriesListContainer>
 
 			<EntriesListContainer
-				title="RESUMO GERAL"
+				title="Resumo Geral"
 				data={[
 					{ id: '0', descricao: 'Saldo Anterior', valor: formatCurrency(previousBalance) },
 					{ id: '1', descricao: 'Entradas do Mês', valor: formatCurrency(countValueOf(revenues)) },
