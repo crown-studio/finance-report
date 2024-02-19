@@ -32,7 +32,7 @@ const EntriesListItem = ({
 	)?.replace(/#\S+/g, '<span class="custom-tags">$&</span>');
 
 	return (
-		<li className={classNames('EntriesListItem', className)} style={{ backgroundColor: color }}>
+		<li className={classNames('EntriesListItem', className)} style={{ backgroundColor: color }} tabIndex={0}>
 			<div className="EntriesListItem__header">
 				<span className="EntriesListItem__title">{title}</span>
 				{!hideValue && <strong className="EntriesListItem__value">{value}</strong>}
