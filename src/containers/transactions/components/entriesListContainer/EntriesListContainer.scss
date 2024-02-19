@@ -14,4 +14,11 @@
 		text-align: center;
 		margin-bottom: 32px;
 	}
+
+	&__emptyMessage {
+		text-align: center;
+		padding: 4em;
+		color: $light-shades-gray;
+		font-weight: 400;
+	}
 }

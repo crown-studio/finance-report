@@ -35,7 +35,7 @@ const EntriesListContainer = ({
 	hideByProps,
 	groupByCategory = false,
 }: IEntriesListContainerProps) => {
-	const showEmptyMessage = useMemo(() => !data?.length && !children, []);
+	const showEmptyMessage = useMemo(() => !data?.length && React.Children.count(children) <= 1, [data, children]);
 
 	const parseData = useCallback(() => {
 		if (mergeByProps) return mergeDuplicatesByProps(data || [], mergeByProps as keyof typeof data);
@@ -56,7 +56,8 @@ const EntriesListContainer = ({
 	return (
 		<Container className="EntriesListContainer">
 			<h4 className="EntriesListContainer__title">{title}</h4>
-			{showEmptyMessage && <h5>Nenhum dado foi encontrado</h5>}
+
+			{showEmptyMessage && <h5 className="EntriesListContainer__emptyMessage">Nenhum dado foi encontrado</h5>}
 			<ul className="EntriesListContainer__list list-unstyled">
 				{parsedData?.map(({ id, descricao, valor, observacoes, categoria, subcategoria }, index) => (
 					<EntriesListItem
