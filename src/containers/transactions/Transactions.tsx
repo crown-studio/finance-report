@@ -38,11 +38,11 @@ const Transactions = () => {
 		setSelectedMonth(eventKey);
 	};
 
-	const [showMenu, setShowMenu] = useState(false);
+	// const [showMenu, setShowMenu] = useState(false);
 
 	const handleToggleMenu = () => {
 		// console.log(showMenu);
-		setShowMenu(prevState => !prevState);
+		// setShowMenu(prevState => !prevState);
 	};
 
 	return (
@@ -55,11 +55,17 @@ const Transactions = () => {
 				month={selectedMonth}
 			/>
 
-			<EntriesListContainer title="Relação de Dizimistas" data={tithes} hideValues hideTags>
+			<EntriesListContainer title="Relação de Dizimistas" data={tithes} mergeByProps={['descricao']} hideValues hideTags>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(tithes))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer title="Relação dos Ofertantes" data={personalOffering} hideValues hideTags>
+			<EntriesListContainer
+				title="Relação dos Ofertantes"
+				data={personalOffering}
+				mergeByProps={['descricao']}
+				hideValues
+				hideTags
+			>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(personalOffering))} />
 			</EntriesListContainer>
 
