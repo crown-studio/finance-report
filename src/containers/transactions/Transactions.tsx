@@ -1,9 +1,3 @@
-// import PieChart from '../../components/pieChart/PieChart';
-// import { groupBy } from '../../utils/objectUtils';
-// import LineChart from '../../components/lineChart/LineChart';
-// import BarChart from '../../components/barChart/BarChart';
-// import { isSameMonth } from 'date-fns';
-// import { Container, Row, Col, Nav, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { countValueOf } from '../../utils/dataUtils';
 import { useData } from '../../hooks/useData';
@@ -82,21 +76,7 @@ const Transactions = () => {
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(revenues))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer
-				title="Relação das Despesas"
-				data={[
-					...expenses.filter(({ categoria }) => categoria !== 'Obras'),
-					expenses
-						.filter(({ categoria }) => categoria === 'Obras')
-						.reduce((tv, cv) => ({ ...tv, valor: tv.valor + cv.valor }), {
-							descricao: 'Gasto com obras',
-							valor: 0,
-							observacoes: 'Despesas agrupadas',
-							categoria: 'Obras',
-							subcategoria: 'Outros',
-						}),
-				]}
-			>
+			<EntriesListContainer title="Relação das Despesas" data={expenses} groupByCategory>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(expenses))} />
 			</EntriesListContainer>
 

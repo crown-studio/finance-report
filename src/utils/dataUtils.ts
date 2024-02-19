@@ -1,3 +1,6 @@
+import { IDespesa } from '../types/IDespesa';
+import { removeDuplicates } from './arrayUtils';
+
 export const countValueOf = (dataArr: { valor: string; encargos?: string | number }[], decimals?: number): number => {
 	return Number(
 		dataArr.reduce((total, { valor, encargos }) => total + (Number(valor) + Number(encargos || 0)), 0).toFixed(decimals || 2),
@@ -29,4 +32,21 @@ export const mergeDuplicatesByProps = <T>(data: T[], props: (keyof T)[]): T[] =>
 		}
 	}
 	return mergedData;
+};
+
+export const groupExpensesByCategory = (expenses: IDespesa[], categories?: string[]) => {
+	const groups = categories ? categories : removeDuplicates(expenses.map(({ categoria }) => categoria));
+	const data = groups.map(category =>
+		expenses
+			.filter(({ categoria }) => categoria === category)
+			.reduce((tv, cv) => ({ ...tv, valor: Number(tv.valor) + Number(cv.valor) }), {
+				descricao: `Gastos com ${category}`,
+				valor: 0,
+				observacoes: 'Despesas agrupadas',
+				categoria: category,
+				subcategoria: '...',
+			}),
+	);
+
+	return data;
 };

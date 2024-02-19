@@ -5,7 +5,7 @@ import { IDespesa } from '../../../../types/IDespesa';
 import { IReceita } from '../../../../types/IReceita';
 import { formatCurrency } from '../../../../utils/currencyUtils';
 import { COLORS } from '../../../../theme/colors';
-import { mergeDuplicatesByProps } from '../../../../utils/dataUtils';
+import { groupExpensesByCategory, mergeDuplicatesByProps } from '../../../../utils/dataUtils';
 import { removeDuplicatesByProps } from '../../../../utils/arrayUtils';
 import './EntriesListContainer.scss';
 
@@ -22,6 +22,7 @@ interface IEntriesListContainerProps {
 	hideTags?: boolean;
 	mergeByProps?: string[];
 	hideByProps?: string[];
+	groupByCategory?: boolean;
 }
 
 const EntriesListContainer = ({
@@ -32,14 +33,16 @@ const EntriesListContainer = ({
 	hideTags = false,
 	mergeByProps,
 	hideByProps,
+	groupByCategory = false,
 }: IEntriesListContainerProps) => {
 	const showEmptyMessage = useMemo(() => !data?.length && !children, []);
 
 	const parseData = useCallback(() => {
 		if (mergeByProps) return mergeDuplicatesByProps(data || [], mergeByProps as keyof typeof data);
 		if (hideByProps) return removeDuplicatesByProps(data || [], hideByProps as keyof typeof data);
+		if (groupByCategory) return groupExpensesByCategory((data || []) as IDespesa[]);
 		return data;
-	}, []);
+	}, [data, mergeByProps, hideByProps, groupByCategory]);
 
 	const removeDistinctByProps = (
 		arr: (IDespesa | IReceita | SimpleList)[],
