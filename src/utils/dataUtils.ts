@@ -1,4 +1,5 @@
-import { groupBy } from './objectUtils';
+import { IDespesa } from '../types/IDespesa';
+import { removeDuplicates } from './arrayUtils';
 
 export const countValueOf = (dataArr: { valor: string; encargos?: string | number }[], decimals?: number): number => {
 	return Number(
@@ -10,29 +11,42 @@ export const countValueOfByGroup = (dataArr: { valor: string; encargos?: string 
 	return dataArr.map(entries => countValueOf(entries, decimals));
 };
 
-export const mergeByProps = <T>(data: T[], props: (keyof T)[]): T[] => {
-	const dataGrouped = groupBy(data, 'descricao' as keyof T);
+export const mergeDuplicatesByProps = <T>(data: T[], props: (keyof T)[]): T[] => {
+	const mergedData: T[] = [];
 
-	const dataMerged = Object.values(dataGrouped).map(items => {
-		if (items.length > 1)
-			return items.reduce((acc, crr, index) => {
-				if (index === 0) return crr;
-				const result = {} as T;
-				Object.entries(acc as ArrayLike<T>).forEach(([key, value]) => {
-					// Object.entries(acc as ArrayLike<T>).forEach(([key, value]: [keyof T, T]) => {
-					if (typeof crr[key as keyof T] === 'string')
-						result[key as keyof T] = (
-							crr[key as keyof T] === value ? value : `${acc[key as keyof T]} | ${value}`
-						) as T[keyof T];
-					if (typeof crr[key as keyof T] === 'number')
-						result[key as keyof T] = (+acc[key as keyof T] + +value) as T[keyof T];
-					if (typeof crr[key as keyof T] === 'boolean')
-						result[key as keyof T] = (acc[key as keyof T] && value) as T[keyof T];
-				});
-				return result;
-			}, {} as T);
-		return items[0];
-	});
+	for (const object of data) {
+		const similar: T | undefined = mergedData.find(mergedObj => props.every(prop => mergedObj[prop] === object[prop]));
 
-	return dataMerged;
+		if (similar) {
+			for (const [key, prev] of Object.entries(similar)) {
+				const curr = object[key as keyof T];
+				if (typeof curr === 'string')
+					similar[key as keyof T] = (
+						(prev as string).includes(curr) ? prev : `${prev} | ${curr}`
+					) as NonNullable<T>[keyof T];
+				if (typeof curr === 'number') similar[key as keyof T] = ((prev as number) + curr) as NonNullable<T>[keyof T];
+				if (typeof curr === 'boolean') similar[key as keyof T] = (prev && curr) as NonNullable<T>[keyof T];
+			}
+		} else {
+			mergedData.push(object);
+		}
+	}
+	return mergedData;
+};
+
+export const groupExpensesByCategory = (expenses: IDespesa[], categories?: string[]) => {
+	const groups = categories ? categories : removeDuplicates(expenses.map(({ categoria }) => categoria));
+	const data = groups.map(category =>
+		expenses
+			.filter(({ categoria }) => categoria === category)
+			.reduce((tv, cv) => ({ ...tv, valor: Number(tv.valor) + Number(cv.valor) }), {
+				descricao: `Gastos com ${category}`,
+				valor: 0,
+				observacoes: 'Despesas agrupadas',
+				categoria: category,
+				subcategoria: '...',
+			}),
+	);
+
+	return data;
 };

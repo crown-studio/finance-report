@@ -1,9 +1,3 @@
-// import PieChart from '../../components/pieChart/PieChart';
-// import { groupBy } from '../../utils/objectUtils';
-// import LineChart from '../../components/lineChart/LineChart';
-// import BarChart from '../../components/barChart/BarChart';
-// import { isSameMonth } from 'date-fns';
-// import { Container, Row, Col, Nav, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { countValueOf } from '../../utils/dataUtils';
 import { useData } from '../../hooks/useData';
@@ -38,11 +32,11 @@ const Transactions = () => {
 		setSelectedMonth(eventKey);
 	};
 
-	const [showMenu, setShowMenu] = useState(false);
+	// const [showMenu, setShowMenu] = useState(false);
 
 	const handleToggleMenu = () => {
 		// console.log(showMenu);
-		setShowMenu(prevState => !prevState);
+		// setShowMenu(prevState => !prevState);
 	};
 
 	return (
@@ -55,11 +49,17 @@ const Transactions = () => {
 				month={selectedMonth}
 			/>
 
-			<EntriesListContainer title="Relação de Dizimistas" data={tithes} hideValues hideTags>
+			<EntriesListContainer title="Relação de Dizimistas" data={tithes} mergeByProps={['descricao']} hideValues hideTags>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(tithes))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer title="Relação dos Ofertantes" data={personalOffering} hideValues hideTags>
+			<EntriesListContainer
+				title="Relação dos Ofertantes"
+				data={personalOffering}
+				mergeByProps={['descricao']}
+				hideValues
+				hideTags
+			>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(personalOffering))} />
 			</EntriesListContainer>
 
@@ -76,21 +76,7 @@ const Transactions = () => {
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(revenues))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer
-				title="Relação das Despesas"
-				data={[
-					...expenses.filter(({ categoria }) => categoria !== 'Obras'),
-					expenses
-						.filter(({ categoria }) => categoria === 'Obras')
-						.reduce((tv, cv) => ({ ...tv, valor: tv.valor + cv.valor }), {
-							descricao: 'Gasto com obras',
-							valor: 0,
-							observacoes: 'Despesas agrupadas',
-							categoria: 'Obras',
-							subcategoria: 'Outros',
-						}),
-				]}
-			>
+			<EntriesListContainer title="Relação das Despesas" data={expenses} groupByCategory>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(expenses))} />
 			</EntriesListContainer>
 
