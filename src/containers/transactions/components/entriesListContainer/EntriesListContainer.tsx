@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import EntriesListItem from '../entriesListItem/EntriesListItem';
 import { IDespesa } from '../../../../types/IDespesa';
@@ -37,12 +37,14 @@ const EntriesListContainer = ({
 }: IEntriesListContainerProps) => {
 	const showEmptyMessage = useMemo(() => !data?.length && React.Children.count(children) <= 1, [data, children]);
 
+	const [isGrouped, setIsGrouped] = useState(groupByCategory);
+
 	const parseData = useCallback(() => {
 		if (mergeByProps) return mergeDuplicatesByProps(data || [], mergeByProps as keyof typeof data);
 		if (hideByProps) return removeDuplicatesByProps(data || [], hideByProps as keyof typeof data);
-		if (groupByCategory) return groupExpensesByCategory((data || []) as IDespesa[]);
+		if (isGrouped) return groupExpensesByCategory((data || []) as IDespesa[]);
 		return data;
-	}, [data, mergeByProps, hideByProps, groupByCategory]);
+	}, [data, mergeByProps, hideByProps, isGrouped]);
 
 	const removeDistinctByProps = (
 		arr: (IDespesa | IReceita | SimpleList)[],
@@ -51,12 +53,19 @@ const EntriesListContainer = ({
 		// return arr.filter((item, index) => arr.findIndex(obj => props.every(prop => obj[prop] === item[prop])) === index);
 	};
 
-	const parsedData = parseData();
+	const parsedData = useMemo(() => parseData(), [parseData]);
 
 	return (
 		<Container className="EntriesListContainer">
-			<h4 className="EntriesListContainer__title">{title}</h4>
-
+			<header className="EntriesListContainer__header">
+				<section className="EntriesListContainer__header__start"></section>
+				<section>
+					<h4 className="EntriesListContainer__header__center__title">{title}</h4>
+				</section>
+				<section className="EntriesListContainer__header__end">
+					{groupByCategory && <button onClick={() => setIsGrouped(prev => !prev)}>GROUP</button>}
+				</section>
+			</header>
 			{showEmptyMessage && <h5 className="EntriesListContainer__emptyMessage">Nenhum dado foi encontrado</h5>}
 			<ul className="EntriesListContainer__list list-unstyled">
 				{parsedData?.map(({ id, descricao, valor, observacoes, categoria, subcategoria }, index) => (
