@@ -8,6 +8,7 @@ import { COLORS } from '../../../../theme/colors';
 import { groupExpensesByCategory, mergeDuplicatesByProps } from '../../../../utils/dataUtils';
 import { removeDuplicatesByProps } from '../../../../utils/arrayUtils';
 import './EntriesListContainer.scss';
+import { Button } from '@chakra-ui/react';
 
 type SimpleList = Pick<IDespesa | IReceita, 'id' | 'descricao' | 'valor' | 'observacoes'> & {
 	categoria?: string;
@@ -63,7 +64,9 @@ const EntriesListContainer = ({
 					<h4 className="EntriesListContainer__header__center__title">{title}</h4>
 				</section>
 				<section className="EntriesListContainer__header__end">
-					{groupByCategory && <button onClick={() => setIsGrouped(prev => !prev)}>GROUP</button>}
+					{groupByCategory && (
+						<Button onClick={() => setIsGrouped(prev => !prev)}>{isGrouped ? 'UNGROUP' : 'GROUP'}</Button>
+					)}
 				</section>
 			</header>
 			{showEmptyMessage && <h5 className="EntriesListContainer__emptyMessage">Nenhum dado foi encontrado</h5>}
