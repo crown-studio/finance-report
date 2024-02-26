@@ -39,14 +39,31 @@ export const groupExpensesByCategory = (expenses: IDespesa[], categories?: strin
 	const data = groups.map(category =>
 		expenses
 			.filter(({ categoria }) => categoria === category)
-			.reduce((tv, cv) => ({ ...tv, valor: Number(tv.valor) + Number(cv.valor) }), {
-				descricao: `Gastos com ${category}`,
-				valor: 0,
-				observacoes: 'Despesas agrupadas',
-				categoria: category,
-				subcategoria: '...',
-			}),
+			.reduce(
+				({ id, valor, ...tv }, cv) => ({
+					...tv,
+					valor: Number(valor) + Number(cv.valor),
+					id: id ? `${id} | ${cv.id}` : cv.id,
+					// subcategoria: removeDuplicates(
+					// 	(subcategoria ? `${subcategoria} | ${cv.subcategoria}` : cv.subcategoria).split(' | '),
+					// ).join(' | '),
+					// observacoes:
+					// 	observacoes && cv.observacoes ? `${observacoes}, ${cv.observacoes}` : cv?.observacoes || observacoes,
+				}),
+				{
+					descricao: `Gastos com ${category}`,
+					valor: 0,
+					observacoes: 'Despesas agrupadas',
+					categoria: category,
+					subcategoria: '...',
+					id: '',
+				},
+			),
 	);
 
 	return data;
+};
+
+export const removeDistinctByProps = <T>(arr: T[], props: Array<keyof T>): T[] => {
+	return arr.filter((item, index) => arr.findIndex(obj => props.every(prop => obj[prop] === item[prop])) !== index);
 };
