@@ -5,9 +5,9 @@ import { IDespesa } from '../../../../types/IDespesa';
 import { IReceita } from '../../../../types/IReceita';
 import { formatCurrency } from '../../../../utils/currencyUtils';
 import { COLORS } from '../../../../theme/colors';
-import { groupExpensesByCategory, mergeDuplicatesByProps, removeDistinctByProps } from '../../../../utils/dataUtils';
+import { groupExpensesByCategory, mergeDuplicatesByProps } from '../../../../utils/dataUtils';
 import { removeDuplicatesByProps } from '../../../../utils/arrayUtils';
-import { Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import './EntriesListContainer.scss';
 
 type SimpleList = Pick<IDespesa | IReceita, 'id' | 'descricao' | 'valor' | 'observacoes'> & {
@@ -49,8 +49,6 @@ const EntriesListContainer = ({
 
 	const parsedData = useMemo(() => parseData(), [parseData]);
 
-	// console.log(removeDistinctByProps(data || [], ['id']));
-
 	return (
 		<Container className="EntriesListContainer">
 			<Flex className="EntriesListContainer__header" height={24} px={8} py={4} align={'center'} justify={'space-between'}>
@@ -58,7 +56,6 @@ const EntriesListContainer = ({
 					<Text as={'h4'} mb={0}>
 						{title}
 					</Text>
-					{/* <Heading as={'h4'}>{title}</Heading> */}
 				</Flex>
 				<Flex>
 					{groupByCategory && (
