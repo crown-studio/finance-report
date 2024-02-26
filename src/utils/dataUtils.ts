@@ -1,5 +1,6 @@
 import { IDespesa } from '../types/IDespesa';
 import { removeDuplicates } from './arrayUtils';
+import { groupBy } from './objectUtils';
 
 export const countValueOf = (dataArr: { valor: string; encargos?: string | number }[], decimals?: number): number => {
 	return Number(
@@ -39,14 +40,62 @@ export const groupExpensesByCategory = (expenses: IDespesa[], categories?: strin
 	const data = groups.map(category =>
 		expenses
 			.filter(({ categoria }) => categoria === category)
-			.reduce((tv, cv) => ({ ...tv, valor: Number(tv.valor) + Number(cv.valor) }), {
-				descricao: `Gastos com ${category}`,
-				valor: 0,
-				observacoes: 'Despesas agrupadas',
-				categoria: category,
-				subcategoria: '...',
-			}),
+			.reduce(
+				({ id, valor, ...tv }, cv) => ({
+					...tv,
+					valor: Number(valor) + Number(cv.valor),
+					id: id ? `${id} | ${cv.id}` : cv.id,
+					// subcategoria: removeDuplicates(
+					// 	(subcategoria ? `${subcategoria} | ${cv.subcategoria}` : cv.subcategoria).split(' | '),
+					// ).join(' | '),
+					// observacoes:
+					// 	observacoes && cv.observacoes ? `${observacoes}, ${cv.observacoes}` : cv?.observacoes || observacoes,
+				}),
+				{
+					descricao: `Gastos com ${category}`,
+					valor: 0,
+					observacoes: 'Despesas agrupadas',
+					categoria: category,
+					subcategoria: '...',
+					id: '',
+				},
+			),
 	);
 
 	return data;
+};
+
+export const groupExpensesBySubcategory = (expenses: IDespesa[], subcategories?: string[]) => {
+	const groups = subcategories ? subcategories : removeDuplicates(expenses.map(({ subcategoria }) => subcategoria));
+	const data = groups.map(subcategory =>
+		expenses
+			.filter(({ subcategoria }) => subcategoria === subcategory)
+			.reduce(
+				({ id, valor, categoria, ...tv }, cv) => ({
+					...tv,
+					valor: Number(valor) + Number(cv.valor),
+					id: id ? `${id} | ${cv.id}` : cv.id,
+					categoria: categoria || cv.categoria,
+					// subcategoria: removeDuplicates(
+					// 	(subcategoria ? `${subcategoria} | ${cv.subcategoria}` : cv.subcategoria).split(' | '),
+					// ).join(' | '),
+					// observacoes:
+					// 	observacoes && cv.observacoes ? `${observacoes}, ${cv.observacoes}` : cv?.observacoes || observacoes,
+				}),
+				{
+					descricao: `Gastos com ${subcategory}`,
+					valor: 0,
+					observacoes: 'Despesas agrupadas',
+					categoria: '',
+					subcategoria: subcategory,
+					id: '',
+				},
+			),
+	);
+
+	return Object.values(groupBy(data, 'categoria'))?.flat();
+};
+
+export const removeDistinctByProps = <T>(arr: T[], props: Array<keyof T>): T[] => {
+	return arr.filter((item, index) => arr.findIndex(obj => props.every(prop => obj[prop] === item[prop])) !== index);
 };
