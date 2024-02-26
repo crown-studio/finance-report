@@ -5,10 +5,10 @@ import { IDespesa } from '../../../../types/IDespesa';
 import { IReceita } from '../../../../types/IReceita';
 import { formatCurrency } from '../../../../utils/currencyUtils';
 import { COLORS } from '../../../../theme/colors';
-import { groupExpensesByCategory, mergeDuplicatesByProps } from '../../../../utils/dataUtils';
+import { groupExpensesByCategory, mergeDuplicatesByProps, removeDistinctByProps } from '../../../../utils/dataUtils';
 import { removeDuplicatesByProps } from '../../../../utils/arrayUtils';
+import { Button, Flex, Heading, Text } from '@chakra-ui/react';
 import './EntriesListContainer.scss';
-import { Button } from '@chakra-ui/react';
 
 type SimpleList = Pick<IDespesa | IReceita, 'id' | 'descricao' | 'valor' | 'observacoes'> & {
 	categoria?: string;
@@ -47,28 +47,25 @@ const EntriesListContainer = ({
 		return data;
 	}, [data, mergeByProps, hideByProps, isGrouped]);
 
-	const removeDistinctByProps = (
-		arr: (IDespesa | IReceita | SimpleList)[],
-		props: (keyof IDespesa | IReceita | SimpleList)[],
-	) => {
-		// return arr.filter((item, index) => arr.findIndex(obj => props.every(prop => obj[prop] === item[prop])) === index);
-	};
-
 	const parsedData = useMemo(() => parseData(), [parseData]);
+
+	// console.log(removeDistinctByProps(data || [], ['id']));
 
 	return (
 		<Container className="EntriesListContainer">
-			<header className="EntriesListContainer__header">
-				<section className="EntriesListContainer__header__start"></section>
-				<section>
-					<h4 className="EntriesListContainer__header__center__title">{title}</h4>
-				</section>
-				<section className="EntriesListContainer__header__end">
+			<Flex className="EntriesListContainer__header" height={24} px={8} py={4} align={'center'} justify={'space-between'}>
+				<Flex>
+					<Text as={'h4'} mb={0}>
+						{title}
+					</Text>
+					{/* <Heading as={'h4'}>{title}</Heading> */}
+				</Flex>
+				<Flex>
 					{groupByCategory && (
-						<Button onClick={() => setIsGrouped(prev => !prev)}>{isGrouped ? 'UNGROUP' : 'GROUP'}</Button>
+						<Button onClick={() => setIsGrouped(prev => !prev)}>{isGrouped ? 'DESAGRUPAR' : 'AGRUPAR'}</Button>
 					)}
-				</section>
-			</header>
+				</Flex>
+			</Flex>
 			{showEmptyMessage && <h5 className="EntriesListContainer__emptyMessage">Nenhum dado foi encontrado</h5>}
 			<ul className="EntriesListContainer__list list-unstyled">
 				{parsedData?.map(({ id, descricao, valor, observacoes, categoria, subcategoria }, index) => (
