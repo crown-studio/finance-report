@@ -76,7 +76,7 @@ const Transactions = () => {
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(revenues))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer title="Relação das Despesas" data={expenses} groupByCategory>
+			<EntriesListContainer title="Relação das Despesas" data={expenses} groupByCategory showGraphs>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(expenses))} />
 			</EntriesListContainer>
 

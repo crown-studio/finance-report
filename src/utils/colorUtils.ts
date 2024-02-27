@@ -1,5 +1,5 @@
 import { COLORS } from '../theme/colors';
-import { hasText } from './stringUtils';
+import { hasText, normalize } from './stringUtils';
 
 export const colorContrast = (color: string, weight = 0.5, light = 'white', dark = 'black') => {
 	//Overrides
@@ -27,3 +27,11 @@ export function hexToRgb(hexString: string, alfa = 0) {
 	}
 	return hexString;
 }
+
+export const getColorsByCategory = (categories: string[]) => {
+	const colors = categories.map(category => {
+		const colorKey = `${normalize(category).toUpperCase().replace(/\s/g, '_')}_COLOR`;
+		return COLORS[colorKey as keyof typeof COLORS];
+	});
+	return colors;
+};

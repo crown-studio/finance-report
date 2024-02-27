@@ -7,8 +7,10 @@ import { formatCurrency } from '../../../../utils/currencyUtils';
 import { COLORS } from '../../../../theme/colors';
 import { groupExpensesByCategory, groupExpensesBySubcategory, mergeDuplicatesByProps } from '../../../../utils/dataUtils';
 import { removeDuplicatesByProps } from '../../../../utils/arrayUtils';
+import PieChart from '../../../../components/pieChart/PieChart';
 import { Button, Flex, Text } from '@chakra-ui/react';
 import './EntriesListContainer.scss';
+import { groupBy } from '../../../../utils/objectUtils';
 
 const EXPENSES_GROUP_LEVELS = {
 	CATEGORY: 2,
@@ -30,6 +32,7 @@ interface IEntriesListContainerProps {
 	mergeByProps?: string[];
 	hideByProps?: string[];
 	groupByCategory?: boolean;
+	showGraphs?: boolean;
 }
 
 const EntriesListContainer = ({
@@ -41,11 +44,17 @@ const EntriesListContainer = ({
 	mergeByProps,
 	hideByProps,
 	groupByCategory = !!EXPENSES_GROUP_LEVELS.ENTRIES,
+	showGraphs = false,
 }: IEntriesListContainerProps) => {
 	const showEmptyMessage = useMemo(() => !data?.length && React.Children.count(children) <= 1, [data, children]);
 
 	const [groupLevel, setGroupLevel] = useState(EXPENSES_GROUP_LEVELS.CATEGORY);
 	const [hideValuesToggle, setHideValuesToggle] = useState(hideValues);
+	const [showGraphsToggle, setShowGraphsToggle] = useState(showGraphs);
+
+	const isCategory = useMemo(() => groupLevel === EXPENSES_GROUP_LEVELS.CATEGORY, [groupLevel]);
+	const isSubcategory = useMemo(() => groupLevel === EXPENSES_GROUP_LEVELS.SUBCATEGORY, [groupLevel]);
+	const isEntries = useMemo(() => groupLevel === EXPENSES_GROUP_LEVELS.ENTRIES, [groupLevel]);
 
 	const parseData = useCallback(() => {
 		if (mergeByProps) return mergeDuplicatesByProps(data || [], mergeByProps as keyof typeof data);
@@ -58,6 +67,22 @@ const EntriesListContainer = ({
 
 	const parsedData = useMemo(() => parseData(), [parseData]);
 
+	const _renderListOfEntries = (listData: Array<IDespesa | IReceita | SimpleList>) => (
+		<ul className="EntriesListContainer__list list-unstyled">
+			{listData?.map(({ id, descricao, valor, observacoes, categoria, subcategoria }, index) => (
+				<EntriesListItem
+					key={id}
+					title={descricao}
+					value={formatCurrency(valor)}
+					subtitle={observacoes}
+					tags={!hideTags && categoria && subcategoria ? [categoria, subcategoria] : undefined}
+					hideValue={hideValuesToggle}
+					color={index % 2 === 0 ? COLORS.CLEAR_SHADES_GRAY : 'initial'}
+				/>
+			))}
+		</ul>
+	);
+
 	return (
 		<Container className="EntriesListContainer">
 			<Flex className="EntriesListContainer__header" height={24} px={8} py={4} align={'center'} justify={'space-between'}>
@@ -66,12 +91,17 @@ const EntriesListContainer = ({
 						{title}
 					</Text>
 				</Flex>
-				<Flex>
+				<Flex gap={2}>
+					{showGraphs && isCategory && (
+						<Button onClick={() => setShowGraphsToggle(prev => !prev)}>
+							{showGraphsToggle ? 'LISTA' : 'GRÁFICO'}
+						</Button>
+					)}
 					{groupByCategory && (
 						<Button onClick={() => setGroupLevel(prev => (prev < 2 ? prev + 1 : 0))}>
-							{groupLevel === EXPENSES_GROUP_LEVELS.CATEGORY && 'DETALHAR'}
-							{groupLevel === EXPENSES_GROUP_LEVELS.SUBCATEGORY && 'AGRUPAR'}
-							{groupLevel === EXPENSES_GROUP_LEVELS.ENTRIES && 'RESUMIR'}
+							{isCategory && 'DETALHAR'}
+							{isSubcategory && 'AGRUPAR'}
+							{isEntries && 'RESUMIR'}
 						</Button>
 					)}
 					{hideValues && (
@@ -82,19 +112,8 @@ const EntriesListContainer = ({
 				</Flex>
 			</Flex>
 			{showEmptyMessage && <h5 className="EntriesListContainer__emptyMessage">Nenhum dado foi encontrado</h5>}
-			<ul className="EntriesListContainer__list list-unstyled">
-				{parsedData?.map(({ id, descricao, valor, observacoes, categoria, subcategoria }, index) => (
-					<EntriesListItem
-						key={id}
-						title={descricao}
-						value={formatCurrency(valor)}
-						subtitle={observacoes}
-						tags={!hideTags && categoria && subcategoria ? [categoria, subcategoria] : undefined}
-						hideValue={hideValuesToggle}
-						color={index % 2 === 0 ? COLORS.CLEAR_SHADES_GRAY : 'initial'}
-					/>
-				))}
-			</ul>
+			{(!showGraphsToggle || !isCategory) && _renderListOfEntries(parsedData || [])}
+			{showGraphsToggle && isCategory && <PieChart chartData={groupBy(data || [], 'categoria')} />}
 			{children}
 		</Container>
 	);
