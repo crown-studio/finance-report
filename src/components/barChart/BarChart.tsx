@@ -35,7 +35,7 @@ const BarChart = ({ chartData, title, xaxisTitle, yaxisTitle }: IBarchartProps) 
 				text: '$ (thousands)',
 			},
 		},
-		colors: ['#4E4', '#F55'],
+		colors: ['#4CAF50', '#FF4560'],
 		fill: {
 			opacity: 1,
 		},
