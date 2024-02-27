@@ -2,13 +2,13 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { Card } from 'react-bootstrap';
 import { removeDuplicates } from '../../utils/arrayUtils';
-import { countValueOf, countValueOfByGroup } from '../../utils/dataUtils';
+import { countValueOfByGroup } from '../../utils/dataUtils';
 import { getMonthName } from '../../utils/dateUtils';
 import { groupBy } from '../../utils/objectUtils';
 import { capitalizeFirstLetter } from '../../utils/stringUtils.js';
-import './BarChart.scss';
 import { IReceita } from '../../types/IReceita';
 import { IDespesa } from '../../types/IDespesa';
+import './BarChart.scss';
 
 interface IBarchartProps {
 	chartData: { receitas: IReceita[]; despesas: IDespesa[] };
