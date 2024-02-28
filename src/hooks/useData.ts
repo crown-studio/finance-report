@@ -65,7 +65,7 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 
 	const balance = useMemo(
 		() => previousBalance + countValueOf(filteredRevenues) - countValueOf(filteredExpenses),
-		[previousBalance, filteredRevenues, filteredExpenses],
+		[filteredExpenses, filteredRevenues, previousBalance],
 	);
 
 	return {

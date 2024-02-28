@@ -6,3 +6,7 @@ export const groupBy = <T>(arr: T[], property: keyof T, transform: (p: unknown) 
 		return result;
 	}, {});
 };
+
+export const getDeepCopy = <T>(value: T): T => JSON.parse(JSON.stringify(value));
+
+export const deepCompare = <T>(a: T, b: T): boolean => JSON.stringify(a) === JSON.stringify(b);

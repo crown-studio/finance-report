@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { Navbar, Container, Dropdown, Nav, Button } from 'react-bootstrap';
 import chartData from '../../data/database.json';
@@ -7,24 +7,32 @@ import { capitalizeFirstLetter } from '../../utils/stringUtils';
 import { groupBy } from '../../utils/objectUtils';
 import { removeDuplicates } from '../../utils/arrayUtils';
 import { Link } from 'react-router-dom';
+import { SelectCallback } from '@restart/ui/esm/types';
 import './NavBar.scss';
 
 interface INavBarProps {
 	handleToggleMenu: () => void;
-	handleYearChange: (eventKey: string) => void;
-	handleMonthChange: (eventKey: string) => void;
+	handleYearChange: SelectCallback;
+	handleMonthChange: SelectCallback;
 	year: string;
 	month: string;
 }
 
 const NavBar = ({ handleToggleMenu, handleYearChange, handleMonthChange, year, month }: INavBarProps) => {
-	const availableYears = removeDuplicates(Object.keys(groupBy(chartData, 'pagamento')).map(date => date.split('/')[2]));
-	const availableMonths = removeDuplicates(Object.keys(groupBy(chartData, 'pagamento')).map(date => date.split('/')[1]));
+	const availableYears = useMemo(
+		() => removeDuplicates(Object.keys(groupBy(chartData, 'pagamento')).map(date => date.split('/')[2])),
+		[chartData, groupBy, removeDuplicates],
+	);
+
+	const availableMonths = useMemo(
+		() => removeDuplicates(Object.keys(groupBy(chartData, 'pagamento')).map(date => date.split('/')[1])),
+		[chartData, groupBy, removeDuplicates],
+	);
 
 	// console.log(removeDuplicates(Object.keys(groupBy(chartData, "pagamento"))));
 
-	const [lastYear] = availableYears.sort();
-	const [lastMonth] = availableMonths.sort();
+	const [lastYear] = useMemo(() => availableYears.sort(), [availableYears]);
+	const [lastMonth] = useMemo(() => availableMonths.sort(), [availableMonths]);
 
 	{
 		/* <Nav onClick={handleToggleMenu}>

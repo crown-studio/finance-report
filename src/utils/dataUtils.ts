@@ -1,6 +1,6 @@
 import { IDespesa } from '../types/IDespesa';
 import { removeDuplicates } from './arrayUtils';
-import { groupBy } from './objectUtils';
+import { getDeepCopy, groupBy } from './objectUtils';
 
 export const countValueOf = (dataArr: { valor: string; encargos?: string | number }[], decimals?: number): number => {
 	return Number(
@@ -13,9 +13,10 @@ export const countValueOfByGroup = (dataArr: { valor: string; encargos?: string 
 };
 
 export const mergeDuplicatesByProps = <T>(data: T[], props: (keyof T)[]): T[] => {
+	const copyData = getDeepCopy(data);
 	const mergedData: T[] = [];
 
-	for (const object of data) {
+	for (const object of copyData) {
 		const similar: T | undefined = mergedData.find(mergedObj => props.every(prop => mergedObj[prop] === object[prop]));
 
 		if (similar) {
