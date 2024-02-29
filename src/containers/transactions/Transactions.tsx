@@ -49,7 +49,14 @@ const Transactions = () => {
 				month={selectedMonth}
 			/>
 
-			<EntriesListContainer title="Relação de Dizimistas" data={tithes} mergeByProps={['descricao']} hideValues hideTags>
+			<EntriesListContainer
+				title="Relação de Dizimistas"
+				data={tithes}
+				mergeByProps={['descricao']}
+				hideValues
+				hideTags
+				showCount
+			>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(tithes))} />
 			</EntriesListContainer>
 
@@ -59,6 +66,7 @@ const Transactions = () => {
 				mergeByProps={['descricao']}
 				hideValues
 				hideTags
+				showCount
 			>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(personalOffering))} />
 			</EntriesListContainer>
@@ -76,7 +84,7 @@ const Transactions = () => {
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(revenues))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer title="Relação das Despesas" data={expenses} groupByCategory showGraphs>
+			<EntriesListContainer title="Relação das Despesas" data={expenses} groupByCategory showGraphs showCount>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(expenses))} />
 			</EntriesListContainer>
 

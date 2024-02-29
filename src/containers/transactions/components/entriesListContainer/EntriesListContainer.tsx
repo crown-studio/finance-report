@@ -8,7 +8,7 @@ import { COLORS } from '../../../../theme/colors';
 import { groupExpensesByCategory, groupExpensesBySubcategory, mergeDuplicatesByProps } from '../../../../utils/dataUtils';
 import { removeDuplicatesByProps } from '../../../../utils/arrayUtils';
 import PieChart from '../../../../components/pieChart/PieChart';
-import { Button, Flex, Text } from '@chakra-ui/react';
+import { Badge, Button, Flex, Text } from '@chakra-ui/react';
 import './EntriesListContainer.scss';
 import { groupBy } from '../../../../utils/objectUtils';
 
@@ -33,6 +33,7 @@ interface IEntriesListContainerProps {
 	hideByProps?: string[];
 	groupByCategory?: boolean;
 	showGraphs?: boolean;
+	showCount?: boolean;
 }
 
 const EntriesListContainer = ({
@@ -45,12 +46,13 @@ const EntriesListContainer = ({
 	hideByProps,
 	groupByCategory = !!EXPENSES_GROUP_LEVELS.ENTRIES,
 	showGraphs = false,
+	showCount = false,
 }: IEntriesListContainerProps) => {
 	const showEmptyMessage = useMemo(() => !data?.length && React.Children.count(children) <= 1, [data, children]);
 
 	const [groupLevel, setGroupLevel] = useState(EXPENSES_GROUP_LEVELS.CATEGORY);
 	const [hideValuesToggle, setHideValuesToggle] = useState(hideValues);
-	const [showGraphsToggle, setShowGraphsToggle] = useState(showGraphs);
+	const [showGraphsToggle, setShowGraphsToggle] = useState(false); //showGraphs
 
 	const isCategory = useMemo(() => groupLevel === EXPENSES_GROUP_LEVELS.CATEGORY, [groupLevel]);
 	const isSubcategory = useMemo(() => groupLevel === EXPENSES_GROUP_LEVELS.SUBCATEGORY, [groupLevel]);
@@ -90,6 +92,11 @@ const EntriesListContainer = ({
 					<Text as={'h4'} mb={0}>
 						{title}
 					</Text>
+					{showCount && (
+						<Badge ml={2} borderRadius={'full'} fontSize={'xl'} px={4} variant={'subtle'} colorScheme={'blue'}>
+							{parsedData?.length}
+						</Badge>
+					)}
 				</Flex>
 				<Flex gap={2}>
 					{showGraphs && isCategory && (

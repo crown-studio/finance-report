@@ -43,64 +43,60 @@ const NavBar = ({ handleToggleMenu, handleYearChange, handleMonthChange, year, m
 	}
 
 	return (
-		<div>
-			<Navbar bg="dark" variant="dark" expand="lg" className="navbar-light">
-				<Container>
-					<Navbar.Brand>Relatório Financeiro</Navbar.Brand>
+		<Navbar sticky="top" bg="dark" variant="dark" expand="lg" className="navbar-light">
+			<Container>
+				<Navbar.Brand>Relatório Financeiro</Navbar.Brand>
 
-					<Navbar.Toggle aria-controls="navbar-nav" />
+				<Navbar.Toggle aria-controls="navbar-nav" />
 
-					<Navbar.Collapse id="navbar-nav">
-						<ul className="navbar-nav me-auto">
-							<li className="nav-item">
-								<Link to="/finance-report/dashboard" className="nav-link">
-									Dashboard
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link to="/finance-report/transactions" className="nav-link">
-									Transctions
-								</Link>
-							</li>
-						</ul>
+				<Navbar.Collapse id="navbar-nav">
+					<ul className="navbar-nav me-auto">
+						<li className="nav-item">
+							<Link to="/finance-report/dashboard" className="nav-link">
+								Dashboard
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/finance-report/transactions" className="nav-link">
+								Transctions
+							</Link>
+						</li>
+					</ul>
 
-						<Dropdown onSelect={handleYearChange} className="me-3">
-							<Dropdown.Toggle variant="outline-secondary" id="dropdown-year">
-								{year || lastYear || 'Ano'}
-							</Dropdown.Toggle>
-							<Dropdown.Menu>
-								{availableYears.map(item => (
-									<Dropdown.Item key={item} eventKey={item}>
-										{item}
-									</Dropdown.Item>
-								))}
-							</Dropdown.Menu>
-						</Dropdown>
+					<Dropdown onSelect={handleYearChange} className="me-3">
+						<Dropdown.Toggle variant="outline-secondary" id="dropdown-year">
+							{year || lastYear || 'Ano'}
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							{availableYears.map(item => (
+								<Dropdown.Item key={item} eventKey={item}>
+									{item}
+								</Dropdown.Item>
+							))}
+						</Dropdown.Menu>
+					</Dropdown>
 
-						<Dropdown onSelect={handleMonthChange} className="me-3">
-							<Dropdown.Toggle variant="outline-secondary" id="dropdown-month">
-								{month || lastMonth
-									? capitalizeFirstLetter(
-											getMonthName(
-												`01/${month || lastMonth}/${year || new Date().getFullYear().toString()}`,
-											),
-									  )
-									: 'Mês'}
-							</Dropdown.Toggle>
-							<Dropdown.Menu>
-								{availableMonths.map(item => (
-									<Dropdown.Item key={item} eventKey={item}>
-										{capitalizeFirstLetter(
-											getMonthName(`01/${item}/${year || new Date().getFullYear().toString()}`),
-										)}
-									</Dropdown.Item>
-								))}
-							</Dropdown.Menu>
-						</Dropdown>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
-		</div>
+					<Dropdown onSelect={handleMonthChange} className="me-3">
+						<Dropdown.Toggle variant="outline-secondary" id="dropdown-month">
+							{month || lastMonth
+								? capitalizeFirstLetter(
+										getMonthName(`01/${month || lastMonth}/${year || new Date().getFullYear().toString()}`),
+								  )
+								: 'Mês'}
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							{availableMonths.map(item => (
+								<Dropdown.Item key={item} eventKey={item}>
+									{capitalizeFirstLetter(
+										getMonthName(`01/${item}/${year || new Date().getFullYear().toString()}`),
+									)}
+								</Dropdown.Item>
+							))}
+						</Dropdown.Menu>
+					</Dropdown>
+				</Navbar.Collapse>
+			</Container>
+		</Navbar>
 	);
 };
 
