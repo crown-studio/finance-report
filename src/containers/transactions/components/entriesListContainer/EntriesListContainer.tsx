@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useRef } from 'react';
 import { Container } from 'react-bootstrap';
 import EntriesListItem from '../entriesListItem/EntriesListItem';
 import { IDespesa } from '../../../../types/IDespesa';
@@ -8,9 +8,9 @@ import { COLORS } from '../../../../theme/colors';
 import { groupExpensesByCategory, groupExpensesBySubcategory, mergeDuplicatesByProps } from '../../../../utils/dataUtils';
 import { removeDuplicatesByProps } from '../../../../utils/arrayUtils';
 import PieChart from '../../../../components/pieChart/PieChart';
-import { Badge, Button, Flex, Text } from '@chakra-ui/react';
-import './EntriesListContainer.scss';
+import { Badge, Box, Button, Flex, Text } from '@chakra-ui/react';
 import { groupBy } from '../../../../utils/objectUtils';
+import './EntriesListContainer.scss';
 
 const EXPENSES_GROUP_LEVELS = {
 	CATEGORY: 2,
@@ -48,6 +48,7 @@ const EntriesListContainer = ({
 	showGraphs = false,
 	showCount = false,
 }: IEntriesListContainerProps) => {
+	const containerRef = useRef(null);
 	const showEmptyMessage = useMemo(() => !data?.length && React.Children.count(children) <= 1, [data, children]);
 
 	const [groupLevel, setGroupLevel] = useState(EXPENSES_GROUP_LEVELS.CATEGORY);
@@ -69,6 +70,12 @@ const EntriesListContainer = ({
 
 	const parsedData = useMemo(() => parseData(), [parseData]);
 
+	const handleFocusContainer = useCallback((event: React.FocusEvent<HTMLDivElement>) => {
+		const { current: containerElem } = containerRef;
+		if (!event.target.className.includes('focusWrapper') || !containerElem) return;
+		(containerElem as HTMLDivElement)?.scrollIntoView();
+	}, []);
+
 	const _renderListOfEntries = (listData: Array<IDespesa | IReceita | SimpleList>) => (
 		<ul className="EntriesListContainer__list list-unstyled">
 			{listData?.map(({ id, descricao, valor, observacoes, categoria, subcategoria }, index) => (
@@ -86,43 +93,52 @@ const EntriesListContainer = ({
 	);
 
 	return (
-		<Container className="EntriesListContainer">
-			<Flex className="EntriesListContainer__header" height={24} px={8} py={4} align={'center'} justify={'space-between'}>
-				<Flex>
-					<Text as={'h4'} mb={0}>
-						{title}
-					</Text>
-					{showCount && (
-						<Badge ml={2} borderRadius={'full'} fontSize={'xl'} px={4} variant={'subtle'} colorScheme={'blue'}>
-							{parsedData?.length}
-						</Badge>
-					)}
+		<Box ref={containerRef} className="focusWrapper" pt={16} onFocus={handleFocusContainer} tabIndex={0}>
+			<Container className="EntriesListContainer">
+				<Flex
+					className="EntriesListContainer__header"
+					height={24}
+					px={8}
+					py={4}
+					align={'center'}
+					justify={'space-between'}
+				>
+					<Flex>
+						<Text as={'h4'} mb={0}>
+							{title}
+						</Text>
+						{showCount && (
+							<Badge ml={2} borderRadius={'full'} fontSize={'xl'} px={4} variant={'subtle'} colorScheme={'blue'}>
+								{parsedData?.length}
+							</Badge>
+						)}
+					</Flex>
+					<Flex gap={2}>
+						{showGraphs && isCategory && (
+							<Button onClick={() => setShowGraphsToggle(prev => !prev)}>
+								{showGraphsToggle ? 'LISTA' : 'GRÁFICO'}
+							</Button>
+						)}
+						{groupByCategory && (
+							<Button onClick={() => setGroupLevel(prev => (prev < 2 ? prev + 1 : 0))}>
+								{isCategory && 'DETALHAR'}
+								{isSubcategory && 'AGRUPAR'}
+								{isEntries && 'RESUMIR'}
+							</Button>
+						)}
+						{hideValues && (
+							<Button onClick={() => setHideValuesToggle(prev => !prev)}>
+								{hideValuesToggle ? 'EXIBIR' : 'OCULTAR'}
+							</Button>
+						)}
+					</Flex>
 				</Flex>
-				<Flex gap={2}>
-					{showGraphs && isCategory && (
-						<Button onClick={() => setShowGraphsToggle(prev => !prev)}>
-							{showGraphsToggle ? 'LISTA' : 'GRÁFICO'}
-						</Button>
-					)}
-					{groupByCategory && (
-						<Button onClick={() => setGroupLevel(prev => (prev < 2 ? prev + 1 : 0))}>
-							{isCategory && 'DETALHAR'}
-							{isSubcategory && 'AGRUPAR'}
-							{isEntries && 'RESUMIR'}
-						</Button>
-					)}
-					{hideValues && (
-						<Button onClick={() => setHideValuesToggle(prev => !prev)}>
-							{hideValuesToggle ? 'EXIBIR' : 'OCULTAR'}
-						</Button>
-					)}
-				</Flex>
-			</Flex>
-			{showEmptyMessage && <h5 className="EntriesListContainer__emptyMessage">Nenhum dado foi encontrado</h5>}
-			{(!showGraphsToggle || !isCategory) && _renderListOfEntries(parsedData || [])}
-			{showGraphsToggle && isCategory && <PieChart chartData={groupBy(data || [], 'categoria')} />}
-			{children}
-		</Container>
+				{showEmptyMessage && <h5 className="EntriesListContainer__emptyMessage">Nenhum dado foi encontrado</h5>}
+				{(!showGraphsToggle || !isCategory) && _renderListOfEntries(parsedData || [])}
+				{showGraphsToggle && isCategory && <PieChart chartData={groupBy(data || [], 'categoria')} />}
+				{children}
+			</Container>
+		</Box>
 	);
 };
 
