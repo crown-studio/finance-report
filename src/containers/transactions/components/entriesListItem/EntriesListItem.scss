@@ -4,6 +4,11 @@
 	list-style-type: none;
 	padding: 16px 32px;
 
+	&:focus,
+	&:focus-visible {
+		outline: -webkit-focus-ring-color auto 1px;
+	}
+
 	&__header {
 		display: flex;
 		justify-content: space-between;

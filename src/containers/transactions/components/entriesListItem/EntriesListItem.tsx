@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import HTMLInject from '../../../../components/support/HTMLInject/HTMLInject';
 import Badge from '../../../../components/commons/badge/Badge';
 import classNames from 'classnames';
-import './EntriesListItem.scss';
 import { getColorsByCategory } from '../../../../utils/colorUtils';
+import './EntriesListItem.scss';
 
 interface IEntriesListItemProps {
 	title: string;
@@ -26,12 +26,27 @@ const EntriesListItem = ({
 	color = 'unset',
 	className,
 }: IEntriesListItemProps) => {
+	// const listItemRef = useRef<HTMLLIElement>(null);
+
 	const parsedSubtitle = (
 		!showSensitiveData ? subtitle?.replace(/\*\*(.*?)\*\*/g, '').replace(/#reembolso/g, '') : subtitle
 	)?.replace(/#\S+/g, '<span class="custom-tags">$&</span>');
 
+	// const handleIntemClick = event => {
+	// 	const { current: listItemElem } = listItemRef;
+	// 	if (!listItemElem) return;
+	// 	console.log('listItemElem', listItemElem);
+	// 	listItemElem.focus();
+	// };
+
 	return (
-		<li className={classNames('EntriesListItem', className)} style={{ backgroundColor: color }} tabIndex={0}>
+		<li
+			// ref={listItemRef}
+			className={classNames('EntriesListItem', className)}
+			style={{ backgroundColor: color }}
+			// onClick={handleIntemClick}
+			tabIndex={0}
+		>
 			<div className="EntriesListItem__header">
 				<span className="EntriesListItem__title">{title}</span>
 				{!hideValue && <strong className="EntriesListItem__value">{value}</strong>}
