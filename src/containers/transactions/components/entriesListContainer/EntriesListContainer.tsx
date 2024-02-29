@@ -25,6 +25,7 @@ type SimpleList = Pick<IDespesa | IReceita, 'id' | 'descricao' | 'valor' | 'obse
 
 interface IEntriesListContainerProps {
 	title: string;
+	id?: string;
 	children?: React.ReactNode;
 	data?: Array<IDespesa | IReceita | SimpleList>;
 	hideValues?: boolean;
@@ -37,6 +38,7 @@ interface IEntriesListContainerProps {
 }
 
 const EntriesListContainer = ({
+	id,
 	children,
 	title,
 	data,
@@ -93,7 +95,7 @@ const EntriesListContainer = ({
 	);
 
 	return (
-		<Box ref={containerRef} className="focusWrapper" pt={16} onFocus={handleFocusContainer} tabIndex={0}>
+		<Box id={id} ref={containerRef} className="focusWrapper" pt={16} onFocus={handleFocusContainer} tabIndex={0}>
 			<Container className="EntriesListContainer">
 				<Flex
 					className="EntriesListContainer__header"

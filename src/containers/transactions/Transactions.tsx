@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { countValueOf } from '../../utils/dataUtils';
 import { useData } from '../../hooks/useData';
 import { formatCurrency } from '../../utils/currencyUtils';
@@ -6,6 +6,8 @@ import NavBar from '../../components/navBar/NavBar';
 import EntriesListItem from './components/entriesListItem/EntriesListItem';
 import EntriesListContainer from './components/entriesListContainer/EntriesListContainer';
 import { subMonths } from 'date-fns';
+import SideNav from '../../components/sideNav/SideNav';
+import { SelectCallback } from '@restart/ui/esm/types';
 import './Transactions.scss';
 
 const Transactions = () => {
@@ -24,13 +26,21 @@ const Transactions = () => {
 	// const saldoAnterior = 13402.23; // NOVEMBRO
 	// const saldoAnterior = 13950.46; // DEZEMBRO
 
-	const handleYearChange = (eventKey: string) => {
-		setSelectedYear(eventKey);
-	};
+	const handleYearChange: SelectCallback = useCallback(
+		(eventKey: string | null) => {
+			if (!eventKey) return;
+			setSelectedYear(eventKey);
+		},
+		[setSelectedYear],
+	);
 
-	const handleMonthChange = (eventKey: string) => {
-		setSelectedMonth(eventKey);
-	};
+	const handleMonthChange: SelectCallback = useCallback(
+		(eventKey: string | null) => {
+			if (!eventKey) return;
+			setSelectedMonth(eventKey);
+		},
+		[setSelectedMonth],
+	);
 
 	// const [showMenu, setShowMenu] = useState(false);
 
@@ -49,8 +59,20 @@ const Transactions = () => {
 				month={selectedMonth}
 			/>
 
+			<SideNav
+				data={[
+					{ id: 0, name: 'Dízimos', src: '#tithes', icon: 'money' },
+					{ id: 1, name: 'Ofertas', src: '#offers', icon: 'paid' },
+					{ id: 2, name: 'Receitas', src: '#revenues', icon: 'savings' },
+					{ id: 3, name: 'Despesas', src: '#expenses', icon: 'receipt_long' },
+					{ id: 4, name: 'Balanço', src: '#balance', icon: 'monitoring' },
+				]}
+				colorScheme="blue"
+			/>
+
 			<EntriesListContainer
-				title="Relação de Dizimistas"
+				id="tithes"
+				title="Relação dos Dizimistas"
 				data={tithes}
 				mergeByProps={['descricao']}
 				hideValues
@@ -61,6 +83,7 @@ const Transactions = () => {
 			</EntriesListContainer>
 
 			<EntriesListContainer
+				id="offers"
 				title="Relação dos Ofertantes"
 				data={personalOffering}
 				mergeByProps={['descricao']}
@@ -72,7 +95,8 @@ const Transactions = () => {
 			</EntriesListContainer>
 
 			<EntriesListContainer
-				title="Descrição das Entradas"
+				id="revenues"
+				title="Resumo das Receitas"
 				data={[
 					{ id: '0', descricao: 'Ofertas Pessoais', valor: formatCurrency(countValueOf(personalOffering)) },
 					{ id: '1', descricao: 'Ofertas Missionárias', valor: formatCurrency(countValueOf(missionOffering)) },
@@ -84,11 +108,12 @@ const Transactions = () => {
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(revenues))} />
 			</EntriesListContainer>
 
-			<EntriesListContainer title="Relação das Despesas" data={expenses} groupByCategory showGraphs showCount>
+			<EntriesListContainer id="expenses" title="Relação das Despesas" data={expenses} groupByCategory showGraphs showCount>
 				<EntriesListItem className="total" title="Total" value={formatCurrency(countValueOf(expenses))} />
 			</EntriesListContainer>
 
 			<EntriesListContainer
+				id="balance"
 				title="Resumo Geral"
 				data={[
 					{ id: '0', descricao: 'Saldo Anterior', valor: formatCurrency(previousBalance) },
