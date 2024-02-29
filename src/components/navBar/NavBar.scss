@@ -1,0 +1,12 @@
+@import 'src/styles/sass/mixins';
+
+.CollapseNavbar {
+	@include defaultTransition();
+	transform: translateY(-100%);
+	opacity: 0;
+}
+
+.CollapseNavbar.show {
+	transform: translateY(0);
+	opacity: 1;
+}
