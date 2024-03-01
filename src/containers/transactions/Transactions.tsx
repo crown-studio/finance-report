@@ -14,6 +14,7 @@ const Transactions = () => {
 	const selectedDate = subMonths(new Date(), 1);
 	const [selectedYear, setSelectedYear] = useState(selectedDate.getFullYear().toString());
 	const [selectedMonth, setSelectedMonth] = useState((selectedDate.getMonth() + 1).toString());
+
 	const { revenues, expenses, balance, personalOffering, missionOffering, EBDOffering, tithes, interest, previousBalance } =
 		useData(selectedMonth, selectedYear);
 
@@ -42,17 +43,13 @@ const Transactions = () => {
 		[setSelectedMonth],
 	);
 
-	// const [showMenu, setShowMenu] = useState(false);
-
-	const handleToggleMenu = () => {
-		// console.log(showMenu);
-		// setShowMenu(prevState => !prevState);
-	};
+	// const handleSearchEntries = useCallback(() => {
+	// 	setShowMenu(prevState => !prevState);
+	// }, []);
 
 	return (
 		<div className="Transactions">
 			<NavBar
-				handleToggleMenu={handleToggleMenu}
 				handleYearChange={handleYearChange}
 				handleMonthChange={handleMonthChange}
 				year={selectedYear}

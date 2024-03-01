@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import database from '../data/database.json';
 import { getParsedDate } from '../utils/dateUtils';
 import { countValueOf } from '../utils/dataUtils';
@@ -8,16 +8,6 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 	const INITIAL_VALUE = 42250.89;
 	const currentDate = useMemo(() => getParsedDate(`01/${selectedMonth}/${selectedYear}`), [selectedMonth, selectedYear]);
 
-	const expenses = useMemo(
-		() =>
-			database
-				.filter(({ valor }) => valor <= 0)
-				.map(({ valor, encargos, ...rest }) => ({ ...rest, valor: valor * -1, encargos: encargos * -1 })),
-		[database],
-	);
-
-	const revenues = useMemo(() => database.filter(({ valor }) => valor > 0), [database]);
-
 	const previousAmount = useMemo(
 		() => database.filter(({ pagamento }) => isBefore(getParsedDate(pagamento), currentDate)),
 		[database, currentDate],
@@ -25,57 +15,56 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 
 	const previousBalance = useMemo(() => INITIAL_VALUE + countValueOf(previousAmount), [INITIAL_VALUE, previousAmount]);
 
-	const filteredExpenses = useMemo(
-		() =>
-			expenses.filter(({ pagamento }) => {
-				return isSameMonth(getParsedDate(pagamento), currentDate);
-			}),
-		[expenses, currentDate],
+	const filteredData = useMemo(
+		() => database.filter(({ pagamento }) => isSameMonth(getParsedDate(pagamento), currentDate)),
+		[database, currentDate],
 	);
 
-	const filteredRevenues = useMemo(
+	const expenses = useMemo(
 		() =>
-			revenues.filter(({ pagamento }) => {
-				return isSameMonth(getParsedDate(pagamento), currentDate);
-			}),
-		[revenues, currentDate],
+			filteredData
+				.filter(({ valor }) => valor <= 0)
+				.map(({ valor, encargos, ...rest }) => ({ ...rest, valor: valor * -1, encargos: encargos * -1 })),
+		[filteredData],
 	);
 
-	const tithes = useMemo(() => filteredRevenues.filter(({ categoria }) => categoria === 'Dízimo'), [filteredRevenues]);
+	const revenues = useMemo(() => filteredData.filter(({ valor }) => valor > 0), [filteredData]);
+
+	const tithes = useMemo(() => revenues.filter(({ categoria }) => categoria === 'Dízimo'), [revenues]);
 
 	const personalOffering = useMemo(
-		() => filteredRevenues.filter(({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'Pessoal'),
-		[filteredRevenues],
+		() => revenues.filter(({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'Pessoal'),
+		[revenues],
 	);
 
 	const missionOffering = useMemo(
-		() => filteredRevenues.filter(({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'Missões'),
-		[filteredRevenues],
+		() => revenues.filter(({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'Missões'),
+		[revenues],
 	);
 
 	const EBDOffering = useMemo(
-		() => filteredRevenues.filter(({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'EBD'),
-		[filteredRevenues],
+		() => revenues.filter(({ categoria, subcategoria }) => categoria === 'Oferta' && subcategoria === 'EBD'),
+		[revenues],
 	);
 
 	const interest = useMemo(
-		() => filteredRevenues.filter(({ categoria, subcategoria }) => categoria === 'Juros' && subcategoria === 'Outros'),
-		[filteredRevenues],
+		() => revenues.filter(({ categoria, subcategoria }) => categoria === 'Juros' && subcategoria === 'Outros'),
+		[revenues],
 	);
 
 	const balance = useMemo(
-		() => previousBalance + countValueOf(filteredRevenues) - countValueOf(filteredExpenses),
-		[filteredExpenses, filteredRevenues, previousBalance],
+		() => previousBalance + countValueOf(revenues) - countValueOf(expenses),
+		[expenses, revenues, previousBalance],
 	);
 
 	return {
+		expenses,
+		revenues,
 		tithes,
 		interest,
 		personalOffering,
 		missionOffering,
 		EBDOffering,
-		expenses: filteredExpenses,
-		revenues: filteredRevenues,
 		previousBalance,
 		balance,
 	};

@@ -13,14 +13,14 @@ import classNames from 'classnames';
 import './NavBar.scss';
 
 interface INavBarProps {
-	handleToggleMenu: () => void;
 	handleYearChange: SelectCallback;
 	handleMonthChange: SelectCallback;
 	year: string;
 	month: string;
+	handleToggleMenu?: () => void;
 }
 
-const NavBar = ({ handleToggleMenu, handleYearChange, handleMonthChange, year, month }: INavBarProps) => {
+const NavBar = ({ handleYearChange, handleMonthChange, year, month }: INavBarProps) => {
 	const [isCollapsedNavbar, setIsCollapsedNavbar] = useState(false);
 	const [preventCollapse, setPreventCollapse] = useState(false);
 	const scrollDirection = useScrollDirection();
