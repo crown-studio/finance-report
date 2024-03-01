@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { countValueOf } from '../../utils/dataUtils';
 import { useData } from '../../hooks/useData';
-import { formatCurrency } from '../../utils/currencyUtils';
+import { formatCurrency, formatPercentage } from '../../utils/currencyUtils';
 import NavBar from '../../components/navBar/NavBar';
 import EntriesListItem from './components/entriesListItem/EntriesListItem';
 import EntriesListContainer from './components/entriesListContainer/EntriesListContainer';
@@ -9,6 +9,7 @@ import { subMonths } from 'date-fns';
 import SideNav from '../../components/sideNav/SideNav';
 import { SelectCallback } from '@restart/ui/esm/types';
 import If from '../../components/support/conditional/Conditional';
+import { Flex, Text } from '@chakra-ui/react';
 import './Transactions.scss';
 
 const Transactions = () => {
@@ -20,12 +21,14 @@ const Transactions = () => {
 		revenues,
 		expenses,
 		balance,
+		results,
 		personalOffering,
 		missionOffering,
 		EBDOffering,
 		tithes,
 		interest,
 		previousBalance,
+		lastFixedExpenses,
 		searchData,
 		isFiltered,
 		isAdvanced,
@@ -148,9 +151,24 @@ const Transactions = () => {
 						{ id: '0', descricao: 'Saldo Anterior', valor: formatCurrency(previousBalance) },
 						{ id: '1', descricao: 'Entradas do Mês', valor: formatCurrency(countValueOf(revenues)) },
 						{ id: '2', descricao: 'Saídas do Mês', valor: formatCurrency(countValueOf(expenses)) },
+						{
+							id: '3',
+							descricao: results.value < 0 ? 'Déficit' : 'Superávit',
+							valor: `(${formatPercentage(results.percent)}) ${formatCurrency(results.value)} `,
+						},
+						{
+							id: '4',
+							descricao: 'Despesas Fixas',
+							valor: formatCurrency(lastFixedExpenses),
+						},
 					]}
 				>
-					<EntriesListItem className="total" title="Saldo Atual" value={formatCurrency(balance)} />
+					<EntriesListItem
+						className="total"
+						title="Saldo Atual"
+						value={formatCurrency(balance)}
+						minor={`Prévia: ${formatCurrency(balance - lastFixedExpenses)}`}
+					/>
 				</EntriesListContainer>
 			</If>
 
@@ -161,6 +179,11 @@ const Transactions = () => {
 					customEmptyMessage={`Sinto muito, a busca não retornou resultados para: "${activeQuery}".`}
 				/>
 			</If>
+			<Flex justifyContent="center" color={'gray.600'} position="relative" bottom={-32}>
+				<Text textAlign="center" fontSize="sm">
+					Made by <Text as="b">Crown Studio ®</Text>
+				</Text>
+			</Flex>
 		</div>
 	);
 };

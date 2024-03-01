@@ -4,6 +4,9 @@ import Badge from '../../../../components/commons/badge/Badge';
 import classNames from 'classnames';
 import { getColorsByCategory } from '../../../../utils/colorUtils';
 import { highlightHashtags, removeSensitiveData } from '../../../../utils/dataUtils';
+import { Flex, Text } from '@chakra-ui/react';
+import { COLORS } from '../../../../theme/colors';
+import If from '../../../../components/support/conditional/Conditional';
 import './EntriesListItem.scss';
 
 interface IEntriesListItemProps {
@@ -15,6 +18,7 @@ interface IEntriesListItemProps {
 	hideValue?: boolean;
 	color?: string;
 	className?: string;
+	minor?: string;
 }
 
 const EntriesListItem = ({
@@ -26,6 +30,7 @@ const EntriesListItem = ({
 	hideValue = false,
 	color = 'unset',
 	className,
+	minor,
 }: IEntriesListItemProps) => {
 	// const listItemRef = useRef<HTMLLIElement>(null);
 
@@ -48,7 +53,18 @@ const EntriesListItem = ({
 		>
 			<div className="EntriesListItem__header">
 				<span className="EntriesListItem__title">{title}</span>
-				{!hideValue && <strong className="EntriesListItem__value">{value}</strong>}
+				{!hideValue && (
+					<Flex direction={'column'} align={'flex-end'}>
+						<Text as="b" className="EntriesListItem__value">
+							{value}
+						</Text>
+						<If check={!!minor}>
+							<Text fontSize={'md'} color={COLORS.MEDIUM_SHADES_GRAY} mb={0}>
+								{minor}
+							</Text>
+						</If>
+					</Flex>
+				)}
 			</div>
 
 			{parsedSubtitle && (

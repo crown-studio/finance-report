@@ -12,3 +12,8 @@ export const formatCurrency = (value: string | number, options?: Intl.NumberForm
 
 	return value.toLocaleString('pt-BR', options || defaultOptions);
 };
+
+export const formatPercentage = (value: number, decimals: number = 2): string => {
+	if (!value) return '0%';
+	return `${value.toFixed(decimals)}%`;
+};

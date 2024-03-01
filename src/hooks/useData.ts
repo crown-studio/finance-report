@@ -56,9 +56,22 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 		[revenues],
 	);
 
+	const results = useMemo(
+		() => ({
+			value: countValueOf(revenues) - countValueOf(expenses),
+			percent: ((countValueOf(revenues) - countValueOf(expenses)) / countValueOf(revenues)) * 100,
+		}),
+		[revenues, expenses],
+	);
+
 	const balance = useMemo(
 		() => previousBalance + countValueOf(revenues) - countValueOf(expenses),
 		[expenses, revenues, previousBalance],
+	);
+
+	const lastFixedExpenses = useMemo(
+		() => countValueOf(expenses.filter(({ recorrencia }) => recorrencia.toLowerCase() === 'fixa mensal')),
+		[expenses],
 	);
 
 	const isFiltered = useMemo(() => filteredData !== null, [filteredData]);
@@ -104,9 +117,11 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 		missionOffering,
 		EBDOffering,
 		previousBalance,
+		lastFixedExpenses,
 		balance,
-		searchData,
+		results,
 		activeQuery,
+		searchData,
 		resetFilter,
 		isFiltered,
 		isAdvanced,
