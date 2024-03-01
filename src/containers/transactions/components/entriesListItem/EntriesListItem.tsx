@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import HTMLInject from '../../../../components/support/HTMLInject/HTMLInject';
 import Badge from '../../../../components/commons/badge/Badge';
 import classNames from 'classnames';
 import { getColorsByCategory } from '../../../../utils/colorUtils';
+import { highlightHashtags, removeSensitiveData } from '../../../../utils/dataUtils';
 import './EntriesListItem.scss';
 
 interface IEntriesListItemProps {
@@ -28,9 +29,7 @@ const EntriesListItem = ({
 }: IEntriesListItemProps) => {
 	// const listItemRef = useRef<HTMLLIElement>(null);
 
-	const parsedSubtitle = (
-		!showSensitiveData ? subtitle?.replace(/\*\*(.*?)\*\*/g, '').replace(/#reembolso/g, '') : subtitle
-	)?.replace(/#\S+/g, '<span class="custom-tags">$&</span>');
+	const parsedSubtitle = !showSensitiveData ? removeSensitiveData(subtitle || '', ['reembolso']) : subtitle;
 
 	// const handleIntemClick = event => {
 	// 	const { current: listItemElem } = listItemRef;
@@ -54,7 +53,7 @@ const EntriesListItem = ({
 
 			{parsedSubtitle && (
 				<span className="EntriesListItem__subtitle">
-					<HTMLInject sanitize={false}>{parsedSubtitle}</HTMLInject>
+					<HTMLInject sanitize={false}>{highlightHashtags(parsedSubtitle) as string}</HTMLInject>
 				</span>
 			)}
 			{!!tags?.length && (

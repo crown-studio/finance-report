@@ -1,6 +1,6 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 
-import { Navbar, Container, Dropdown } from 'react-bootstrap';
+import { Navbar, Container, Dropdown, Form } from 'react-bootstrap';
 import chartData from '../../data/database.json';
 import { getMonthName } from '../../utils/dateUtils';
 import { capitalizeFirstLetter } from '../../utils/stringUtils';
@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { SelectCallback } from '@restart/ui/esm/types';
 import { useScrollDirection } from 'react-use-scroll-direction';
 import classNames from 'classnames';
+import { isElementOrDescendantFocused } from '../../utils/codeUtils';
 import './NavBar.scss';
 
 interface INavBarProps {
@@ -17,10 +18,12 @@ interface INavBarProps {
 	handleMonthChange: SelectCallback;
 	year: string;
 	month: string;
-	handleToggleMenu?: () => void;
+	searchData?: (queryString: string) => void;
+	isFiltered?: boolean;
 }
 
-const NavBar = ({ handleYearChange, handleMonthChange, year, month }: INavBarProps) => {
+const NavBar = ({ handleYearChange, handleMonthChange, year, month, searchData, isFiltered = false }: INavBarProps) => {
+	const navBarRef = useRef(null);
 	const [isCollapsedNavbar, setIsCollapsedNavbar] = useState(false);
 	const [preventCollapse, setPreventCollapse] = useState(false);
 	const scrollDirection = useScrollDirection();
@@ -38,9 +41,14 @@ const NavBar = ({ handleYearChange, handleMonthChange, year, month }: INavBarPro
 	const [lastYear] = useMemo(() => availableYears.sort(), [availableYears]);
 	const [lastMonth] = useMemo(() => availableMonths.sort(), [availableMonths]);
 
+	const hasFocusWithin = useMemo(() => {
+		const { current: navBarElem } = navBarRef;
+		if (!navBarElem) return false;
+		return isElementOrDescendantFocused(navBarElem);
+	}, [navBarRef.current, document.activeElement]);
+
 	useEffect(() => {
-		if (!scrollDirection.isScrollingY) return;
-		if (preventCollapse) return;
+		if (hasFocusWithin || isFiltered || preventCollapse || !scrollDirection.isScrollingY) return;
 		setIsCollapsedNavbar(scrollDirection.isScrollingDown);
 		setPreventCollapse(true);
 
@@ -50,66 +58,79 @@ const NavBar = ({ handleYearChange, handleMonthChange, year, month }: INavBarPro
 	}, [scrollDirection]);
 
 	return (
-		<Navbar
-			className={classNames('navbar-light', 'CollapseNavbar', { show: !isCollapsedNavbar })}
-			sticky="top"
-			bg="dark"
-			variant="dark"
-			expand="lg"
-		>
-			<Container>
-				<Navbar.Brand>Relatório Financeiro</Navbar.Brand>
+		<section ref={navBarRef} className="WrapperNavBar">
+			<Navbar
+				className={classNames('CollapseNavbar', { show: !isCollapsedNavbar })}
+				sticky="top"
+				bg="dark"
+				data-bs-theme="dark"
+				expand="lg"
+			>
+				<Container>
+					<Navbar.Brand>Relatório Financeiro</Navbar.Brand>
 
-				<Navbar.Toggle aria-controls="navbar-nav" />
+					<Navbar.Toggle aria-controls="navbar-nav" />
 
-				<Navbar.Collapse id="navbar-nav">
-					<ul className="navbar-nav me-auto">
-						<li className="nav-item">
-							<Link to="/finance-report/dashboard" className="nav-link">
-								Dashboard
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link to="/finance-report/transactions" className="nav-link">
-								Transctions
-							</Link>
-						</li>
-					</ul>
+					<Navbar.Collapse id="navbar-nav">
+						<ul className="navbar-nav me-auto">
+							<li className="nav-item">
+								<Link to="/finance-report/dashboard" className="nav-link">
+									Dashboard
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link to="/finance-report/transactions" className="nav-link">
+									Transctions
+								</Link>
+							</li>
+						</ul>
 
-					<Dropdown onSelect={handleYearChange} className="me-3">
-						<Dropdown.Toggle variant="outline-secondary" id="dropdown-year">
-							{year || lastYear || 'Ano'}
-						</Dropdown.Toggle>
-						<Dropdown.Menu>
-							{availableYears.map(item => (
-								<Dropdown.Item key={item} eventKey={item}>
-									{item}
-								</Dropdown.Item>
-							))}
-						</Dropdown.Menu>
-					</Dropdown>
+						<Form className="d-flex me-3">
+							<Form.Control
+								type="search"
+								placeholder="Buscar entradas"
+								aria-label="Search"
+								onChange={searchData && (e => searchData(e.target.value))}
+							/>
+						</Form>
 
-					<Dropdown onSelect={handleMonthChange} className="me-3">
-						<Dropdown.Toggle variant="outline-secondary" id="dropdown-month">
-							{month || lastMonth
-								? capitalizeFirstLetter(
-										getMonthName(`01/${month || lastMonth}/${year || new Date().getFullYear().toString()}`),
-								  )
-								: 'Mês'}
-						</Dropdown.Toggle>
-						<Dropdown.Menu>
-							{availableMonths.map(item => (
-								<Dropdown.Item key={item} eventKey={item}>
-									{capitalizeFirstLetter(
-										getMonthName(`01/${item}/${year || new Date().getFullYear().toString()}`),
-									)}
-								</Dropdown.Item>
-							))}
-						</Dropdown.Menu>
-					</Dropdown>
-				</Navbar.Collapse>
-			</Container>
-		</Navbar>
+						<Dropdown onSelect={handleYearChange} className="me-3">
+							<Dropdown.Toggle variant="outline-secondary" id="dropdown-year">
+								{year || lastYear || 'Ano'}
+							</Dropdown.Toggle>
+							<Dropdown.Menu>
+								{availableYears.map(item => (
+									<Dropdown.Item key={item} eventKey={item}>
+										{item}
+									</Dropdown.Item>
+								))}
+							</Dropdown.Menu>
+						</Dropdown>
+
+						<Dropdown onSelect={handleMonthChange} className="me-3">
+							<Dropdown.Toggle variant="outline-secondary" id="dropdown-month">
+								{month || lastMonth
+									? capitalizeFirstLetter(
+											getMonthName(
+												`01/${month || lastMonth}/${year || new Date().getFullYear().toString()}`,
+											),
+									  )
+									: 'Mês'}
+							</Dropdown.Toggle>
+							<Dropdown.Menu>
+								{availableMonths.map(item => (
+									<Dropdown.Item key={item} eventKey={item}>
+										{capitalizeFirstLetter(
+											getMonthName(`01/${item}/${year || new Date().getFullYear().toString()}`),
+										)}
+									</Dropdown.Item>
+								))}
+							</Dropdown.Menu>
+						</Dropdown>
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
+		</section>
 	);
 };
 

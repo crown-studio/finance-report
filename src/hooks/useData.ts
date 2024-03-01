@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import database from '../data/database.json';
 import { getParsedDate } from '../utils/dateUtils';
-import { countValueOf } from '../utils/dataUtils';
+import { countValueOf, searchCompare } from '../utils/dataUtils';
 import { isBefore, isSameMonth } from 'date-fns';
 
 export const useData = (selectedMonth: string, selectedYear: string) => {
@@ -15,20 +15,24 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 
 	const previousBalance = useMemo(() => INITIAL_VALUE + countValueOf(previousAmount), [INITIAL_VALUE, previousAmount]);
 
-	const filteredData = useMemo(
+	const initData = useMemo(
 		() => database.filter(({ pagamento }) => isSameMonth(getParsedDate(pagamento), currentDate)),
 		[database, currentDate],
 	);
 
+	const [filteredData, setFilteredData] = useState<typeof database | null>(null);
+
+	const currentData = useMemo(() => filteredData || initData, [filteredData, initData]);
+
 	const expenses = useMemo(
 		() =>
-			filteredData
+			currentData
 				.filter(({ valor }) => valor <= 0)
 				.map(({ valor, encargos, ...rest }) => ({ ...rest, valor: valor * -1, encargos: encargos * -1 })),
-		[filteredData],
+		[currentData],
 	);
 
-	const revenues = useMemo(() => filteredData.filter(({ valor }) => valor > 0), [filteredData]);
+	const revenues = useMemo(() => currentData.filter(({ valor }) => valor > 0), [currentData]);
 
 	const tithes = useMemo(() => revenues.filter(({ categoria }) => categoria === 'Dízimo'), [revenues]);
 
@@ -57,6 +61,40 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 		[expenses, revenues, previousBalance],
 	);
 
+	const isFiltered = useMemo(() => filteredData !== null, [filteredData]);
+
+	const [isAdvanced, setIsAdvanced] = useState(false);
+	const [activeQuery, setActiveQuery] = useState('');
+	const [isEmpty, setIsEmpty] = useState(false);
+
+	const checkAdvanced = useCallback(
+		(query: string) => {
+			setIsAdvanced(query.includes('**'));
+		},
+		[isAdvanced, setIsAdvanced],
+	);
+
+	const searchData = useCallback(
+		(query: string) => {
+			setActiveQuery(query);
+			if (typeof query === 'string') checkAdvanced(query);
+			if (!query) return resetFilter();
+			const result = initData.filter(
+				({ descricao, valor, observacoes }) =>
+					searchCompare(descricao, query) ||
+					searchCompare(valor.toString(), query) ||
+					searchCompare(observacoes, query),
+			);
+			setFilteredData(result);
+			setIsEmpty(result.length === 0);
+		},
+		[initData, setFilteredData],
+	);
+
+	const resetFilter = useCallback(() => {
+		setFilteredData(null);
+	}, [setFilteredData]);
+
 	return {
 		expenses,
 		revenues,
@@ -67,5 +105,11 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 		EBDOffering,
 		previousBalance,
 		balance,
+		searchData,
+		activeQuery,
+		resetFilter,
+		isFiltered,
+		isAdvanced,
+		isEmpty,
 	};
 };

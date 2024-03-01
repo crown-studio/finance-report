@@ -1,6 +1,7 @@
 import { IDespesa } from '../types/IDespesa';
 import { removeDuplicates } from './arrayUtils';
 import { getDeepCopy, groupBy } from './objectUtils';
+import { normalize } from './stringUtils';
 
 export const countValueOf = (dataArr: { valor: string; encargos?: string | number }[], decimals?: number): number => {
 	return Number(
@@ -99,4 +100,33 @@ export const groupExpensesBySubcategory = (expenses: IDespesa[], subcategories?:
 
 export const removeDistinctByProps = <T>(arr: T[], props: Array<keyof T>): T[] => {
 	return arr.filter((item, index) => arr.findIndex(obj => props.every(prop => obj[prop] === item[prop])) !== index);
+};
+
+interface ISearchOptions {
+	partial?: boolean;
+	deep?: boolean;
+	advanced?: boolean;
+}
+
+export const searchCompare = (content: string, query: string, options?: ISearchOptions) => {
+	const { partial = true, deep = false, advanced = false } = options || {};
+	const isAdvancedSearch = deep || advanced || query.includes('**');
+	const A = normalize(isAdvancedSearch ? content : removeSensitiveData(content));
+	const B = normalize(isAdvancedSearch ? getAdvancedQuery(query) : query);
+	if (partial) return A.includes(B); // || B.includes(A);
+	return A === B;
+};
+
+export const getAdvancedQuery = (query: string) => {
+	return query.replace(/\*\*(.*?)\*\*/g, '$1').trim();
+};
+
+export const removeSensitiveData = (data: string, hashtags?: string[]) => {
+	const clearData = data?.replace(/\*\*(.*?)\*\*/g, '');
+	if (!hashtags) return clearData;
+	return hashtags.reduce((content, tag) => content.replace(new RegExp(`#${tag}`, 'g'), ''), clearData);
+};
+
+export const highlightHashtags = (data: string | undefined) => {
+	return data?.replace(/#\S+/g, '<span class="custom-tags">$&</span>');
 };
