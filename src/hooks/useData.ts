@@ -70,7 +70,7 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 	);
 
 	const lastFixedExpenses = useMemo(
-		() => countValueOf(expenses.filter(({ recorrencia }) => recorrencia.toLowerCase() === 'fixa mensal')),
+		() => countValueOf(expenses.filter(({ recorrencia }) => recorrencia?.toLowerCase() === 'fixa mensal')),
 		[expenses],
 	);
 
