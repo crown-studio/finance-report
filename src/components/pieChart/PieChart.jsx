@@ -140,7 +140,7 @@ function PieChart({ chartData, title }) {
 	};
 
 	return (
-		<Container flexGrow={1} maxW={'55%'} py={8}>
+		<Container flexGrow={1} maxW={{ base: '100%', lg: '75%', xl: '65%', '2xl': '55%' }} py={8}>
 			{title && (
 				<Text as={'h4'} mb={0}>
 					{title}
