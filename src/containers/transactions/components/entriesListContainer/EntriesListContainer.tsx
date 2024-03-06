@@ -79,7 +79,7 @@ const EntriesListContainer = ({
 		return data;
 	}, [data, mergeByProps, hideByProps, groupLevel]);
 
-	const parsedData = useMemo(() => parseData(), [parseData]);
+	const parsedData = useMemo(() => Object.values(groupBy(parseData() || [], 'categoria'))?.flat(), [parseData]); // order list by categories;
 
 	const handleFocusContainer = useCallback((event: React.FocusEvent<HTMLDivElement>) => {
 		const { current: containerElem } = containerRef;
