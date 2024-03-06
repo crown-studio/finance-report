@@ -37,6 +37,7 @@ const SideNav = ({ data, colorScheme }: ISideNavProps) => {
 			height={'100vh'}
 			width={'fit-content'}
 			gap={4}
+			zIndex={1}
 		>
 			{data.map(({ id, name, src, icon, color, bg }, index) => {
 				return (

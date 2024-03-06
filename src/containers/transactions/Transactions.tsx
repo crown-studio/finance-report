@@ -9,13 +9,16 @@ import { subMonths } from 'date-fns';
 import SideNav from '../../components/sideNav/SideNav';
 import { SelectCallback } from '@restart/ui/esm/types';
 import If from '../../components/support/conditional/Conditional';
-import { Flex, Text } from '@chakra-ui/react';
+import { Fade, Flex, Text } from '@chakra-ui/react';
+import useBreakPoints from '../../hooks/useBreakPoints';
 import './Transactions.scss';
 
 const Transactions = () => {
 	const selectedDate = subMonths(new Date(), 1);
 	const [selectedYear, setSelectedYear] = useState(selectedDate.getFullYear().toString());
 	const [selectedMonth, setSelectedMonth] = useState((selectedDate.getMonth() + 1).toString());
+	const { isExtraLarge } = useBreakPoints();
+	const [showSideNav, setShowSideNav] = useState(false);
 
 	const {
 		revenues,
@@ -36,9 +39,13 @@ const Transactions = () => {
 		isEmpty,
 	} = useData(selectedMonth, selectedYear);
 
-	// const saldoAnterior = 40545.26; // ABRIL
-	// const saldoAnterior = 26574.45; // MAIO
-	// const saldoAnterior = 31834.21; // JUNHO
+	// const saldoAnterior = 42250.89; // JANEIRO
+	// const saldoAnterior = 44053.19; // FEVEREIRO
+	// const saldoAnterior = 40545.26; // MARÇO
+	// const saldoAnterior = 36401.08; // ABRIL
+	// const saldoAnterior = 31014.56; // MAIO
+	// const saldoAnterior = 26574.45; // JUNHO
+	// const saldoAnterior = 31834.21; // JULHO
 	// const saldoAnterior = 15494.47; // AGOSTO
 	// const saldoAnterior = 17380.56; // SETEMBRO
 	// const saldoAnterior = 11867.45; // OUTUBRO
@@ -61,6 +68,10 @@ const Transactions = () => {
 		[setSelectedMonth],
 	);
 
+	const handleToggleSideNav = () => {
+		setShowSideNav(!showSideNav);
+	};
+
 	return (
 		<div className="Transactions">
 			<NavBar
@@ -72,16 +83,18 @@ const Transactions = () => {
 				isFiltered={isFiltered}
 			/>
 
-			<SideNav
-				data={[
-					{ id: 0, name: 'Dízimos', src: '#tithes', icon: 'money' },
-					{ id: 1, name: 'Ofertas', src: '#offers', icon: 'paid' },
-					{ id: 2, name: 'Receitas', src: '#revenues', icon: 'savings' },
-					{ id: 3, name: 'Despesas', src: '#expenses', icon: 'receipt_long' },
-					{ id: 4, name: 'Balanço', src: '#balance', icon: 'monitoring' },
-				]}
-				colorScheme="blue"
-			/>
+			<Fade in={isExtraLarge || showSideNav} onMouseEnter={handleToggleSideNav} onMouseLeave={handleToggleSideNav}>
+				<SideNav
+					data={[
+						{ id: 0, name: 'Dízimos', src: '#tithes', icon: 'money' },
+						{ id: 1, name: 'Ofertas', src: '#offers', icon: 'paid' },
+						{ id: 2, name: 'Receitas', src: '#revenues', icon: 'savings' },
+						{ id: 3, name: 'Despesas', src: '#expenses', icon: 'receipt_long' },
+						{ id: 4, name: 'Balanço', src: '#balance', icon: 'monitoring' },
+					]}
+					colorScheme="blue"
+				/>
+			</Fade>
 
 			<EntriesListContainer
 				id="tithes"
