@@ -103,11 +103,13 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 		(search: string, { categoria, subcategoria, observacoes, descricao }: (typeof database)[0], isDeep: boolean) => {
 			try {
 				const queryRegex = /\${(.*?)}/g;
-				const chunksRegex = /(!)|(&&)|(\|\|)|#([\w]+)|\(([\*|\w]+?)\)|\(([\*|\w]+?:[\*|\w]+?)\)|"(.+?)"/g;
-				const hashtagsRegex = /#([\w]+)/gu;
-				const categoryRegex = /\(([\*|\w]+?)\)/g;
-				const categoryOrSubRegex = /\(([\*|\w|:]+?)\)/g;
-				const subcategoryRegex = /\(([\*|\w]+?:[\*|\w]+?)\)/g;
+
+				const chunksRegex =
+					/(!)|(&&)|(\|\|)|#([\w|\p{L}]+)|\(([\*|\w|\p{L}]+?)\)|\(([\*|\w|\p{L}]+?:[\*|\w|\p{L}]+?)\)|"(.+?)"/gu;
+				const hashtagsRegex = /#([\w|\p{L}]+)/gu;
+				const categoryRegex = /\(([\*|\w|\p{L}]+?)\)/gu;
+				const categoryOrSubRegex = /\(([\*|\w|:|\p{L}]+?)\)/gu;
+				const subcategoryRegex = /\(([\*|\w|\p{L}]+?:[\*|\w|\p{L}]+?)\)/gu;
 				const textRegex = /"(.+?)"/g;
 
 				const query = search.replace(queryRegex, '$1');
