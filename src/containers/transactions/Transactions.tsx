@@ -34,7 +34,7 @@ const Transactions = () => {
 		lastFixedExpenses,
 		searchData,
 		isFiltered,
-		isAdvanced,
+		isDeep,
 		activeQuery,
 		isEmpty,
 	} = useData(selectedMonth, selectedYear);
@@ -93,6 +93,8 @@ const Transactions = () => {
 						{ id: 4, name: 'Balanço', src: '#balance', icon: 'monitoring' },
 					]}
 					colorScheme="blue"
+					maxW={isExtraLarge || showSideNav ? 'auto' : 4}
+					overflow={'hidden'}
 				/>
 			</Fade>
 
@@ -103,7 +105,7 @@ const Transactions = () => {
 				mergeByProps={['descricao']}
 				hideOnEmpty={isFiltered}
 				isFiltered={isFiltered}
-				showSensitiveData={isAdvanced}
+				showSensitiveData={isDeep}
 				hideValues
 				hideTags
 				showCount
@@ -118,7 +120,7 @@ const Transactions = () => {
 				mergeByProps={['descricao']}
 				isFiltered={isFiltered}
 				hideOnEmpty={isFiltered}
-				showSensitiveData={isAdvanced}
+				showSensitiveData={isDeep}
 				hideValues
 				hideTags
 				showCount
@@ -148,7 +150,7 @@ const Transactions = () => {
 				data={expenses}
 				hideOnEmpty={isFiltered}
 				isFiltered={isFiltered}
-				showSensitiveData={isAdvanced}
+				showSensitiveData={isDeep}
 				groupByCategory
 				showGraphs
 				showCount

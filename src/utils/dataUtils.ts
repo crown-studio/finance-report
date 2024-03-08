@@ -102,17 +102,16 @@ export const removeDistinctByProps = <T>(arr: T[], props: Array<keyof T>): T[] =
 	return arr.filter((item, index) => arr.findIndex(obj => props.every(prop => obj[prop] === item[prop])) !== index);
 };
 
-interface ISearchOptions {
+export interface ISearchOptions {
 	partial?: boolean;
 	deep?: boolean;
-	advanced?: boolean;
 }
 
 export const searchCompare = (content: string, query: string, options?: ISearchOptions) => {
-	const { partial = true, deep = false, advanced = false } = options || {};
-	const isAdvancedSearch = deep || advanced || query.includes('**');
-	const A = normalize(isAdvancedSearch ? content : removeSensitiveData(content));
-	const B = normalize(isAdvancedSearch ? getAdvancedQuery(query) : query);
+	const { partial = true, deep = false } = options || {};
+	const isDeepSearch = deep || query.includes('**');
+	const A = normalize(isDeepSearch ? content : removeSensitiveData(content));
+	const B = normalize(isDeepSearch ? getAdvancedQuery(query) : query);
 	if (partial) return A.includes(B); // || B.includes(A);
 	return A === B;
 };

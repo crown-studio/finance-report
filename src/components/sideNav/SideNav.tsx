@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Flex, Button, Link, IconButton, SlideFade, ScaleFade } from '@chakra-ui/react';
+import { Flex, Button, Link, IconButton, SlideFade, ScaleFade, FlexProps } from '@chakra-ui/react';
 
-interface ISideNavProps {
+interface ISideNavProps extends FlexProps {
 	data: Array<{
 		id: string | number;
 		name: string;
@@ -13,7 +13,7 @@ interface ISideNavProps {
 	colorScheme?: string;
 }
 
-const SideNav = ({ data, colorScheme }: ISideNavProps) => {
+const SideNav = ({ data, colorScheme, ...rest }: ISideNavProps) => {
 	const [isCollapsed, setIsCollapsed] = useState<boolean[]>(new Array(data.length).fill(true));
 
 	const handleToggleCollapse = (index: number) => {
@@ -38,6 +38,7 @@ const SideNav = ({ data, colorScheme }: ISideNavProps) => {
 			width={'fit-content'}
 			gap={4}
 			zIndex={1}
+			{...rest}
 		>
 			{data.map(({ id, name, src, icon, color, bg }, index) => {
 				return (
