@@ -10,14 +10,14 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 
 	const previousAmount = useMemo(
 		() => database.filter(({ pagamento }) => isBefore(getParsedDate(pagamento), currentDate)),
-		[database, currentDate],
+		[currentDate],
 	);
 
 	const previousBalance = useMemo(() => INITIAL_VALUE + countValueOf(previousAmount), [INITIAL_VALUE, previousAmount]);
 
 	const initData = useMemo(
 		() => database.filter(({ pagamento }) => isSameMonth(getParsedDate(pagamento), currentDate)),
-		[database, currentDate],
+		[currentDate],
 	);
 
 	const [filteredData, setFilteredData] = useState<typeof database | null>(null);
@@ -99,6 +99,10 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 		[setIsDeep],
 	);
 
+	const resetFilter = useCallback(() => {
+		setFilteredData(null);
+	}, [setFilteredData]);
+
 	const advancedSearch = useCallback(
 		(search: string, { categoria, subcategoria, observacoes, descricao }: (typeof database)[0], isDeep: boolean) => {
 			try {
@@ -173,12 +177,8 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 			setFilteredData(result);
 			setIsEmpty(result.length === 0);
 		},
-		[initData, setFilteredData],
+		[advancedSearch, checkAdvanced, checkDeep, initData, resetFilter],
 	);
-
-	const resetFilter = useCallback(() => {
-		setFilteredData(null);
-	}, [setFilteredData]);
 
 	return {
 		expenses,
