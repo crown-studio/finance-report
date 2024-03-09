@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Chart from 'react-apexcharts';
 import { countValueOf, countValueOfByGroup } from '../../utils/dataUtils';
 import { Container, Text } from '@chakra-ui/layout';
@@ -13,7 +13,7 @@ import { COLORS } from '../../theme/colors';
 // 	chartData: Record<string, IDespesa | IReceita>[];
 // }
 
-function PieChart({ chartData, title }) {
+function PieChart({ chartData, title, handleFilterCategory }) {
 	const sortedDataEntries = Object.entries(chartData).sort(([, valuesA], [, valuesB]) => {
 		const valueA = countValueOf(valuesA);
 		const valueB = countValueOf(valuesB);
@@ -26,6 +26,12 @@ function PieChart({ chartData, title }) {
 		chart: {
 			type: 'donut',
 			fontFamily: 'Poppins',
+			events: {
+				legendClick: function (event, seriesIndex, config) {
+					const label = config.globals.labels[seriesIndex];
+					handleFilterCategory?.(`\$\{(${label})\}`);
+				},
+			},
 		},
 		plotOptions: {
 			pie: {
@@ -136,6 +142,19 @@ function PieChart({ chartData, title }) {
 			// theme: {
 			// 	mode: 'dark',
 			// },
+		},
+		dataLabels: {
+			enabled: true,
+			// formatter: function (val, opts) {
+			// 	return `${opts.w.globals.labels[opts.seriesIndex]}: ${val}`;
+			// },
+			style: {
+				fontSize: '16px',
+				fontFamily: 'Poppins',
+				fontWeight: 'normal',
+				// colors: ['#222222'],
+				// colors: undefined,
+			},
 		},
 	};
 

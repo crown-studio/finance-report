@@ -40,6 +40,7 @@ interface IEntriesListContainerProps {
 	isFiltered?: boolean;
 	showSensitiveData?: boolean;
 	customEmptyMessage?: string;
+	searchData?: (query: string) => void;
 }
 
 const EntriesListContainer = ({
@@ -58,6 +59,7 @@ const EntriesListContainer = ({
 	isFiltered = false,
 	showSensitiveData = false,
 	customEmptyMessage,
+	searchData,
 }: IEntriesListContainerProps) => {
 	const containerRef = useRef(null);
 	const showEmptyMessage = useMemo(() => !data?.length && React.Children.count(children) <= 1, [data, children]);
@@ -70,6 +72,8 @@ const EntriesListContainer = ({
 	const isSubcategory = useMemo(() => groupLevel === EXPENSES_GROUP_LEVELS.SUBCATEGORY, [groupLevel]);
 	const isEntries = useMemo(() => groupLevel === EXPENSES_GROUP_LEVELS.ENTRIES, [groupLevel]);
 
+	const renderGraph = useMemo(() => !isFiltered && isCategory && showGraphsToggle, [isCategory, isFiltered, showGraphsToggle]);
+
 	const parseData = useCallback(() => {
 		if (mergeByProps) return mergeDuplicatesByProps(data || [], mergeByProps as keyof typeof data);
 		if (hideByProps) return removeDuplicatesByProps(data || [], hideByProps as keyof typeof data);
@@ -77,8 +81,9 @@ const EntriesListContainer = ({
 		if (groupLevel === EXPENSES_GROUP_LEVELS.CATEGORY) return groupExpensesByCategory((data || []) as IDespesa[]);
 		if (groupLevel === EXPENSES_GROUP_LEVELS.SUBCATEGORY) return groupExpensesBySubcategory((data || []) as IDespesa[]);
 		return data;
-	}, [data, mergeByProps, hideByProps, groupLevel]);
+	}, [mergeByProps, data, hideByProps, groupByCategory, isFiltered, groupLevel]);
 
+	const chartData = useMemo(() => groupBy(data || [], 'categoria'), [data]);
 	const parsedData = useMemo(() => Object.values(groupBy(parseData() || [], 'categoria'))?.flat(), [parseData]); // order list by categories;
 
 	const handleFocusContainer = useCallback((event: React.FocusEvent<HTMLDivElement>) => {
@@ -99,6 +104,7 @@ const EntriesListContainer = ({
 					hideValue={hideValuesToggle}
 					color={index % 2 === 0 ? COLORS.CLEAR_SHADES_GRAY : 'initial'}
 					showSensitiveData={showSensitiveData}
+					handleFilterCategory={searchData}
 				/>
 			))}
 		</ul>
@@ -161,8 +167,8 @@ const EntriesListContainer = ({
 							{customEmptyMessage || 'Nenhum dado foi encontrado'}
 						</h5>
 					)}
-					{(isFiltered || !showGraphsToggle || !isCategory) && _renderListOfEntries(parsedData || [])}
-					{!isFiltered && showGraphsToggle && isCategory && <PieChart chartData={groupBy(data || [], 'categoria')} />}
+					{!renderGraph && _renderListOfEntries(parsedData || [])}
+					{renderGraph && <PieChart chartData={chartData} handleFilterCategory={searchData} />}
 					{children}
 				</Container>
 			</Box>

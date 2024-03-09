@@ -19,10 +19,19 @@ interface INavBarProps {
 	year: string;
 	month: string;
 	searchData?: (queryString: string) => void;
+	activeQuery?: string;
 	isFiltered?: boolean;
 }
 
-const NavBar = ({ handleYearChange, handleMonthChange, year, month, searchData, isFiltered = false }: INavBarProps) => {
+const NavBar = ({
+	handleYearChange,
+	handleMonthChange,
+	year,
+	month,
+	searchData,
+	activeQuery = '',
+	isFiltered = false,
+}: INavBarProps) => {
 	const navBarRef = useRef(null);
 	const [isCollapsedNavbar, setIsCollapsedNavbar] = useState(false);
 	const [preventCollapse, setPreventCollapse] = useState(false);
@@ -30,12 +39,12 @@ const NavBar = ({ handleYearChange, handleMonthChange, year, month, searchData, 
 
 	const availableYears = useMemo(
 		() => removeDuplicates(Object.keys(groupBy(chartData, 'pagamento')).map(date => date.split('/')[2])),
-		[chartData, groupBy, removeDuplicates],
+		[],
 	);
 
 	const availableMonths = useMemo(
 		() => removeDuplicates(Object.keys(groupBy(chartData, 'pagamento')).map(date => date.split('/')[1])),
-		[chartData, groupBy, removeDuplicates],
+		[],
 	);
 
 	const [lastYear] = useMemo(() => availableYears.sort(), [availableYears]);
@@ -45,7 +54,7 @@ const NavBar = ({ handleYearChange, handleMonthChange, year, month, searchData, 
 		const { current: navBarElem } = navBarRef;
 		if (!navBarElem) return false;
 		return isElementOrDescendantFocused(navBarElem);
-	}, [navBarRef.current, document.activeElement]);
+	}, []);
 
 	useEffect(() => {
 		if (hasFocusWithin || isFiltered || preventCollapse || !scrollDirection.isScrollingY) return;
@@ -55,12 +64,12 @@ const NavBar = ({ handleYearChange, handleMonthChange, year, month, searchData, 
 		setTimeout(() => {
 			setPreventCollapse(false);
 		}, 500);
-	}, [scrollDirection]);
+	}, [hasFocusWithin, isFiltered, preventCollapse, scrollDirection]);
 
 	return (
 		<section ref={navBarRef} className="WrapperNavBar">
 			<Navbar
-				className={classNames('CollapseNavbar', { show: !isCollapsedNavbar })}
+				className={classNames('CollapseNavbar', { show: !isCollapsedNavbar || activeQuery })}
 				sticky="top"
 				bg="dark"
 				data-bs-theme="dark"
@@ -91,6 +100,7 @@ const NavBar = ({ handleYearChange, handleMonthChange, year, month, searchData, 
 								placeholder="Buscar entradas"
 								aria-label="Search"
 								onChange={searchData && (e => searchData(e.target.value))}
+								value={activeQuery}
 							/>
 						</Form>
 

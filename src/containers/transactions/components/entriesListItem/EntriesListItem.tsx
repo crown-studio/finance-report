@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import HTMLInject from '../../../../components/support/HTMLInject/HTMLInject';
 import Badge from '../../../../components/commons/badge/Badge';
 import classNames from 'classnames';
@@ -19,6 +19,7 @@ interface IEntriesListItemProps {
 	color?: string;
 	className?: string;
 	minor?: string;
+	handleFilterCategory?: (query: string) => void;
 }
 
 const EntriesListItem = ({
@@ -31,17 +32,28 @@ const EntriesListItem = ({
 	color = 'unset',
 	className,
 	minor,
+	handleFilterCategory,
 }: IEntriesListItemProps) => {
 	// const listItemRef = useRef<HTMLLIElement>(null);
 
 	const parsedSubtitle = !showSensitiveData ? removeSensitiveData(subtitle || '', ['reembolso']) : subtitle;
 
 	// const handleIntemClick = event => {
-	// 	const { current: listItemElem } = listItemRef;
-	// 	if (!listItemElem) return;
-	// 	console.log('listItemElem', listItemElem);
-	// 	listItemElem.focus();
+	// 	// const { current: listItemElem } = listItemRef;
+	// 	// if (!listItemElem) return;
+	// 	// console.log('listItemElem', listItemElem);
+	// 	// listItemElem.focus();
 	// };
+
+	const handleClickBadge = useCallback(
+		(event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+			event.preventDefault();
+			event.stopPropagation();
+			if (!tags?.length) return;
+			handleFilterCategory?.(`\$\{(${tags[0]})\}`);
+		},
+		[handleFilterCategory, tags],
+	);
 
 	return (
 		<li
@@ -75,7 +87,14 @@ const EntriesListItem = ({
 			{!!tags?.length && (
 				<div className="EntriesListItem__tags">
 					{tags.map((tag, index) => {
-						return <Badge key={index} label={tag} color={getColorsByCategory(tags)[0]} />;
+						return (
+							<Badge
+								key={index}
+								label={tag}
+								color={getColorsByCategory(tags)[0]}
+								onClick={tag !== '...' ? handleClickBadge : undefined}
+							/>
+						);
 					})}
 				</div>
 			)}

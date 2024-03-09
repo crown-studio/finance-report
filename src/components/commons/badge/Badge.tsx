@@ -13,6 +13,7 @@ const Badge = ({ label, color, onClick }: IBadgeProps) => {
 	const { isLarge } = useBreakPoints(APPROACH.MAX);
 	return (
 		<span
+			tabIndex={onClick ? 0 : undefined}
 			className="Badge"
 			onClick={onClick}
 			style={{

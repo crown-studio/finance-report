@@ -1,22 +1,20 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { countValueOf } from '../../utils/dataUtils';
 import { useData } from '../../hooks/useData';
 import { formatCurrency, formatPercentage } from '../../utils/currencyUtils';
 import NavBar from '../../components/navBar/NavBar';
 import EntriesListItem from './components/entriesListItem/EntriesListItem';
 import EntriesListContainer from './components/entriesListContainer/EntriesListContainer';
-import { subMonths } from 'date-fns';
 import SideNav from '../../components/sideNav/SideNav';
 import { SelectCallback } from '@restart/ui/esm/types';
 import If from '../../components/support/conditional/Conditional';
 import { Fade, Flex, Text } from '@chakra-ui/react';
 import useBreakPoints from '../../hooks/useBreakPoints';
+import { useGlobalControl } from '../../hooks/useGlobalControl';
 import './Transactions.scss';
 
 const Transactions = () => {
-	const selectedDate = subMonths(new Date(), 1);
-	const [selectedYear, setSelectedYear] = useState(selectedDate.getFullYear().toString());
-	const [selectedMonth, setSelectedMonth] = useState((selectedDate.getMonth() + 1).toString());
+	const { selectedMonth, selectedYear, updateSelectedMonth, updateSelectedYear } = useGlobalControl();
 	const { isExtraLarge } = useBreakPoints();
 	const [showSideNav, setShowSideNav] = useState(false);
 
@@ -55,17 +53,17 @@ const Transactions = () => {
 	const handleYearChange: SelectCallback = useCallback(
 		(eventKey: string | null) => {
 			if (!eventKey) return;
-			setSelectedYear(eventKey);
+			updateSelectedYear(eventKey);
 		},
-		[setSelectedYear],
+		[updateSelectedYear],
 	);
 
 	const handleMonthChange: SelectCallback = useCallback(
 		(eventKey: string | null) => {
 			if (!eventKey) return;
-			setSelectedMonth(eventKey);
+			updateSelectedMonth(eventKey);
 		},
-		[setSelectedMonth],
+		[updateSelectedMonth],
 	);
 
 	const handleToggleSideNav = () => {
@@ -81,6 +79,7 @@ const Transactions = () => {
 				month={selectedMonth}
 				searchData={searchData}
 				isFiltered={isFiltered}
+				activeQuery={activeQuery}
 			/>
 
 			<Fade in={isExtraLarge || showSideNav} onMouseEnter={handleToggleSideNav} onMouseLeave={handleToggleSideNav}>
@@ -151,6 +150,7 @@ const Transactions = () => {
 				hideOnEmpty={isFiltered}
 				isFiltered={isFiltered}
 				showSensitiveData={isDeep}
+				searchData={searchData}
 				groupByCategory
 				showGraphs
 				showCount
