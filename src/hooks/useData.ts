@@ -101,6 +101,10 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 
 	const resetFilter = useCallback(() => {
 		setFilteredData(null);
+		setActiveQuery('');
+		setIsAdvanced(false);
+		setIsDeep(false);
+		setIsEmpty(false);
 	}, [setFilteredData]);
 
 	const advancedSearch = useCallback(
