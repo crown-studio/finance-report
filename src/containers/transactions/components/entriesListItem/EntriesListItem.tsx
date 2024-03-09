@@ -56,7 +56,8 @@ const EntriesListItem = ({
 		<li
 			className={classNames('EntriesListItem', className)}
 			style={{ backgroundColor: color }}
-			// onClick={handleIntemClick}
+			onClick={tags && tags[0] !== '...' ? handleItemClick : undefined}
+			onKeyDown={tags && tags[0] !== '...' ? handleKeyDownEnter : undefined}
 			tabIndex={0}
 		>
 			<div className="EntriesListItem__header">
@@ -88,8 +89,8 @@ const EntriesListItem = ({
 								key={index}
 								label={tag}
 								color={getColorsByCategory(tags)[0]}
-								onClick={tag !== '...' ? handleItemClick : undefined}
-								onKeyDown={tag !== '...' ? handleKeyDownEnter : undefined}
+								// onClick={tag !== '...' ? handleItemClick : undefined}
+								// onKeyDown={tag !== '...' ? handleKeyDownEnter : undefined}
 							/>
 						);
 					})}

@@ -11,6 +11,7 @@ import PieChart from '../../../../components/pieChart/PieChart';
 import { Badge, Box, Button, Flex, Text } from '@chakra-ui/react';
 import { groupBy } from '../../../../utils/objectUtils';
 import If from '../../../../components/support/conditional/Conditional';
+import { waitFor } from '../../../../utils/promisseUtils';
 import './EntriesListContainer.scss';
 
 const EXPENSES_GROUP_LEVELS = {
@@ -41,6 +42,7 @@ interface IEntriesListContainerProps {
 	showSensitiveData?: boolean;
 	customEmptyMessage?: string;
 	searchData?: (query: string) => void;
+	resetFilter?: () => void;
 }
 
 const EntriesListContainer = ({
@@ -60,8 +62,10 @@ const EntriesListContainer = ({
 	showSensitiveData = false,
 	customEmptyMessage,
 	searchData,
+	resetFilter,
 }: IEntriesListContainerProps) => {
-	const containerRef = useRef(null);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const buttonsRef = useRef<HTMLDivElement>(null);
 	const showEmptyMessage = useMemo(() => !data?.length && React.Children.count(children) <= 1, [data, children]);
 
 	const [groupLevel, setGroupLevel] = useState(EXPENSES_GROUP_LEVELS.CATEGORY);
@@ -89,8 +93,20 @@ const EntriesListContainer = ({
 	const handleFocusContainer = useCallback((event: React.FocusEvent<HTMLDivElement>) => {
 		const { current: containerElem } = containerRef;
 		if (!event.target.className.includes('focusWrapper') || !containerElem) return;
-		(containerElem as HTMLDivElement)?.scrollIntoView();
+		containerElem?.scrollIntoView();
 	}, []);
+
+	const handleFilterCategory = useCallback(
+		(query: string) => {
+			searchData?.(query);
+			waitFor(250).then(() => {
+				const clearButtonElem = buttonsRef.current?.querySelector('#clearButton');
+				if (!clearButtonElem) return;
+				(clearButtonElem as HTMLButtonElement)?.focus();
+			});
+		},
+		[searchData],
+	);
 
 	const _renderListOfEntries = (listData: Array<IDespesa | IReceita | SimpleList>) => (
 		<ul className="EntriesListContainer__list list-unstyled">
@@ -104,7 +120,7 @@ const EntriesListContainer = ({
 					hideValue={hideValuesToggle}
 					color={index % 2 === 0 ? COLORS.CLEAR_SHADES_GRAY : 'initial'}
 					showSensitiveData={showSensitiveData}
-					handleFilterCategory={searchData}
+					handleFilterCategory={handleFilterCategory}
 				/>
 			))}
 		</ul>
@@ -139,7 +155,7 @@ const EntriesListContainer = ({
 								</Badge>
 							)}
 						</Flex>
-						<Flex gap={2}>
+						<Flex ref={buttonsRef} gap={2}>
 							{!isFiltered && showGraphs && isCategory && (
 								<Button onClick={() => setShowGraphsToggle(prev => !prev)} isDisabled={showEmptyMessage}>
 									{showGraphsToggle ? 'LISTA' : 'GRÁFICO'}
@@ -160,6 +176,11 @@ const EntriesListContainer = ({
 									{hideValuesToggle ? 'EXIBIR' : 'OCULTAR'}
 								</Button>
 							)}
+							{isFiltered && (
+								<Button id="clearButton" onClick={resetFilter} isDisabled={showEmptyMessage}>
+									LIMPAR
+								</Button>
+							)}
 						</Flex>
 					</Flex>
 					{showEmptyMessage && (
@@ -168,7 +189,7 @@ const EntriesListContainer = ({
 						</h5>
 					)}
 					{!renderGraph && _renderListOfEntries(parsedData || [])}
-					{renderGraph && <PieChart chartData={chartData} handleFilterCategory={searchData} />}
+					{renderGraph && <PieChart chartData={chartData} handleFilterCategory={handleFilterCategory} />}
 					{children}
 				</Container>
 			</Box>

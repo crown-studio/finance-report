@@ -31,6 +31,7 @@ const Transactions = () => {
 		previousBalance,
 		lastFixedExpenses,
 		searchData,
+		resetFilter,
 		isFiltered,
 		isDeep,
 		activeQuery,
@@ -151,6 +152,7 @@ const Transactions = () => {
 				isFiltered={isFiltered}
 				showSensitiveData={isDeep}
 				searchData={searchData}
+				resetFilter={resetFilter}
 				groupByCategory
 				showGraphs
 				showCount
