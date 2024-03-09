@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import Chart from 'react-apexcharts';
 import { countValueOf, countValueOfByGroup } from '../../utils/dataUtils';
 import { Container, Text } from '@chakra-ui/layout';
 import { colorContrast, getColorsByCategory } from '../../utils/colorUtils';
+import { waitFor } from '../../utils/promisseUtils';
 import { formatCurrency } from '../../utils/currencyUtils';
 import { COLORS } from '../../theme/colors';
+import useEventListener from '../../hooks/useEventListener';
+import './PieChart.scss';
 
 // import { IDespesa } from '../../types/IDespesa';
 // import { IReceita } from '../../types/IReceita';
@@ -13,7 +16,9 @@ import { COLORS } from '../../theme/colors';
 // 	chartData: Record<string, IDespesa | IReceita>[];
 // }
 
-function PieChart({ chartData, title, handleFilterCategory }) {
+const PieChart = ({ chartData, title, handleFilterCategory }) => {
+	const chartRef = useRef(null);
+
 	const sortedDataEntries = Object.entries(chartData).sort(([, valuesA], [, valuesB]) => {
 		const valueA = countValueOf(valuesA);
 		const valueB = countValueOf(valuesB);
@@ -22,13 +27,75 @@ function PieChart({ chartData, title, handleFilterCategory }) {
 
 	const sortedChartData = Object.fromEntries(sortedDataEntries);
 
+	const handleDataPointSelection = useCallback(
+		label => {
+			if (!label) return;
+			handleFilterCategory(`\$\{(${label})\}`);
+		},
+		[handleFilterCategory],
+	);
+
+	const handleItemClick = useCallback(
+		event => {
+			// console.log('fui clicado');
+			// event.preventDefault();
+			event.stopPropagation();
+			if (!event?.target || event?.type !== 'click') return;
+			const label = event.target.dataset.label;
+			handleDataPointSelection(label);
+		},
+		[handleDataPointSelection],
+	);
+
+	const handleKeyDownEnter = useCallback(
+		event => {
+			// event.preventDefault();
+			event.stopPropagation();
+			if (!event?.target || event?.key !== 'Enter') return;
+			const label = event.target.dataset.label;
+			handleDataPointSelection(label);
+		},
+		[handleDataPointSelection],
+	);
+
+	const initialize = useCallback(
+		chartnode => {
+			const elements = chartnode.querySelectorAll('[data-label]');
+			if (!elements?.length) return;
+			elements.forEach(elem => {
+				if (!elem) return;
+				elem.addEventListener('keydown', handleKeyDownEnter);
+				elem.addEventListener('mouseup', handleItemClick);
+				// useEventListener('keydown', handleKeyDownEnter, elem);
+				// useEventListener('click', handleItemClick, elem);
+			});
+		},
+		[handleItemClick, handleKeyDownEnter],
+	);
+
+	useEffect(() => {
+		const chartnode = chartRef?.current?.chartRef?.current;
+		initialize(chartnode);
+	}, [initialize]);
+
 	const options = {
 		chart: {
 			type: 'donut',
 			fontFamily: 'Poppins',
 			events: {
-				legendClick: function (event, seriesIndex, config) {
-					const label = config.globals.labels[seriesIndex];
+				// legendClick: function (chartContext, seriesIndex, config) {
+				// 	console.log('LEGEND CLICKED', chartContext, seriesIndex, config);
+				// 	// const label = config.globals.labels[seriesIndex];
+				// 	// handleFilterCategory?.(`\$\{(${label})\}`);
+				// },
+				dataPointSelection: function (event, chartContext, config) {
+					if (!event) return;
+					const label = chartContext.w.config.labels[config.dataPointIndex];
+					handleFilterCategory?.(`\$\{(${label})\}`);
+				},
+				click: function (event, chartContext, config) {
+					const label = event.target.firstElementChild.dataset.label;
+					if (!label) return;
 					handleFilterCategory?.(`\$\{(${label})\}`);
 				},
 			},
@@ -101,7 +168,8 @@ function PieChart({ chartData, title, handleFilterCategory }) {
 		legend: {
 			fontSize: '16px',
 			formatter: function (seriesName, opts) {
-				return `<span tabindex="0">${seriesName}: ${formatCurrency(opts.w.globals.series[opts.seriesIndex])}</span>`;
+				const value = formatCurrency(opts.w.globals.series[opts.seriesIndex]);
+				return `<span tabindex="0" data-label='${seriesName}'>${seriesName}: ${value}</span>`;
 				// return [`${seriesName}:`, `<strong>${formatCurrency(opts.w.globals.series[opts.seriesIndex])}</strong> `];
 			},
 		},
@@ -159,13 +227,14 @@ function PieChart({ chartData, title, handleFilterCategory }) {
 	};
 
 	return (
-		<Container flexGrow={1} maxW={{ base: '100%', lg: '75%', xl: '65%', '2xl': '55%' }} py={8}>
+		<Container className="PieChart" flexGrow={1} maxW={{ base: '100%', lg: '75%', xl: '65%', '2xl': '55%' }} py={8}>
 			{title && (
 				<Text as={'h4'} mb={0}>
 					{title}
 				</Text>
 			)}
 			<Chart
+				ref={chartRef}
 				options={options}
 				series={options.series}
 				type={options.chart.type}
@@ -173,6 +242,6 @@ function PieChart({ chartData, title, handleFilterCategory }) {
 			/>
 		</Container>
 	);
-}
+};
 
 export default PieChart;

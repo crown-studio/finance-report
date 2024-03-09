@@ -113,11 +113,11 @@ export const useData = (selectedMonth: string, selectedYear: string) => {
 				const queryRegex = /\${(.*?)}/g;
 
 				const chunksRegex =
-					/(!)|(&&)|(\|\|)|#([\w|\p{L}]+)|\(([\*|\w|\p{L}]+?)\)|\(([\*|\w|\p{L}]+?:[\*|\w|\p{L}]+?)\)|"(.+?)"/gu;
+					/(!)|(&&)|(\|\|)|#([\w|\p{L}]+)|\(([\*|\w|\p{L}\s]+?)\)|\(([\*|\w|\p{L}\s]+?:[\*|\w|\p{L}\s]+?)\)|"(.+?)"/gu;
 				const hashtagsRegex = /#([\w|\p{L}]+)/gu;
-				const categoryRegex = /\(([\*|\w|\p{L}]+?)\)/gu;
-				const categoryOrSubRegex = /\(([\*|\w|:|\p{L}]+?)\)/gu;
-				const subcategoryRegex = /\(([\*|\w|\p{L}]+?:[\*|\w|\p{L}]+?)\)/gu;
+				const categoryRegex = /\(([\*|\w|\p{L}\s]+?)\)/gu;
+				const categoryOrSubRegex = /\(([\*|\w|:|\p{L}\s]+?)\)/gu;
+				const subcategoryRegex = /\(([\*|\w|\p{L}\s]+?:[\*|\w|\p{L}\s]+?)\)/gu;
 				const textRegex = /"(.+?)"/g;
 
 				const query = search.replace(queryRegex, '$1');

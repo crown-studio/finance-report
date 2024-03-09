@@ -177,7 +177,7 @@ const EntriesListContainer = ({
 								</Button>
 							)}
 							{isFiltered && (
-								<Button id="clearButton" onClick={resetFilter} isDisabled={showEmptyMessage}>
+								<Button id="clearButton" onClick={resetFilter}>
 									LIMPAR
 								</Button>
 							)}

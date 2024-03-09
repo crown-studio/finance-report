@@ -193,6 +193,8 @@ const Transactions = () => {
 				<EntriesListContainer
 					id="search"
 					title="Resultados da Busca"
+					isFiltered={isFiltered}
+					resetFilter={resetFilter}
 					customEmptyMessage={`Sinto muito, a busca não retornou resultados para: "${activeQuery}".`}
 				/>
 			</If>
