@@ -34,30 +34,26 @@ const EntriesListItem = ({
 	minor,
 	handleFilterCategory,
 }: IEntriesListItemProps) => {
-	// const listItemRef = useRef<HTMLLIElement>(null);
-
 	const parsedSubtitle = !showSensitiveData ? removeSensitiveData(subtitle || '', ['reembolso']) : subtitle;
 
-	// const handleIntemClick = event => {
-	// 	// const { current: listItemElem } = listItemRef;
-	// 	// if (!listItemElem) return;
-	// 	// console.log('listItemElem', listItemElem);
-	// 	// listItemElem.focus();
-	// };
+	const handleClickBadge = useCallback(() => {
+		if (!tags?.length) return;
+		handleFilterCategory?.(`\$\{(${tags[0]})\}`);
+	}, [handleFilterCategory, tags]);
 
-	const handleClickBadge = useCallback(
-		(event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-			event.preventDefault();
-			event.stopPropagation();
-			if (!tags?.length) return;
-			handleFilterCategory?.(`\$\{(${tags[0]})\}`);
-		},
-		[handleFilterCategory, tags],
-	);
+	const handleItemClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+		event.preventDefault();
+		event.stopPropagation();
+		handleClickBadge();
+	};
+
+	const handleKeyDownEnter = (event: React.KeyboardEvent<HTMLElement>) => {
+		if (event.key !== 'Enter') return;
+		handleClickBadge();
+	};
 
 	return (
 		<li
-			// ref={listItemRef}
 			className={classNames('EntriesListItem', className)}
 			style={{ backgroundColor: color }}
 			// onClick={handleIntemClick}
@@ -92,7 +88,8 @@ const EntriesListItem = ({
 								key={index}
 								label={tag}
 								color={getColorsByCategory(tags)[0]}
-								onClick={tag !== '...' ? handleClickBadge : undefined}
+								onClick={tag !== '...' ? handleItemClick : undefined}
+								onKeyDown={tag !== '...' ? handleKeyDownEnter : undefined}
 							/>
 						);
 					})}
