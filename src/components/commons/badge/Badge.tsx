@@ -15,7 +15,11 @@ const Badge = ({ label, color, onClick }: IBadgeProps) => {
 		<span
 			className="Badge"
 			onClick={onClick}
-			style={{ backgroundColor: color, color: color && colorContrast(color, isLarge ? 0.8 : undefined) }}
+			style={{
+				backgroundColor: color,
+				color: color && colorContrast(color, isLarge ? 0.8 : undefined),
+				cursor: onClick ? 'pointer' : 'default',
+			}}
 		>
 			{label}
 		</span>
