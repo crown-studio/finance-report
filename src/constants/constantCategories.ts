@@ -21,7 +21,7 @@ export const expenseSubcategories = {
 	Outros: ['Outros'],
 	Pagamentos: ['Aluguel', 'Impostos', 'Outros', 'Salário', 'Taxas'],
 	Serviços: ['Contabilidade', 'Energia', 'Gás', 'Impressão', 'Outros', 'Água', 'Água Mineral'],
-	Transporte: ['Combustível', 'Manutenção', 'Outros', 'Taxi', 'Ônibus'],
+	Transporte: ['Combustível', 'Manutenção', 'Outros', 'Taxi', 'Passagem'],
 };
 
 export const revenueCategories = ['Dízimo', 'Oferta', 'Juros', 'Outros'];
