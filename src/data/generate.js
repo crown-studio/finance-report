@@ -41,7 +41,7 @@ function mergeDatabase(directory = `${dirname}/files`) {
 		const jsonData = JSON.parse(fileData);
 
 		// Add unique ID to each object
-		const objectsWithId = jsonData.map(obj => ({ id: generateUniqueId(), ...obj }));
+		const objectsWithId = jsonData.map(obj => ({ id: obj.id || generateUniqueId(), ...obj }));
 		data.push(...objectsWithId);
 	}
 
@@ -56,6 +56,21 @@ async function spreadDatabase(fileName = 'database') {
 		const entries = data.filter(({ pagamento }) => i === getParsedDate(pagamento).getMonth());
 		fs.writeFileSync(`./src/data/files/${months[i]}.json`, JSON.stringify(entries, null, 2));
 	}
+}
+
+function appendDatabase(directory = `${dirname}/files`, fileName) {
+	const file = `${fileName}.json`;
+	const filePath = path.join(directory, file);
+	const fileData = fs.readFileSync(filePath, 'utf8');
+	const jsonData = JSON.parse(fileData);
+
+	// Add unique ID to each object
+	const data = jsonData.map(obj => ({ id: generateUniqueId(), ...obj }));
+
+	const database = JSON.parse(fs.readFileSync('./src/data/database.json', 'utf8'));
+	fs.writeFileSync(`./src/data/database.json`, JSON.stringify([...database, ...data], null, 2));
+
+	return data;
 }
 
 function main() {
@@ -77,6 +92,11 @@ function main() {
 		case '-m':
 		case '-M':
 			mergeDatabase(args[1]);
+			break;
+		case 'append':
+		case '-a':
+		case '-A':
+			appendDatabase(undefined, args[1]);
 			break;
 		default:
 			console.log('Parâmetro inválido.');

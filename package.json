@@ -13,7 +13,8 @@
 		"deploy": "npm run prepublish && npx gh-pages -d dist",
 		"eslint": "node_modules/.bin/eslint . --fix",
 		"merge": "node  src/data/generate.js -m",
-		"spread": "node  src/data/generate.js -s"
+		"spread": "node  src/data/generate.js -s",
+		"append": "node  src/data/generate.js -a"
 	},
 	"dependencies": {
 		"@chakra-ui/icons": "^2.1.1",
