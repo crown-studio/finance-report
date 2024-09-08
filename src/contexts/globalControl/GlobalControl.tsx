@@ -9,6 +9,7 @@ export interface IGlobalControlContext {
 }
 
 const selectedDate = subMonths(new Date(), 1);
+// const selectedDate = new Date('01-01-2024');
 
 const initialValue = {
 	selectedYear: selectedDate.getFullYear().toString(),
