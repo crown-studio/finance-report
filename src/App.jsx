@@ -16,10 +16,10 @@ function App() {
 				<GlobalControlProvider>
 					<Router>
 						<Routes>
-							<Route path="finance-report/" element={<Dashboard />} />
-							<Route path="finance-report/dashboard" element={<Dashboard />} />
-							<Route path="finance-report/transactions" element={<Transactions />} />
-							<Route path="*" element={<Dashboard />} />
+							<Route path="finance-report/" element={<Transactions />} />
+							{/* <Route path="finance-report/dashboard" element={<Dashboard />} /> */}
+							{/* <Route path="finance-report/transactions" element={<Transactions />} /> */}
+							{/* <Route path="*" element={<Dashboard />} /> */}
 						</Routes>
 					</Router>
 				</GlobalControlProvider>
