@@ -2,8 +2,13 @@ import { parse, format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 export const getMonthName = (dateString: string, formatString?: string): string => {
-	const date = getParsedDate(dateString);
-	return format(date, formatString || 'LLLL', { locale: ptBR });
+	try {
+		const date = getParsedDate(dateString);
+		return format(date, formatString || 'LLLL', { locale: ptBR });
+	} catch (error) {
+		// console.log(error, dateString);
+		return '';
+	}
 };
 
 export const getDateByMonthNumber = (monthNumber: number): Date => {
