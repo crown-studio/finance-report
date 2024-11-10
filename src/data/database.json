@@ -32043,7 +32043,7 @@
 	},
 	{
 		"id": "m3axqcasprtb2dr6rr",
-		"descricao": "?? EMPREEND PAGUE MENOS SA",
+		"descricao": "Ajuda social para medicamentos",
 		"valor": -112.42,
 		"encargos": 0,
 		"lancamento": "09/11/2024 21:17",
@@ -32052,11 +32052,11 @@
 		"recorrencia": "Nenhuma",
 		"parcela": "0",
 		"parcelas": "0",
-		"categoria": "Serviços",
-		"subcategoria": "Outros",
+		"categoria": "Ajuda Social",
+		"subcategoria": "Saúde",
 		"cartao": "-",
 		"conta": "Cora",
-		"observacoes": "** @import ?? **"
+		"observacoes": "** @import ?? ** José Valdeci"
 	},
 	{
 		"id": "m3axqcasyj7jiry18sb",
@@ -32196,7 +32196,7 @@
 	},
 	{
 		"id": "m3axqcas9sdnsar4fah",
-		"descricao": "Energia ?? Onde",
+		"descricao": "Energia Comunidade Esperança",
 		"valor": -70.39,
 		"encargos": 0,
 		"lancamento": "09/11/2024 21:17",
@@ -33046,7 +33046,7 @@
 	},
 	{
 		"id": "m3axqcas15nzpebm77z",
-		"descricao": "Palti Talmai",
+		"descricao": "Palti Talmai & Rebeca Talmai",
 		"valor": 300,
 		"lancamento": "09/11/2024",
 		"vencimento": "01/10/2024",
