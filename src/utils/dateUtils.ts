@@ -6,7 +6,7 @@ export const getMonthName = (dateString: string, formatString?: string): string 
 		const date = getParsedDate(dateString);
 		return format(date, formatString || 'LLLL', { locale: ptBR });
 	} catch (error) {
-		// console.log(error, dateString);
+		console.log(error, dateString);
 		return '';
 	}
 };
